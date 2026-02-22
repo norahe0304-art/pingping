@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: deepreader-skill
+Version: 1.0.0
+Summary: DeepReader skill for OpenClaw
+Requires-Python: >=3.10
+Requires-Dist: trafilatura>=1.12.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: lxml>=5.1.0
+Requires-Dist: lxml-html-clean>=0.4.0
+Requires-Dist: youtube-transcript-api>=0.6.2
+Requires-Dist: pydantic>=2.5.0
+Requires-Dist: pydantic-settings>=2.1.0
+Requires-Dist: tldextract>=5.1.0
+Requires-Dist: beautifulsoup4>=4.12.0

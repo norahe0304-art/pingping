@@ -1,0 +1,7 @@
+pyproject.toml
+deepreader_skill.egg-info/PKG-INFO
+deepreader_skill.egg-info/SOURCES.txt
+deepreader_skill.egg-info/dependency_links.txt
+deepreader_skill.egg-info/entry_points.txt
+deepreader_skill.egg-info/requires.txt
+deepreader_skill.egg-info/top_level.txt

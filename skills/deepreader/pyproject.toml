@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepreader-skill"
+version = "1.0.0"
+description = "DeepReader skill for OpenClaw"
+requires-python = ">=3.10"
+dependencies = [
+    "trafilatura>=1.12.0",
+    "requests>=2.31.0",
+    "lxml>=5.1.0",
+    "lxml-html-clean>=0.4.0",
+    "youtube-transcript-api>=0.6.2",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "tldextract>=5.1.0",
+    "beautifulsoup4>=4.12.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core*", "parsers*", "integrations*"]
+
+[tool.setuptools.py-modules]
+["__init__"]
+
+[project.scripts]
+deepreader-skill = "__init__:run"
