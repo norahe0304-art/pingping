@@ -44,6 +44,13 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - **Primary**: fxtwitter API `https://api.fxtwitter.com/status/{tweet_id}`
 - **Fallback**: browser + extension relay
 
+### 内容抓取
+
+- **x-reader**: 通用内容抓取工具，支持 X、微信、小红书、B站、Telegram、RSS 等
+- **安装**: `pip install git+https://github.com/runesleo/x-reader.git`
+- **使用**: `/tmp/xreader-venv/bin/x-reader <URL>`
+- **对比**: DeepReader 更轻量（内置），x-reader 更全（覆盖微信/小红书）
+
 ### Skills (Code Mode Style)
 
 - **skill_index**: `~/.agents/skills/index.json` — 所有技能的摘要索引
