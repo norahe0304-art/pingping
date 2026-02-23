@@ -1,0 +1,52 @@
+{
+  "verified_at_et": "2026-02-23T10:22:24.874051-05:00",
+  "rows": [
+    {
+      "key": "adweek_200k",
+      "url": "https://www.adweek.com/media/exclusive-openai-confirms-200000-minimum-commitment-for-chatgpt-ads/",
+      "title": "EXCLUSIVE: OpenAI Confirms $200,000 Minimum Commitment for ChatGPT Ads",
+      "published": "2026-01-31T19:16:54-05:00"
+    },
+    {
+      "key": "adweek_pilot",
+      "url": "https://www.adweek.com/media/chatgpt-gets-ads-omnicom-wpp-and-dentsu-line-up-brands-for-openai-pilot/",
+      "title": "ChatGPT Gets Ads: Omnicom, WPP, and Dentsu Line Up Brands for OpenAI Pilot",
+      "published": "2026-02-09T15:48:20-05:00"
+    },
+    {
+      "key": "adweek_first_brands",
+      "url": "https://www.adweek.com/media/first-ads-on-chat-gpt-best-buy-expedia-qualcomm/",
+      "title": "Best Buy, Expedia, Enterprise Mobility Are Among the First Brands Spotted Running Ads on ChatGPT",
+      "published": "2026-02-19T14:46:19-05:00"
+    },
+    {
+      "key": "verge_wild",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/881718/chatgpt-ads-in-the-wild",
+      "title": "ChatGPT ads in the wild. | The Verge",
+      "published": "2026-02-19T23:31:01+00:00"
+    },
+    {
+      "key": "openai_ads_test",
+      "url": "https://openai.com/index/testing-ads-in-chatgpt/",
+      "title": "",
+      "published": null,
+      "lastmod": "2026-02-12T18:08:23.777Z"
+    },
+    {
+      "key": "openai_ads_principles",
+      "url": "https://openai.com/index/our-approach-to-advertising-and-expanding-access/",
+      "title": "",
+      "published": null,
+      "lastmod": "2026-02-12T11:43:31.025Z"
+    },
+    {
+      "key": "openai_advertisers",
+      "url": "https://openai.com/advertisers/",
+      "title": "",
+      "published": null,
+      "lastmod": "2026-02-09T19:05:06.578Z"
+    }
+  ],
+  "check_200k": true,
+  "evidence_200k": "ntent='follow, index'><meta name='bingbot' content='noarchive'> <meta name=\"title\" content=\"EXCLUSIVE: OpenAI Confirms $200,000 Minimum Commitment for ChatGPT Ads\" /> <meta name=\"description\" property=\"og:description\" content=\"For some brands, ad "
+}

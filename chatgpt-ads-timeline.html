@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inside the ChatGPT Ad Rollout</title>
+  <style>
+    @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap');
+
+    :root {
+      --bg: #ecebe6;
+      --paper: #ecebe6;
+      --ink: #0f0f0f;
+      --line: #d2cdc2;
+      --accent: #de5d31;
+      --official: #6f8581;
+      --media: #7b7093;
+      --muted: #4f4f4f;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Satoshi', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .stage {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 10px;
+    }
+
+    .canvas {
+      width: min(740px, 92vw);
+      aspect-ratio: 3 / 4;
+      background: var(--paper);
+      padding: 18px 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .header {
+      text-align: left;
+      margin: 0;
+      padding-top: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .title-main {
+      display: inline-block;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 800;
+    }
+
+    .title-main .accent {
+      color: var(--accent);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .timeline {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-content: flex-start;
+      gap: 0;
+      min-height: 0;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 132px 1fr auto;
+      gap: 14px;
+      align-content: start;
+      flex: 0 0 auto;
+      min-height: 0;
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .time {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.15;
+      color: #373737;
+      font-weight: 700;
+      white-space: nowrap;
+      padding-top: 1px;
+    }
+
+    .copy {
+      font-size: 14px;
+      line-height: 1.26;
+      color: #111;
+      font-weight: 500;
+    }
+
+    .copy b { font-weight: 800; }
+
+    .meta {
+      margin-top: 1px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0.66;
+    }
+
+    .meta.official { color: var(--official); }
+    .meta.media { color: var(--media); }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .link {
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1px solid #111;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    @media (max-width: 620px) {
+      body { overflow: auto; }
+      .stage { padding: 0; }
+
+      .canvas {
+        width: 100%;
+        aspect-ratio: auto;
+        min-height: 100vh;
+        padding: 16px 12px;
+      }
+
+      .item {
+        flex: initial;
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 10px 0;
+      }
+
+      .meta { justify-self: start; }
+
+      .title-main {
+        font-size: 46px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <main class="canvas">
+      <header class="header">
+        <h1>
+          <span class="title-main">ChatGPT Ad <span class="accent">Rollout</span></span>
+        </h1>
+      </header>
+
+      <section class="timeline" aria-label="Timeline of ChatGPT ads rollout">
+        <article class="item">
+          <div class="time">2026-01-31 19:16</div>
+          <div class="copy"><b>Adweek:</b> ~$200K minimum buy reported; early access looked premium-only.</div>
+          <span class="meta media">Media</span>
+        </article>
+
+        <article class="item">
+          <div class="time">2026-02-09 14:05</div>
+          <div class="copy"><b>OpenAI:</b> launched /advertisers so brands could sign up for updates.</div>
+          <span class="meta official">Official</span>
+        </article>
+
+        <article class="item">
+          <div class="time">2026-02-09 15:48</div>
+          <div class="copy"><b>Adweek:</b> access ran through Omnicom, WPP, and Dentsu; no self-serve.</div>
+          <span class="meta media">Media</span>
+        </article>
+
+        <article class="item">
+          <div class="time">2026-02-12 06:43</div>
+          <div class="copy"><b>OpenAI:</b> posted rules: answers independent, chats private, paid tiers ad-free.</div>
+          <span class="meta official">Official</span>
+        </article>
+
+        <article class="item">
+          <div class="time">2026-02-12 13:08</div>
+          <div class="copy"><b>OpenAI:</b> started U.S. testing for adult Free/Go users; ads labeled and separated.</div>
+          <span class="meta official">Official</span>
+        </article>
+
+        <article class="item">
+          <div class="time">2026-02-19 14:46</div>
+          <div class="copy"><b>Adweek:</b> first visible brands included Expedia, Best Buy, Qualcomm, and Enterprise.</div>
+          <span class="meta media">Media</span>
+        </article>
+
+        <article class="item">
+          <div class="time">2026-02-19 18:31</div>
+          <div class="copy"><b>The Verge:</b> also spotted ads in chats, confirming rollout across outlets.</div>
+          <span class="meta media">Media</span>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <a class="link" href="https://openai.com/advertisers/" target="_blank" rel="noopener">openai.com/advertisers</a>
+        <div class="note">Sources: OpenAI · Adweek · The Verge</div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
