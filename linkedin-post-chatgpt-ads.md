@@ -2,16 +2,18 @@ So ChatGPT has ads now.
 
 Everyone's asking: how do I advertise on AI?
 
-But here's what I keep coming back to:
+Here's what I'm thinking about:
 
-Advertising assumes you need to persuade someone. You interrupt, you grab attention, you convince.
+Two big shifts are happening at once.
 
-But AI answers questions. That's its whole value. It gives you the best answer, not the best bid.
+First, advertising. On Google, you search, you expect ads, you move on. That's the game. But on AI, you ask a question and you trust the answer. You want help, not ads. So the game changes. We're not fighting for attention anymore — we're fighting for trust. The real estate is what AI says about you.
 
-So here's the thought experiment: imagine a world where AI gives perfect answers. Every time. What's the value of advertising there? Probably zero.
+Second, content. AWS and Microsoft are building marketplaces to pay for content to train AI. Your articles. Your insights. Your knowledge. All becoming trainable data. When that happens, creating content isn't just sharing ideas — it becomes proof of expertise. It becomes credentials.
 
-We're asking the wrong question. The question isn't "how do I advertise on AI?"
+Here's what connects these two: both are about giving your content to AI. One way, AI recommends you. The other way, AI learns from you.
 
-The question is: "does advertising even make sense when AI already gives better answers than any ad could?"
+Now here's the uncomfortable part: advertising assumes you need to convince someone. But AI doesn't convince — it answers. So what does advertising even mean when AI gives better answers than any ad could?
 
-That's the shift I'm thinking about.
+But honestly? This is a huge opportunity. New channel. New behavior. New format. First movers always win.
+
+I'm watching closely. And I'm not waiting around to figure it out.
