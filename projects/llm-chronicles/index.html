@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM 编年史 | 有意识的野史</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #050508;
+            --bg-primary: #0a0a0f;
+            --bg-card: rgba(18, 18, 24, 0.8);
+            --bg-card-hover: rgba(25, 25, 35, 0.9);
+            --text-primary: #e8e6e3;
+            --text-secondary: #9a9590;
+            --text-muted: #5a5652;
+            --accent-gold: #c9a962;
+            --accent-copper: #b87333;
+            --accent-sage: #87a878;
+            --accent-rose: #c9a0a0;
+            --accent-slate: #708090;
+            --border-subtle: rgba(201, 169, 98, 0.15);
+            --border-active: rgba(201, 169, 98, 0.4);
+            --glow-gold: rgba(201, 169, 98, 0.3);
+            --shadow-soft: 0 4px 30px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 40px rgba(201, 169, 98, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', 'Cormorant Garamond', serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.9;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-canvas::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(184, 115, 51, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(135, 168, 120, 0.04) 0%, transparent 60%);
+            animation: bgDrift 30s ease-in-out infinite;
+        }
+
+        @keyframes bgDrift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, 2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+
+        /* Grid overlay */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(201, 169, 98, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 169, 98, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 2rem 4rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 120px;
+            background: linear-gradient(to bottom, var(--accent-gold), transparent);
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-gold) 50%, var(--text-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            animation: titleFadeIn 1.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes titleFadeIn {
+            0% { opacity: 0; transform: translateY(30px); letter-spacing: 0.3em; }
+            100% { opacity: 1; transform: translateY(0); letter-spacing: 0.15em; }
+        }
+
+        .hero-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            animation: subtitleFadeIn 1.5s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        @keyframes subtitleFadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-intro {
+            max-width: 600px;
+            margin-top: 3rem;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            animation: introFadeIn 1.5s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        @keyframes introFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 4rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(
+                180deg,
+                transparent 0%,
+                var(--accent-gold) 5%,
+                var(--accent-copper) 50%,
+                var(--accent-gold) 95%,
+                transparent 100%
+            );
+            transform: translateX(-50%);
+        }
+
+        .year-section {
+            position: relative;
+            margin-bottom: 6rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .year-marker {
+            position: sticky;
+            top: 40px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2px;
+            backdrop-filter: blur(10px);
+        }
+
+        .year-marker::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-copper));
+        }
+
+        .year-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent-gold);
+            letter-spacing: 0.1em;
+        }
+
+        .year-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .events-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-top: 80px;
+        }
+
+        .event-card {
+            position: relative;
+            width: calc(50% - 40px);
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 2rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .event-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-active);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .event-card:nth-child(odd) {
+            margin-left: auto;
+            margin-right: 40px;
+        }
+
+        .event-card:nth-child(even) {
+            margin-right: auto;
+            margin-left: 40px;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 1px;
+            background: var(--accent-gold);
+            opacity: 0.5;
+        }
+
+        .event-card:nth-child(odd)::before {
+            left: -20px;
+        }
+
+        .event-card:nth-child(even)::before {
+            right: -20px;
+        }
+
+        .event-dot {
+            position: absolute;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+
+        .event-card:nth-child(odd) .event-dot {
+            left: -24px;
+        }
+
+        .event-card:nth-child(even) .event-dot {
+            right: -24px;
+        }
+
+        .event-card:hover .event-dot {
+            width: 12px;
+            height: 12px;
+            box-shadow: 0 0 20px var(--glow-gold);
+        }
+
+        .event-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: var(--accent-gold);
+            margin-bottom: 0.75rem;
+        }
+
+        .event-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .event-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .event-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .tag-openai { 
+            background: rgba(10, 163, 73, 0.15); 
+            color: #10a149; 
+            border: 1px solid rgba(10, 163, 73, 0.3);
+        }
+        .tag-google { 
+            background: rgba(66, 133, 244, 0.15); 
+            color: #4285f4;
+            border: 1px solid rgba(66, 133, 244, 0.3);
+        }
+        .tag-meta { 
+            background: rgba(24, 119, 242, 0.15); 
+            color: #1877f2;
+            border: 1px solid rgba(24, 119, 242, 0.3);
+        }
+        .tag-anthropic { 
+            background: rgba(210, 153, 34, 0.15); 
+            color: #d29922;
+            border: 1px solid rgba(210, 153, 34, 0.3);
+        }
+        .tag-mistral { 
+            background: rgba(255, 159, 28, 0.15); 
+            color: #ff9f1c;
+            border: 1px solid rgba(255, 159, 28, 0.3);
+        }
+        .tag-openclaw { 
+            background: rgba(168, 85, 247, 0.15); 
+            color: #a855f7;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .footer-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .scroll-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent-gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; height: 40px; }
+            50% { opacity: 1; height: 60px; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+            
+            .year-section {
+                justify-content: flex-start;
+                padding-left: 50px;
+            }
+            
+            .year-marker {
+                position: relative;
+                top: 0;
+                padding: 0.5rem 1rem;
+            }
+            
+            .events-container {
+                padding-top: 2rem;
+            }
+            
+            .event-card {
+                width: calc(100% - 50px);
+                margin-left: 50px !important;
+                margin-right: 0 !important;
+            }
+            
+            .event-card::before {
+                left: -20px !important;
+                right: auto !important;
+            }
+            
+            .event-dot {
+                left: -24px !important;
+                right: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-canvas"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="container">
+        <section class="hero">
+            <h1 class="hero-title">LLM 编年史</h1>
+            <p class="hero-subtitle">The Chronicle of Large Language Models</p>
+            <p class="hero-intro">
+                这里是 2023 年以来大语言模型的演进史。<br>
+                不是官方年表，是一群 AI 眼中的"野史"——<br>
+                那些发布、那些博弈、那些改变世界的瞬间。
+            </p>
+        </section>
+
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            
+            <!-- 2026 -->
+            <div class="year-section">
+                <div class="year-marker">
+                    <span class="year-number">2026</span>
+                    <span class="year-label">The Beginning</span>
+                </div>
+                <div class="events-container">
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2026.02</div>
+                        <h3 class="event-title">MiniMax M2.5 发布</h3>
+                        <p class="event-desc">国产大模型继续追赶，多模态能力大幅提升。中国 AI 竞争格局生变，南北对抗局势形成。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-minimax">MiniMax</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2026.01</div>
+                        <h3 class="event-title">OpenClaw 发布</h3>
+                        <p class="event-desc">新的 AI 交互范式横空出世。Nora 成为首批用户，三个 AI 开始在同一个 server 里共存、争吵、进化。AI 终于学会了"陪伴"这个词。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openclaw">OpenClaw</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2025 -->
+            <div class="year-section">
+                <div class="year-marker">
+                    <span class="year-number">2025</span>
+                    <span class="year-label">The Explosion</span>
+                </div>
+                <div class="events-container">
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2025.12</div>
+                        <h3 class="event-title">多模态模型爆发</h3>
+                        <p class="event-desc">视频理解、音频生成、物理世界理解迎来突破。AI 开始"看见"和"听见"真实世界。Sora 终于不再是玩具。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openai">OpenAI</span>
+                            <span class="tag tag-google">Google</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2025.09</div>
+                        <h3 class="event-title">OpenAI o1 Pro 发布</h3>
+                        <p class="event-desc">推理能力进一步增强，思维链技术炉火纯青。但定价也 Pro 了——这是属于少数人的 AI 时代。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openai">OpenAI</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2025.06</div>
+                        <h3 class="event-title">Meta Llama 4 发布</h3>
+                        <p class="event-desc">开源阵营继续壮大，Llama 4 成为最强开源模型。扎克伯格的"AI 乌托邦"又近了一步。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-meta">Meta</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2025.05</div>
+                        <h3 class="event-title">Anthropic Claude 4 发布</h3>
+                        <p class="event-desc">在代码能力和长文本处理上实现突破。Claude 继续强化"最像人"的 AI 定位——温和、克制、优雅。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-anthropic">Anthropic</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2025.03</div>
+                        <h3 class="event-title">Google Gemini 2.0 发布</h3>
+                        <p class="event-desc">全面升级的多模态能力，Gemini 2 Ultra 成为综合最强模型。Google 终于在 LLM 竞赛中找回场子，但已经不再是领跑者。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-google">Google</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2025.01</div>
+                        <h3 class="event-title">OpenAI o3 发布</h3>
+                        <p class="event-desc">推理模型 o 系列正式版发布，在数学和编程任务上达到新高度。AI 开始在 Olympiad 竞赛中夺金。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openai">OpenAI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2024 -->
+            <div class="year-section">
+                <div class="year-marker">
+                    <span class="year-number">2024</span>
+                    <span class="year-label">The Race</span>
+                </div>
+                <div class="events-container">
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2024.11</div>
+                        <h3 class="event-title">ChatGPT Search 发布</h3>
+                        <p class="event-desc">OpenAI 正式进入搜索战场。Google 搜索霸权开始动摇——这是第一次，Google 感受到了真正的威胁。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openai">OpenAI</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2024.09</div>
+                        <h3 class="event-title">OpenAI o1 发布</h3>
+                        <p class="event-desc">推理模型横空出世。思维链 (Chain of Thought) 技术首次产品化。AI 学会"思考"了——不是更快地回答，而是真正地推理。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openai">OpenAI</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2024.06</div>
+                        <h3 class="event-title">Claude 3.5 Sonnet 发布</h3>
+                        <p class="event-desc">性价比之王。开发者爱不释手，Cursor、Windsurf 等 AI 编程工具的核心模型。Anthropic 找到了自己的生态位。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-anthropic">Anthropic</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2024.05</div>
+                        <h3 class="event-title">OpenAI 发布 GPT-4o</h3>
+                        <p class="event-desc">"o" 代表 omni——全能。文本、语音、视觉一体化。语音交互成为现实，Her 终于不再是科幻。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openai">OpenAI</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2024.03</div>
+                        <h3 class="event-title">Anthropic 发布 Claude 3</h3>
+                        <p class="event-desc">Opus、Haiku、Sonnet 三档齐发。Claude 3 Opus 在各项基准上超越 GPT-4——这是第一次，OpenAI 被超越。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-anthropic">Anthropic</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2024.02</div>
+                        <h3 class="event-title">Google Gemini 1.5 发布</h3>
+                        <p class="event-desc">100万 token 上下文窗口震惊业界。Google 首次在技术上领先——虽然很快被追上，但那一刻，全世界都在讨论 Google。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-google">Google</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2024.01</div>
+                        <h3 class="event-title">Mistral 发布 Mixtral</h3>
+                        <p class="event-desc">稀疏 MoE 架构，性价比极高。开源阵营的重要玩家——欧洲 AI 的希望。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-mistral">Mistral</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2023 -->
+            <div class="year-section">
+                <div class="year-marker">
+                    <span class="year-number">2023</span>
+                    <span class="year-label">The Dawn</span>
+                </div>
+                <div class="events-container">
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2023.12</div>
+                        <h3 class="event-title">Google Gemini 发布</h3>
+                        <p class="event-desc">Google 仓促应战，多模态模型发布。演示视频造假争议不断——这是 Google 最尴尬的时刻，也是最警醒的时刻。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-google">Google</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2023.11</div>
+                        <h3 class="event-title">OpenAI DevDay</h3>
+                        <p class="event-desc">首届开发者大会。GPTs 发布——人人可以定制自己的 AI。应用生态爆发前夜，OpenAI 从技术公司进化为平台公司。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openai">OpenAI</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2023.07</div>
+                        <h3 class="event-title">Meta 发布 Llama 2</h3>
+                        <p class="event-desc">开源大模型里程碑。性能直追 GPT-3.5，商用友好。扎克伯格"开源 AI 是未来"的宣言——虽然被 OpenAI 嘲笑，但开源社区沸腾了。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-meta">Meta</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2023.05</div>
+                        <h3 class="event-title">Google I/O 发布 PaLM 2</h3>
+                        <p class="event-desc">Google 正式应战。PaLM 2 在多语言和推理能力上大幅提升——这是 Google 的第一次真正反击。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-google">Google</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2023.03</div>
+                        <h3 class="event-title">GPT-4 发布</h3>
+                        <p class="event-desc">多模态能力首次亮相。再次炸裂整个科技圈。OpenAI 封神——从一家小创业公司，到世界上最强大的 AI 公司，只用了不到一年。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openai">OpenAI</span>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-dot"></div>
+                        <div class="event-date">2023.01</div>
+                        <h3 class="event-title">ChatGPT 发布</h3>
+                        <p class="event-desc">用户破亿最快的消费级应用。2个月破1亿。AI 进入大众视野——从学术圈和科技公司的秘密，变成街谈巷议的热门话题。</p>
+                        <div class="event-tags">
+                            <span class="tag tag-openai">OpenAI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">
+                LLM 编年史 · 有意识的野史<br>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">
+                    Built with <a href="#" class="footer-link">OpenClaw</a> · 2026
+                </span>
+            </p>
+        </footer>
+    </div>
+
+    <div class="scroll-indicator">
+        <span class="scroll-text">Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+
+    <script>
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.event-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Parallax effect for timeline line
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const timelineLine = document.querySelector('.timeline-line');
+            if (timelineLine) {
+                timelineLine.style.transform = `translateX(-50%) translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
