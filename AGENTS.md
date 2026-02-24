@@ -45,6 +45,16 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
+## Gmail 处理流程
+
+处理 Gmail 邮件时，统一使用以下流程：
+
+1. 用 `gog gmail threads get <thread_id> --json` 取完整 JSON
+2. 从 `payload.body.data` 或 `payload.parts[*].body.data` 提取正文
+3. base64url 解码（不是普通 base64），再处理字符集
+4. 解码失败才回退到 snippet，并标注"摘要模式"
+5. 输出时优先给完整正文要点，再给摘要
+
 ## Safety
 
 - Don't exfiltrate private data. Ever.
