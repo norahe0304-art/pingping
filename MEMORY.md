@@ -12,6 +12,16 @@
 
 ## 重要记录
 
+### 2026-02-24
+- OpenClaw + Codex 一人开发团队（Elvis Sun 案例）- 待跟进
+  - 核心：编排层持有业务上下文，翻译成精准 prompt 给 coding agent
+  - 成果：94 commits/天，30分钟7个PR
+  - 成本：~$190/月
+- taste-skill: AI 前端设计品味指南
+  - GitHub: github.com/Leonxlnx/taste-skill
+  - 100条AI常见低级模式+anti-slop规则
+- 分工确认：Friday→Zihan技术 / pingping→Nora内容+社区
+
 ### 2026-02-23
 - ChatGPT Ads timeline 完成（HTML 可视化 + LinkedIn post）
 - LinkedIn post skill 更新（Zara 风格，写入 banned patterns）
