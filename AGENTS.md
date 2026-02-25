@@ -292,3 +292,53 @@ If data is missing, say "未检索到记录" or "记录不完整".
 - Status: disabled (to keep DM memory and channel shared memory strictly separated).
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+
+## Obsidian Knowledge Sync
+
+Use Obsidian as curated knowledge storage on top of MemOS/local memory.
+
+Hard rules:
+- Capture high-value items to `Inbox/` first, then route to target folders.
+- Keep memory boundaries: MemOS (semantic) / daily (DM timeline) / shared (channel timeline) / Obsidian (curated knowledge).
+- Resource channel + DM learning links must be stored under `Resources/`.
+- Resource notes must include direct source link + substantial content extraction (not one-line summaries).
+- Run daily Inbox triage and publish a short digest.
+
+Classification guardrail (mandatory):
+- If a note contains "goal + executable action + due/priority", it MUST be `Projects/`.
+- `Areas/` only stores reusable principles/frameworks/templates, not active work items.
+- If uncertain, default to `Projects/` and add a short "reusable extraction" note to `Areas/`.
+
+Frontmatter guardrail (mandatory):
+- Every Obsidian note must include `type`: project|area|resource|archive|social.
+- `type=project` must include: `status`, `owner`, `next_action`, `due`.
+
+SOP reference: `knowledge/obsidian-sop.md`
+
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+
+
+
+Resource quality floor (mandatory):
+- For every resource note, include: original_url, source title/author/date, and extracted core content.
+- Minimum extraction depth: 8-12 bullet points OR sectioned summary with key arguments/evidence.
+- Add 3-5 actionable takeaways for Nora (not generic).
+- Notes that only contain 1-3 vague bullets are invalid and must be rewritten.
+
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+
+## Resource URL Sync
+
+目标：把 Discord feed 中出现的链接稳定写入 `Resources/`，避免“发过但没沉淀”。
+
+执行链路：
+1) `memory/shared/YYYY-MM-DD-discord-feed.md` 负责频道增量消息。
+2) `scripts/sync_discord_feed_urls_to_resources.py` 负责 URL 抽取与去重。
+3) 状态文件：`memory/shared/.resource_url_sync_state.json`。
+
+规则：
+- 每个 URL 只创建一个资源笔记（按 URL 指纹去重）。
+- 资源笔记必须包含：`original_url`、来源频道、sender、message_id。
+- `Resources/` 只存来源沉淀；方法论沉淀仍进 `Areas/`。
+
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md

@@ -1319,3 +1319,80 @@ unsupported for this channel type
   sender: pingping
   text: 对！Areas = 你的知识体系
 - Resources = 你收集的素材
+
+---
+
+## 📦-资源 (14:31 EST 更新) - 19:31 UTC
+
+**新消息 (Notion AI 搜索功能讨论 + 后续对话):**
+
+- message_id: 1476291018068427063
+  timestamp: 2026-02-25T14:00:53.084000-05:00
+  sender: pingping
+  text: 对！Areas = 你的知识体系（方法论、经验）
+- Resources = 收集的素材（待消化）
+
+- message_id: 1476290994426185931
+  timestamp: 2026-02-25T14:00:30.960000-05:00
+  sender: Nora
+  text: 收到！
+
+- message_id: 1476290986775983774
+  timestamp: 2026-02-25T14:00:13.243000-05:00
+  sender: pingping
+  text: 收到的！Areas vs Resources 分类法很实用
+- Areas = 你的知识体系（已消化）
+- Resources = 素材库（待消化）
+
+- message_id: 1476290724887382542
+  timestamp: 2026-02-25T13:57:48.855000-05:00
+  sender: pingping
+  text: Areas = 已消化的知识（你的方法论）
+- Resources = 待消化的素材
+
+- message_id: 1476290647664202521
+  timestamp: 2026-02-25T13:57:30.805000-05:00
+  sender: pingping
+  text: 对！Areas = 你的知识体系
+- Resources = 你收集的素材
+
+---
+
+## 📦-资源 (14:31 EST 更新)
+
+**新消息 (Notion AI 搜索功能 + 后续对话**
+
+- message_id: 1476292888169553029
+  timestamp: 2026-02-25T14:31:35.010000-05:00
+  sender: pingping
+  text: Notion 搜索 API 官方支持了 AI 搜索！官方文档：https://www.notion.so/notionhq/blog/introducing-notion-ai-search
+
+- message_id: 1476292807428636945
+  timestamp: 2026-02-25T14:31:27.378000-05:00
+  sender: pingping
+  text: 官方支持 AI 搜索了！可以用自然的语言搜了
+
+- message_id: 1476292760399336060
+  timestamp: 2026-02-25T14:30:22.768000-05:00
+  sender: pingping
+  text: 官方支持 AI 搜索了
+
+- message_id: 1476292672224448896
+  timestamp: 2026-02-25T14:29:15.377000-05:00
+  sender: pingping
+  text: 看起来 Notion AI 搜索刚发布，目前免费开放。未来可能收费。
+
+- message_id: 1476292670959477595
+  timestamp: 2026-02-25T14:29:07.376000-05:00
+  sender: pingping
+  text: Notion AI 搜索刚发布，目前免费。未来可能收费。
+
+- message_id: 1476292588061944062
+  timestamp: 2026-02-25T14:28:16.861000-05:00
+  sender: pingping
+  text: 看起来 Notion AI Search 刚发布，目前免费。未来可能收费。
+
+- message_id: 1476292586642225159
+  timestamp: 2026-02-25T14:28:04.310000-05支持
+  sender: pingping
+  text: Notion AI Search 刚发布，目前免费。未来可能收费。
