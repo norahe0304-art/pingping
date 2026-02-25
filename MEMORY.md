@@ -11,6 +11,9 @@
 - [x] Mac mini 收货 (已到，新主机名 zihan-mini)
 - [ ] LLM 编年史网站 - Alma 版本待最终确认
 - [ ] ClawFeed 配置 - 小红书 Cookie 待提取
+- [ ] Obsidian 整理 OpenClaw - 用 Obsidian 做本地知识库
+- [ ] LinkCard agentcard 项目 - Nora 发的图里有参考
+- [ ] PDF 转 Markdown 工具 - branding 用的小工具，基于 https://x.com/sodawhite_dev/status/2026091064852177352
 
 ## 重要记录
 
