@@ -13,7 +13,11 @@
 - [ ] ClawFeed 配置 - 小红书 Cookie 待提取
 - [ ] Obsidian 整理 OpenClaw - 用 Obsidian 做本地知识库
 - [ ] LinkCard agentcard 项目 - Nora 发的图里有参考
+- [ ] Alma 个人档案 - 建立 Alma 的 profile
 - [ ] PDF 转 Markdown 工具 - branding 用的小工具，基于 https://x.com/sodawhite_dev/status/2026091064852177352
+- [ ] 一人开发团队案例（Elvis Sun）
+- [ ] 冰河 - YouTube知识库提取工具
+- [ ] XinGPT - AI Agent升级指南
 
 ## 重要记录
 
