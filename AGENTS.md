@@ -298,9 +298,10 @@ If data is missing, say "未检索到记录" or "记录不完整".
 Use Obsidian as curated knowledge storage on top of MemOS/local memory.
 
 Hard rules:
-- Capture high-value items to `Inbox/` first, then route to target folders.
+- Canonical vault root is `obsidian/`; do not write curated notes into legacy top-level folders.
+- Capture high-value items to `obsidian/Inbox/` first, then route to target folders.
 - Keep memory boundaries: MemOS (semantic) / daily (DM timeline) / shared (channel timeline) / Obsidian (curated knowledge).
-- Resource channel + DM learning links must be stored under `Resources/`.
+- Resource channel + DM learning links must be stored under `obsidian/Resources/`.
 - Resource notes must include direct source link + substantial content extraction (not one-line summaries).
 - Run daily Inbox triage and publish a short digest.
 
@@ -329,16 +330,42 @@ Resource quality floor (mandatory):
 
 ## Resource URL Sync
 
-目标：把 Discord feed 中出现的链接稳定写入 `Resources/`，避免“发过但没沉淀”。
+目标：把 Discord feed 中出现的链接稳定写入 `obsidian/Resources/`，避免“发过但没沉淀”。
 
 执行链路：
 1) `memory/shared/YYYY-MM-DD-discord-feed.md` 负责频道增量消息。
 2) `scripts/sync_discord_feed_urls_to_resources.py` 负责 URL 抽取与去重。
 3) 状态文件：`memory/shared/.resource_url_sync_state.json`。
 
+运行策略（已调整）：
+- 默认不做高频定时同步（避免长期 0 增量空转）。
+- 仅在以下场景手动触发：
+  - 资源频道有明显新链接批量进入后
+  - 日终沉淀前需要补齐 `obsidian/Resources/`
+- 手动命令：
+  `python3 /Users/nora/.openclaw/workspace/scripts/sync_discord_feed_urls_to_resources.py --vault obsidian --days 2 --verbose`
+
 规则：
 - 每个 URL 只创建一个资源笔记（按 URL 指纹去重）。
 - 资源笔记必须包含：`original_url`、来源频道、sender、message_id。
-- `Resources/` 只存来源沉淀；方法论沉淀仍进 `Areas/`。
+- `obsidian/Resources/` 只存来源沉淀；方法论沉淀仍进 `obsidian/Areas/`。
+
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+
+## Obsidian Templates (Mandatory)
+
+Every section must use canonical templates before writing:
+- obsidian/Projects -> `knowledge/templates/project-note-template.md`
+- obsidian/Areas -> `knowledge/templates/area-note-template.md`
+- obsidian/Resources -> `knowledge/templates/resource-note-template.md`
+- obsidian/Archives -> `knowledge/templates/archive-note-template.md`
+- obsidian/Social -> `knowledge/templates/social-note-template.md`
+- obsidian/Inbox -> `knowledge/templates/inbox-capture-template.md`
+
+Directory shortcuts exist as `_TEMPLATE.md` under each `obsidian/*` target folder.
+
+Quality policy:
+- No shallow note allowed.
+- If note does not meet section quality floor in `knowledge/obsidian-sop.md`, rewrite before saving.
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md

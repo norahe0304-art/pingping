@@ -3,10 +3,10 @@
 # [OUTPUT]: 生成 Resources/*.md 资源笔记，并更新 memory/shared/.resource_url_sync_state.json。
 # [POS]: scripts 同步链路中的 URL->Resources 落盘器，补齐 feed 与知识库之间的最后一跳。
 # [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
-"""Sync URLs from shared discord feed files into Resources notes.
+"""Sync URLs from shared discord feed files into Obsidian Resources notes.
 
 - Source: memory/shared/YYYY-MM-DD-discord-feed.md
-- Target: Resources/YYYY-MM-DD-<slug>.md
+- Target: obsidian/Resources/YYYY-MM-DD-<slug>.md
 - State:  memory/shared/.resource_url_sync_state.json
 """
 
@@ -57,6 +57,11 @@ class ResourceHit:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Sync discord feed URLs to Resources")
     parser.add_argument("--workspace", default=os.path.expanduser("~/.openclaw/workspace"))
+    parser.add_argument(
+        "--vault",
+        default="obsidian",
+        help="Vault directory under workspace (default: obsidian)",
+    )
     parser.add_argument("--days", type=int, default=2, help="Look back N days including today")
     parser.add_argument("--since", default="", help="Start date YYYY-MM-DD (overrides --days)")
     parser.add_argument("--verbose", action="store_true")
@@ -257,7 +262,7 @@ def build_note(hit: ResourceHit) -> str:
 def main() -> int:
     args = parse_args()
     workspace = Path(args.workspace)
-    resources_dir = workspace / "Resources"
+    resources_dir = workspace / args.vault / "Resources"
     shared_dir = workspace / "memory" / "shared"
     state_path = shared_dir / ".resource_url_sync_state.json"
 

@@ -1,0 +1,241 @@
+{
+  "main": {
+    "id": "6953c6cb36e63266",
+    "type": "split",
+    "children": [
+      {
+        "id": "2ce38c7cc4fef84a",
+        "type": "tabs",
+        "dimension": 70.58823529411765,
+        "children": [
+          {
+            "id": "944d051a68026c71",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Projects/小红书内容策略.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "小红书内容策略"
+            }
+          }
+        ]
+      },
+      {
+        "id": "f3e7c2b18ff3a479",
+        "type": "tabs",
+        "dimension": 29.411764705882355,
+        "children": [
+          {
+            "id": "1f06e44a448cebe6",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7672bd116d485551",
+    "type": "split",
+    "children": [
+      {
+        "id": "7cab5b66e16fdb7c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a517c0287cc4f293",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f04949993e108dcd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "58037ead805cbf7e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "553a81f84aeb8a36",
+    "type": "split",
+    "children": [
+      {
+        "id": "0ddc99e9862a4a58",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a7b392c4fbb40d21",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Projects/小红书内容策略.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 小红书内容策略"
+            }
+          },
+          {
+            "id": "ddad170aae96905f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Projects/小红书内容策略.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 小红书内容策略"
+            }
+          },
+          {
+            "id": "6567d8faa0845c72",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "62f72f070444a6bd",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "41a3c20179c4fb48",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Projects/小红书内容策略.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 小红书内容策略"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "944d051a68026c71",
+  "lastOpenFiles": [
+    "Projects/Outbound自动化.md",
+    "Projects/小红书内容策略.md",
+    "Resources/AI前端设计指南.md",
+    "Resources/Obsidian教程.md",
+    "Resources/第二大脑.md",
+    "Resources/2026-02-25-1400-Roro分析.md",
+    "Projects/LLM编年史.md",
+    "Projects/Brand-Extractor.md",
+    "Projects/2026-02-25-1401-AgentCal改造.md",
+    "Resources/Obsidian论坛教程.md",
+    "Welcome.md",
+    "Areas/Marketing/小红书方法论.md",
+    "Archives/2026-02-25-1403-AgentCal远程部署.md",
+    "Areas/Marketing/2026-02-25-1402-小红书内容策略.md",
+    "Inbox/2026-02-25-1403-AgentCal远程部署.md",
+    "Inbox/2026-02-25-1402-小红书内容策略.md",
+    "Inbox/2026-02-25-1401-AgentCal改造.md",
+    "Inbox/2026-02-25-1400-Roro分析.md",
+    "Inbox",
+    "Resources/AgentCal改造.md",
+    "Resources/Roro分析.md",
+    "Resources/AI工具与资源.md",
+    "Areas/AI-Marketing",
+    "Social/小红书",
+    "Social/X",
+    "Social/LinkedIn",
+    "Social",
+    "Areas/AI/团队.md",
+    "Areas/Marketing/Nora.md",
+    "Areas/AI/PingPing.md",
+    "Areas/AI Marketing",
+    "Areas/Marketing",
+    "Areas/AI",
+    "Archives"
+  ]
+}
