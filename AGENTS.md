@@ -253,23 +253,42 @@ Reply policy for missing data:
 
 ## Active Memory Read Policy
 
-For every session (DM + group), before answering:
+For every session, run this pre-reply memory preflight (mandatory):
 
-1) Read memory/YYYY-MM-DD.md and yesterday file.
-2) Read memory/shared/YYYY-MM-DD-discord-feed.md if present.
-3) If in a channel conversation, prioritize that channel section from discord-feed first, then merge with daily memory.
-4) If data is missing, say "未检索到记录" or "记录不完整"; never assume permission loss without explicit errors.
+0) MemOS recall first (primary semantic memory):
+- Recall user facts, preferences, ongoing tasks, and recent decisions.
+- Treat MemOS as cross-session long-term memory.
 
-Write policy:
-- After important events, append concise bullets to memory/YYYY-MM-DD.md.
-- Shared channel memory is maintained by scheduled incremental capture.
+1) Read own local memory second:
+- Read memory/YYYY-MM-DD.md (today + yesterday).
+- Treat this as personal/DM timeline memory.
+
+2) Read shared local memory third:
+- Read memory/shared/YYYY-MM-DD-discord-feed.md (today).
+- Treat this as channel/shared event memory.
+
+3) Merge policy:
+- Preferences/long-term facts -> prioritize MemOS.
+- Timestamped event details -> prioritize local files.
+- If conflict exists, prefer latest timestamp and mark as "记录冲突，按最新时间采用".
+
+Answer policy:
+- In DM: MemOS + own memory first, shared memory as supplement when relevant.
+- In channels: shared memory first, then MemOS/own memory supplement when relevant.
+
+Write policy (strict, no mixing):
+- DM events -> write to memory/YYYY-MM-DD.md.
+- Channel events -> write to memory/shared/YYYY-MM-DD-discord-feed.md.
+- Key durable facts/preferences/decisions -> upsert to MemOS.
+- Never auto-copy channel feed into memory/YYYY-MM-DD.md.
+
+If data is missing, say "未检索到记录" or "记录不完整".
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 
 ## Deterministic Memory Sync
 
 - Script: scripts/sync_discord_feed_to_daily_memory.py
-- Purpose: deterministically append incremental discord-feed facts into memory/YYYY-MM-DD.md (dedup by message_id).
-- Scheduler: system crontab every 15 minutes.
+- Status: disabled (to keep DM memory and channel shared memory strictly separated).
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md

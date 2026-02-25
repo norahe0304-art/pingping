@@ -9,17 +9,21 @@
 ## 待办任务
 - [x] Replit 退款申请
 - [x] Mac mini 收货 (已到，新主机名 zihan-mini)
+- [ ] LLM 编年史网站 - Alma 版本待最终确认
+- [ ] ClawFeed 配置 - 小红书 Cookie 待提取
 
 ## 重要记录
 
 ### 2026-02-24
+- Newsletter 日报：完整提取 Gmail 邮件正文（修复解码流程）
+- LLM 编年史 Battle：Friday vs Alma
+  - Alma 版本胜出（25回完整内容）
+  - 要求：每年至少20回、时间线准确、手机响应式
+- Gmail 处理流程标准化：base64url 解码 + 字符集处理
+- Discord 全频道增量记忆：每15分钟执行
+- 今日 TODO 清单发送到 DM
 - OpenClaw + Codex 一人开发团队（Elvis Sun 案例）- 待跟进
-  - 核心：编排层持有业务上下文，翻译成精准 prompt 给 coding agent
-  - 成果：94 commits/天，30分钟7个PR
-  - 成本：~$190/月
 - taste-skill: AI 前端设计品味指南
-  - GitHub: github.com/Leonxlnx/taste-skill
-  - 100条AI常见低级模式+anti-slop规则
 - 分工确认：Friday→Zihan技术 / pingping→Nora内容+社区
 
 ### 2026-02-23
