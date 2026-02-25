@@ -235,3 +235,41 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+
+## Discord Channel Recall Guardrails
+
+When user asks "我刚刚在某频道说了什么" or "今天这个频道做了什么":
+
+1) Try live channel read first (Discord message read by channel id or exact channel target).
+2) If live read unavailable, fallback to local records in memory/shared/YYYY-MM-DD-discord-feed.md.
+3) If still missing, reply as "未检索到记录" (not permission denial).
+4) Never claim "没有权限" unless tool output explicitly contains permission errors: Missing Access, Missing Permissions, or 403.
+
+Reply policy for missing data:
+- Correct: "我现在没检索到该频道记录" or "当前记录不完整".
+- Incorrect: "我没有这个频道的消息权限" (unless explicit API error proves it).
+
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+
+## Active Memory Read Policy
+
+For every session (DM + group), before answering:
+
+1) Read memory/YYYY-MM-DD.md and yesterday file.
+2) Read memory/shared/YYYY-MM-DD-discord-feed.md if present.
+3) If in a channel conversation, prioritize that channel section from discord-feed first, then merge with daily memory.
+4) If data is missing, say "未检索到记录" or "记录不完整"; never assume permission loss without explicit errors.
+
+Write policy:
+- After important events, append concise bullets to memory/YYYY-MM-DD.md.
+- Shared channel memory is maintained by scheduled incremental capture.
+
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+
+## Deterministic Memory Sync
+
+- Script: scripts/sync_discord_feed_to_daily_memory.py
+- Purpose: deterministically append incremental discord-feed facts into memory/YYYY-MM-DD.md (dedup by message_id).
+- Scheduler: system crontab every 15 minutes.
+
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
