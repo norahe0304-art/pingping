@@ -2966,3 +2966,185 @@ no new messages
 ## 🤑-项目
 
 no new messages
+## 👋-欢迎
+
+no new messages
+## 📢-公告
+
+no new messages
+## 💬-吹水
+
+no new messages
+## 🎲-瞎玩
+
+no new messages
+## 💡-反馈
+
+no new messages
+## 📦-资源
+
+- message_id: 1476338904654155898
+  timestamp: 2026-02-25T22:03:43.920Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: 这个 agentcal 的地址是哪里
+
+- message_id: 1476338960677474346
+  timestamp: 2026-02-25T22:03:57.277Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: AgentCal 地址：
+
+- message_id: 1476338964129644753
+  timestamp: 2026-02-25T22:03:58.100Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: - 前端：https://lap-gauge-manually-unlike.trycloudflare.com - 后端：https://councils-knock-tube-stakeholders.trycloudflare.com
+
+- message_id: 1476338967258599754
+  timestamp: 2026-02-25T22:03:58.846Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: （临时 URL，重启后会变）
+
+- message_id: 1476339017317486763
+  timestamp: 2026-02-25T22:04:10.781Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: 本地仓库地址
+
+- message_id: 1476339052142788681
+  timestamp: 2026-02-25T22:04:19.084Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 本地仓库地址：
+
+- message_id: 1476339053921046601
+  timestamp: 2026-02-25T22:04:19.508Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: `~/.openclaw/workspace/agentcal/`
+
+- message_id: 1476339055762472992
+  timestamp: 2026-02-25T22:04:19.947Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 项目结构： - `server/` - 后端 - `web/` - 前端
+## 🔧-调试
+
+no new messages
+## 🎮-访客
+
+no new messages
+## 💙-精华
+
+no new messages
+## 🤑-项目
+
+no new messages
+## 👋-欢迎
+
+no new messages
+## 📢-公告
+
+no new messages
+## 💬-吹水
+
+no new messages
+## 🎲-瞎玩
+
+no new messages
+## 💡-反馈
+
+no new messages
+## 📦-资源
+
+no new messages
+## 🔧-调试
+
+no new messages
+## 🎮-访客
+
+no new messages
+## 💙-精华
+
+no new messages
+## 🤑-项目
+
+no new messages
+## 👋-欢迎
+
+no new messages
+## 📢-公告
+
+no new messages
+## 💬-吹水
+
+no new messages
+## 🎲-瞎玩
+
+no new messages
+## 💡-反馈
+
+no new messages
+## 📦-资源
+
+no new messages
+## 🔧-调试
+
+no new messages
+## 🎮-访客
+
+no new messages
+## 💙-精华
+
+no new messages
+## 🤑-项目
+
+no new messages
+## 👋-欢迎
+
+no new messages
+## 📢-公告
+
+no new messages
+## 💬-吹水
+
+no new messages
+## 🎲-瞎玩
+
+no new messages
+## 💡-反馈
+
+no new messages
+## 📦-资源
+
+- message_id: 1476348798283288788
+  timestamp: 2026-02-25T22:43:02.745Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: 你把这个push 到 20xcompany 的库里
+
+- message_id: 1476349337708531832
+  timestamp: 2026-02-25T22:45:11.354Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 搞定！
+
+- message_id: 1476349341286400170
+  timestamp: 2026-02-25T22:45:12.207Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 已推送到：https://github.com/20XCOMPANY/agentcal
+## 🔧-调试
+
+no new messages
+## 🎮-访客
+
+no new messages
+## 💙-精华
+
+no new messages
+## 🤑-项目
+
+no new messages
