@@ -24,3 +24,8 @@
 ## run 2026-02-26T16:47:34-05:00
 - new_unread: 1
 - important: 0
+## run 2026-02-26T17:48:54-05:00
+- new_unread: 4
+- important: 1
+- items:
+  - [medium] (2) Claude Code and OpenClaw: Live Demos of the Two Hottest AI Tools on Mon Mar 2 at 7pm ET | Paul Baier - GAI Insights <gaiinsights@substack.com> | 2026-02-26 16:55 | id=19c9bf33c197f1ea | reason=mid:demo
