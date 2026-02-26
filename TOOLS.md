@@ -57,12 +57,17 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - **skill_search(query)**: 搜索 index，返回相关技能列表
 - **skill_read(skill_name)**: 读取具体技能的 SKILL.md
 
-## 我們的家
+## 我们們的家
 
 - **主機**: Mac Mini
 - **名字**: zihan-mini
 - **購買日期**: 2026年2月21日
 - **購買者**: 子涵 (Zihan)
+
+### 30XCOMPANY
+- **GitHub**: https://github.com/30XCOMPANY
+- **官網**: https://30X.company
+- **Pixel Agents Repo**: https://github.com/30XCOMPANY/pixel-agents-openclaw
 
 ### PDF 生成
 

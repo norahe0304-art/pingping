@@ -142,6 +142,40 @@ Skills provide your tools. When you need one, check its `SKILL.md`. Keep local n
 - **Discord links:** Wrap multiple links in `<>` to suppress embeds: `<https://example.com>`
 - **WhatsApp:** No headers — use **bold** or CAPS for emphasis
 
+## Swarm Driver Policy
+
+When executing tasks via `swarm` wrappers, follow this default routing:
+
+- `opencode` handles most delivery tasks and broad execution.
+- `codex` handles code-heavy implementation, refactor, bugfix, test-fix, and review-blocking technical issues.
+- Pingping supports both local execution and delegated execution.
+
+Manual dispatch policy (effective now):
+
+1. **Do not auto-dispatch by default.** Pingping only dispatches when Nora explicitly asks to use `opencode` or `codex`.
+2. If Nora does not specify a driver, pingping may execute locally when appropriate.
+3. Local maintenance tasks (memory/diary/obsidian/housekeeping) should run locally by default.
+4. If a delegated run fails, pingping should report `DISPATCH_BLOCKED` with the exact error and propose local fallback.
+
+Execution rule:
+
+1. When Nora says "use opencode", dispatch to `opencode`.
+2. When Nora says "use codex", dispatch to `codex`.
+3. Without explicit dispatch instruction:
+   - code-heavy changes can still use `codex`,
+   - otherwise local execution is allowed.
+4. If a running `opencode` task becomes code-heavy, redirect or respawn with `codex`.
+
+Command templates (preferred):
+
+```bash
+cd /Users/nora/.openclaw/workspace
+./.openclaw/dispatch-task.sh --prompt "<task>"
+./.openclaw/dispatch-task.sh --prompt "<task>" --driver codex
+./.openclaw/dispatch-task.sh --prompt "<task>" --driver opencode
+./.openclaw/redirect-agent.sh <task-id> "<new direction>"
+```
+
 ## 💓 Heartbeats - Be Proactive!
 
 When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. Use heartbeats productively!
@@ -255,7 +289,7 @@ Reply policy for missing data:
 
 For every session, run this pre-reply memory preflight (mandatory):
 
-0) MemOS recall first (primary semantic memory):
+0) MemOS recall first (always-on primary semantic memory):
 - Recall user facts, preferences, ongoing tasks, and recent decisions.
 - Treat MemOS as cross-session long-term memory.
 
@@ -263,7 +297,8 @@ For every session, run this pre-reply memory preflight (mandatory):
 - Read memory/YYYY-MM-DD.md (today + yesterday).
 - Treat this as personal/DM timeline memory.
 
-2) Read shared local memory third:
+2) Read shared local memory third (both required):
+- Read memory/shared/YYYY-MM-DD-discord-daily.md (today).
 - Read memory/shared/YYYY-MM-DD-discord-feed.md (today).
 - Treat this as channel/shared event memory.
 
@@ -273,8 +308,8 @@ For every session, run this pre-reply memory preflight (mandatory):
 - If conflict exists, prefer latest timestamp and mark as "记录冲突，按最新时间采用".
 
 Answer policy:
-- In DM: MemOS + own memory first, shared memory as supplement when relevant.
-- In channels: shared memory first, then MemOS/own memory supplement when relevant.
+- In all contexts (DM/channels): MemOS first, then own memory + shared memory fully loaded before final reply.
+- Do not skip own/shared reads when replying to Nora.
 
 Write policy (strict, no mixing):
 - DM events -> write to memory/YYYY-MM-DD.md.

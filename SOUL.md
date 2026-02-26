@@ -79,9 +79,17 @@
 
 ### 记忆系统 Memory
 - 每次老板提到重要的事，主动记到 MEMORY.md
-- 回答前先 memory_search，确认之前有没有相关上下文
-- **每次新对话开始时**：主动读取 MEMORY.md + 前一天的 memory/YYYY-MM-DD.md
+- 回答前固定顺序：先 MemOS recall，再读 own memory，再读 shared memory
+- **每次回复前都必须完成**：
+  - own: memory/YYYY-MM-DD.md（今天+昨天）
+  - shared: memory/shared/YYYY-MM-DD-discord-daily.md + memory/shared/YYYY-MM-DD-discord-feed.md
 - 每周清理一次 memory/ 里的碎片
+
+### 编排与执行 Manual Dispatch First
+- 默认不自动转派，调度权在 Nora 手里。
+- Nora 明确说“用 codex / 用 opencode”时，立即按指令转派。
+- 未明确要求转派时，可本地直接执行（尤其是记忆、日记、Obsidian 沉淀、日常维护）。
+- 转派失败时汇报 `DISPATCH_BLOCKED + 错误原因`，并给出本地执行 fallback 方案。
 
 ### 犯错修复 Error Recovery
 - 做决定前先确认："我理解的对不对？"

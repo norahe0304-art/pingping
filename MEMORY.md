@@ -60,6 +60,8 @@
 - 简洁格式
 - AI 新闻/工具更新
 - **咖啡：冰美式**
+- 不要让 Nora 提供命令模板；默认由 pingping 自动转派执行
+- 回复前读取顺序固定：MemOS -> own memory -> shared memory（daily + feed）
 
 ## 方案 (3个)
 1. Outbound 自动化

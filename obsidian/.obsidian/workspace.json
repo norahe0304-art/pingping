@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Projects/小红书内容策略.md",
+                "file": "Resources/_TEMPLATE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "小红书内容策略"
+              "title": "_TEMPLATE"
             }
           }
         ]
@@ -96,7 +96,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 445.5
   },
   "right": {
     "id": "553a81f84aeb8a36",
@@ -112,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Projects/小红书内容策略.md",
+                "file": "Resources/第二大脑.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +122,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 小红书内容策略"
+              "title": "Backlinks for 第二大脑"
             }
           },
           {
@@ -131,12 +131,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Projects/小红书内容策略.md",
+                "file": "Resources/第二大脑.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 小红书内容策略"
+              "title": "Outgoing links from 第二大脑"
             }
           },
           {
@@ -174,13 +174,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Projects/小红书内容策略.md",
+                "file": "Resources/第二大脑.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 小红书内容策略"
+              "title": "Outline of 第二大脑"
             }
           }
         ]
@@ -203,39 +203,41 @@
   },
   "active": "944d051a68026c71",
   "lastOpenFiles": [
-    "Projects/Outbound自动化.md",
-    "Projects/小红书内容策略.md",
-    "Resources/AI前端设计指南.md",
-    "Resources/Obsidian教程.md",
-    "Resources/第二大脑.md",
-    "Resources/2026-02-25-1400-Roro分析.md",
-    "Projects/LLM编年史.md",
-    "Projects/Brand-Extractor.md",
-    "Projects/2026-02-25-1401-AgentCal改造.md",
-    "Resources/Obsidian论坛教程.md",
-    "Welcome.md",
-    "Areas/Marketing/小红书方法论.md",
-    "Archives/2026-02-25-1403-AgentCal远程部署.md",
-    "Areas/Marketing/2026-02-25-1402-小红书内容策略.md",
-    "Inbox/2026-02-25-1403-AgentCal远程部署.md",
-    "Inbox/2026-02-25-1402-小红书内容策略.md",
-    "Inbox/2026-02-25-1401-AgentCal改造.md",
-    "Inbox/2026-02-25-1400-Roro分析.md",
+    "Resources/把Youtube 上优秀博主上百小时精华内容，一键加入知识库！实操方法.md",
+    "Resources/X 推文 2026192444891811945.md",
+    "Resources/X Article 2025204864293412864.md",
+    "Resources/Cloudflare Tunnel API projects（502）.md",
+    "Resources/Cloudflare Tunnel 根地址（502）.md",
+    "Resources/Calendar for your agents, not you🤯 It’s like planning for the ex.md",
+    "Resources/Notion AI Search 官方发布.md",
+    "Projects/LLM-编年史.md",
+    "Resources/年薪150万的工作，我用500美金的AI完成：个人业务Agent升级指南.md",
+    "Resources/把这段塞给Claude Code，说配置到Openclaw里面， 对话再长，也不丢记忆了.md",
+    "Resources/GitHub - MarsWang42 OrbitOS： An AI-powered personal productivity.md",
+    "Resources/GitHub 20XCOMPANY agentcal.md",
+    "Resources/GitHub user repo.git.md",
+    "Resources/tryroro code.md",
+    "Resources/Add multiple projects Add a project to get started!.md",
+    "Resources/X 短链 DotZ3V6XhJ.md",
+    "Resources/There-was-an-error-while-loading.md",
+    "Resources/ClawPal-v0.3.0-发布啦-🦞-⭐️重大更新：🦞-help-🦞(claws-help-claws」-这就是用另一个-a.md",
+    "Resources/OpenClaw-+-Codex-ClaudeCode-Agent-Swarm-The-One-Person-Dev-Team.md",
+    "Resources/tryroro-code.md",
+    "Resources/X-推文-2026345185614184525.md",
+    "Resources/councils-knock-tube-stakeholders-trycloudflare-com-link.md",
+    "Resources/_资源分类索引.md",
+    "Resources/lap-gauge-manually-unlike-trycloudflare-com-link.md",
+    "Resources/GitHub-user-repo.git.md",
+    "Resources/X-推文-2025219080421277813-641bd9e6.md",
+    "Archives/Resources-非资源频道迁移",
     "Inbox",
-    "Resources/AgentCal改造.md",
-    "Resources/Roro分析.md",
-    "Resources/AI工具与资源.md",
     "Areas/AI-Marketing",
     "Social/小红书",
     "Social/X",
     "Social/LinkedIn",
     "Social",
-    "Areas/AI/团队.md",
-    "Areas/Marketing/Nora.md",
-    "Areas/AI/PingPing.md",
     "Areas/AI Marketing",
     "Areas/Marketing",
-    "Areas/AI",
-    "Archives"
+    "Areas/AI"
   ]
 }

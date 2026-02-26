@@ -1,0 +1,51 @@
+---
+title: 年薪150万的工作，我用500美金的AI完成：个人业务Agent升级指南
+type: resource
+status: inbox
+created_at: "2026-02-25T15:50:48.420855-05:00"
+captured_date: "2026-02-25"
+source_channel: "📦-资源"
+source_sender: "Friday"
+message_id: "1476090841822007326"
+original_url: "https://x.com/xingpt/status/2025219080421277813"
+source_title: "年薪150万的工作，我用500美金的AI完成：个人业务Agent升级指南"
+source_author: ""
+published_at: ""
+tags: [resource, discord, search-backfill]
+---
+
+# 年薪150万的工作，我用500美金的AI完成：个人业务Agent升级指南
+
+## Source
+- URL: https://x.com/xingpt/status/2025219080421277813
+- Captured from: 2026-02-25 | 📦-资源 | Friday
+- Message ID: 1476090841822007326
+
+## Captured Context
+> **流程：**
+1. x-reader 和 web_fetch 都被墙了
+2. 短链接指向 X Article（https://x.com/i/article/2025204864293412864）
+3. DeepReader 用 FxTwitter API 成功抓取了原始推文（https://x.com/xingpt/status/2025219080421277813）
+4. FxTwitter 把完整的 X Article 内容都返回了
+
+## Classification
+- Category: Social
+- Subtype: X/Twitter
+## Auto Summary
+
+### Content Summary
+- 年薪150万的工作，我用500美金的AI完成：个人业务Agent升级指南
+- 当前仅抓取到标题级内容，推文/文章正文受站点限制，后续重试补全文。
+
+### Links
+- Primary: https://x.com/xingpt/status/2025219080421277813
+- Related: https://x.com/i/article/2025204864293412864
+- Related: http://vxtwitter.com/xingpt/status/2025219080421277813
+- Related: https://x.com/i/flow/signup
+- Related: https://x.com/tos
+- Related: https://x.com/privacy
+
+### What We Can Do
+- 提炼这条内容的 3 个核心观点，写入对应项目文档，并标注可验证来源。
+- 保留原始链接和可访问替代链接，避免下次抓取失败导致信息丢失。
+- 把本条内容转成一个可执行任务：owner、截止时间、下一步动作。
