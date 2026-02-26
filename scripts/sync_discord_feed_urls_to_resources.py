@@ -109,6 +109,16 @@ LOW_SIGNAL_SUMMARY_PHRASES = (
     "you switched accounts on another tab",
     "help center terms of service privacy policy",
     "try again some privacy related extensions may cause issues on x",
+    "try reloading",
+)
+UNREADABLE_SUMMARY_MARKERS = (
+    "正文抓取受限，本摘要基于频道上下文",
+    "当前自动抓取正文失败或内容质量不足",
+    "当前仅抓取到标题级内容",
+    "当前自动抓取正文受限，暂未拿到稳定全文",
+    "等待后续补抓或手工补录事实要点",
+    "后续会重试抓取并补齐关键结论",
+    "当前源站不可达",
 )
 
 
@@ -291,6 +301,12 @@ def is_resource_url(url: str) -> bool:
     host = canonical_host(url)
     if host in SKIP_HOSTS:
         return False
+    # Drop short links that usually cannot produce stable article-level summaries.
+    if host == "t.co":
+        return False
+    # Drop ephemeral tunnel links from long-term knowledge base.
+    if host.endswith("trycloudflare.com"):
+        return False
     if not host:
         return False
     return True
@@ -392,10 +408,15 @@ def derive_resource_title(hit: ResourceHit) -> str:
     host_name = sanitize_segment(host.replace(".", "-")) if host else "resource"
 
     if host in {"x.com", "twitter.com"}:
+        msg_hint = derive_title_hint_from_message(hit.message.text or "")
         if len(parts) >= 3 and parts[0] == "i" and parts[1] == "article":
-            return sanitize_title(f"X Article {parts[2]}", fallback)
+            if msg_hint:
+                return sanitize_title(msg_hint, fallback)
+            return sanitize_title("X 文章洞察", fallback)
         if len(parts) >= 3 and parts[1] == "status":
-            return sanitize_title(f"X 推文 {parts[2]}", fallback)
+            if msg_hint:
+                return sanitize_title(msg_hint, fallback)
+            return sanitize_title("X 推文洞察", fallback)
         if "流程" in (hit.message.text or ""):
             return sanitize_title("X 内容抓取流程", fallback)
         return sanitize_title("X 资源", fallback)
@@ -435,6 +456,26 @@ def derive_resource_title(hit: ResourceHit) -> str:
     return sanitize_title(fallback, "resource")
 
 
+def derive_title_hint_from_message(text: str) -> str:
+    clean = normalize_text(strip_urls(text or ""), 280)
+    clean = re.sub(r"<@!?\d+>", "", clean)
+    clean = re.sub(r"[`*_#>\-]{1,3}", " ", clean)
+    clean = WS_RE.sub(" ", clean).strip()
+    if not clean:
+        return ""
+    for sent in split_sentences(clean):
+        s = polish_sentence(sent)
+        if len(s) < 8:
+            continue
+        if is_weak_context_sentence(s) or is_noisy_sentence(s):
+            continue
+        low = s.lower()
+        if low in {"ok", "yes", "done", "try this"}:
+            continue
+        return s
+    return ""
+
+
 def is_generic_title(title: str) -> bool:
     t = (title or "").strip().lower()
     if not t:
@@ -453,6 +494,19 @@ def is_generic_title(title: str) -> bool:
     if len(t) < 4:
         return True
     if t in GENERIC_TITLE_PHRASES:
+        return True
+    generic_fragments = [
+        "当前自动抓取正文失败",
+        "暂未形成可靠摘要",
+        "该链接为 x 资源",
+        "当前自动抓取正文受限",
+        "暂未拿到稳定全文",
+        "已保留来源链接",
+        "已保留原始来源链接",
+        "后续会重试抓取并补齐关键结论",
+        "等待后续补抓或手工补录事实要点",
+    ]
+    if any(f in t for f in generic_fragments):
         return True
     noisy_fragments = [
         "help center terms of service privacy policy",
@@ -777,7 +831,7 @@ def polish_sentence(sentence: str) -> str:
 
 def is_noisy_sentence(sentence: str) -> bool:
     s = (sentence or "").strip()
-    if len(s) < 18:
+    if len(s) < 10:
         return True
     low = s.lower()
     noisy_tokens = [
@@ -798,6 +852,23 @@ def is_noisy_sentence(sentence: str) -> bool:
         "skip to content",
         "function(",
         "javascript",
+        "captured from:",
+        "message id:",
+        "source:",
+        "discord",
+        "sender:",
+        "channel:",
+        "search clear search syntax tips",
+        "saved searches",
+        "appearance settings",
+        "reload to refresh your session",
+        "sign in sign up",
+        "watchers",
+        "forks",
+        "releases no releases published",
+        "packages 0 no packages published",
+        "contributors",
+        "uh oh",
     ]
     if any(tok in low for tok in noisy_tokens):
         return True
@@ -816,6 +887,8 @@ def is_noisy_sentence(sentence: str) -> bool:
         return True
     if "&lt;" in low or "&gt;" in low:
         return True
+    if low.startswith("url: ") or low.startswith("http://") or low.startswith("https://"):
+        return True
     return False
 
 
@@ -831,6 +904,31 @@ def is_low_signal_summary_point(sentence: str) -> bool:
     if any(p in low for p in LOW_SIGNAL_SUMMARY_PHRASES):
         return True
     if len(s) < 28 and (" fun" in low or " nice" in low or " cool" in low):
+        return True
+    weak_prefixes = (
+        "url:",
+        "source:",
+        "message id:",
+        "captured from:",
+        "published time:",
+        "warning:",
+    )
+    if any(low.startswith(p) for p in weak_prefixes):
+        return True
+    noise_fragments = (
+        "saved searches",
+        "search syntax tips",
+        "appearance settings",
+        "reload to refresh your session",
+        "sign in sign up",
+        "watchers",
+        "forks",
+        "releases no releases published",
+        "packages 0 no packages published",
+        "contributors",
+        "uh oh",
+    )
+    if any(f in low for f in noise_fragments):
         return True
     return False
 
@@ -1205,6 +1303,117 @@ def fetch_reader_snapshot(url: str) -> FetchSnapshot:
     )
 
 
+def parse_x_status(url: str) -> Tuple[str, str]:
+    try:
+        p = urlparse(url)
+    except Exception:
+        return "", ""
+    host = canonical_host(url)
+    if host not in {"x.com", "twitter.com"}:
+        return "", ""
+    parts = [x for x in (p.path or "").split("/") if x]
+    if len(parts) >= 3 and parts[1] == "status" and parts[0] != "i":
+        return parts[0], parts[2]
+    return "", ""
+
+
+def fetch_x_api_snapshot(url: str) -> FetchSnapshot:
+    user, status_id = parse_x_status(url)
+    if not user or not status_id:
+        return FetchSnapshot(
+            ok=False,
+            status=None,
+            content_type="",
+            final_url=url,
+            title="",
+            body_text="",
+            error="not x status url",
+        )
+
+    api_url = f"https://api.fxtwitter.com/{user}/status/{status_id}"
+    req = urllib.request.Request(
+        url=api_url,
+        headers={"User-Agent": "OpenClaw-ResourceSync/1.1", "Accept": "application/json"},
+        method="GET",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT_SEC) as resp:
+            body = resp.read(MAX_BODY_BYTES).decode("utf-8", errors="ignore")
+            status = getattr(resp, "status", None)
+    except Exception as exc:
+        return FetchSnapshot(
+            ok=False,
+            status=None,
+            content_type="",
+            final_url=url,
+            title="",
+            body_text="",
+            error=f"x api failed: {exc}",
+        )
+
+    try:
+        data = json.loads(body)
+    except Exception:
+        return FetchSnapshot(
+            ok=False,
+            status=status,
+            content_type="application/json",
+            final_url=url,
+            title="",
+            body_text="",
+            error="x api non-json",
+        )
+
+    tweet = data.get("tweet") if isinstance(data, dict) else {}
+    if not isinstance(tweet, dict):
+        tweet = {}
+
+    text = normalize_text(tweet.get("text", ""), 6000)
+    article = tweet.get("article", {})
+    article_title = ""
+    if isinstance(article, dict):
+        article_title = normalize_text(article.get("title", ""), 220)
+        if not text:
+            content = article.get("content", {})
+            blocks = content.get("blocks", []) if isinstance(content, dict) else []
+            block_texts: List[str] = []
+            for blk in blocks:
+                if not isinstance(blk, dict):
+                    continue
+                t = normalize_text(blk.get("text", ""), 240)
+                if t and not is_noisy_sentence(t):
+                    block_texts.append(t)
+                if len(block_texts) >= 10:
+                    break
+            text = normalize_text(" ".join(block_texts), 6000)
+
+    if not text:
+        return FetchSnapshot(
+            ok=False,
+            status=status,
+            content_type="application/json",
+            final_url=url,
+            title=article_title,
+            body_text="",
+            error="x api empty text",
+        )
+
+    title = article_title
+    if not title:
+        first = split_sentences(text)
+        title = first[0] if first else ""
+
+    return FetchSnapshot(
+        ok=True,
+        status=status or 200,
+        content_type="application/json",
+        final_url=url,
+        title=normalize_text(title, 220),
+        body_text=text,
+        error="",
+    )
+
+
 def x_alternative_urls(url: str) -> List[str]:
     out: List[str] = []
     p = urlparse(url)
@@ -1224,6 +1433,15 @@ def x_alternative_urls(url: str) -> List[str]:
     return dedup
 
 
+def extract_x_status_url_from_text(text: str) -> str:
+    for u in URL_RE.findall(text or ""):
+        n = normalize_url(u)
+        user, status_id = parse_x_status(n)
+        if user and status_id:
+            return n
+    return ""
+
+
 def snapshot_quality(snapshot: FetchSnapshot) -> int:
     if not snapshot.ok:
         return -1
@@ -1231,6 +1449,8 @@ def snapshot_quality(snapshot: FetchSnapshot) -> int:
     score = len(txt)
     if snapshot.status == 200:
         score += 300
+    if "json" in (snapshot.content_type or "").lower():
+        score += 1200
     if snapshot.title:
         score += 120
     low = txt.lower()
@@ -1263,6 +1483,15 @@ def fetch_best_snapshot(url: str, api_key: str) -> FetchSnapshot:
         error="no snapshot",
     )
     best_score = -10**9
+
+    host = canonical_host(url)
+    if host in {"x.com", "twitter.com"}:
+        x_api = fetch_x_api_snapshot(url)
+        x_api_score = snapshot_quality(x_api)
+        if x_api_score > best_score:
+            best, best_score = x_api, x_api_score
+        if x_api.ok and len(x_api.body_text or "") >= 40:
+            return x_api
 
     for idx, candidate in enumerate(candidates):
         key = api_key if idx == 0 else ""
@@ -1304,6 +1533,13 @@ def collect_quotes_from_json(data: object, out: List[str], limit: int = MAX_QUOT
 def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) -> str:
     snapshot = fetch_best_snapshot(hit.url, extract_api_key(hit.message.text))
     host = canonical_host(hit.url)
+    path_l = (urlparse(hit.url).path or "").lower()
+    if host in {"x.com", "twitter.com"} and "/i/article/" in path_l and (not snapshot.ok or len(snapshot.body_text or "") < 120):
+        status_url = extract_x_status_url_from_text(hit.message.text or "")
+        if status_url:
+            alt_snapshot = fetch_best_snapshot(status_url, extract_api_key(hit.message.text))
+            if alt_snapshot.ok and len(alt_snapshot.body_text or "") >= len(snapshot.body_text or ""):
+                snapshot = alt_snapshot
     hard_fetch_fail = (not snapshot.ok) or (snapshot.status is None) or (snapshot.status >= 400)
     body_points = extract_summary_from_body(snapshot.body_text or "", limit=8)
     summary_points: List[str] = []
@@ -1312,17 +1548,22 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
         p = redact_secrets(p)
         if p and not is_low_signal_summary_point(p) and p not in summary_points:
             summary_points.append(p)
-        if len(summary_points) >= 6:
+        if len(summary_points) >= 8:
             break
 
     title_hint = polish_sentence(snapshot.title or "")
     if title_hint and not is_noisy_sentence(title_hint) and not is_generic_title(title_hint):
         if title_hint not in summary_points:
             summary_points = [title_hint] + summary_points
-            summary_points = summary_points[:6]
+            summary_points = summary_points[:8]
 
     if not summary_points:
-        if host in {"x.com", "twitter.com", "t.co"}:
+        context_points = extract_summary_from_context(hit.message.text or "", limit=5)
+        context_points = [p for p in context_points if p and not is_low_signal_summary_point(p)]
+        if context_points:
+            summary_points = context_points[:5]
+            summary_points.append("注：正文抓取受限，本摘要基于频道上下文，待后续正文抓取校验。")
+        elif host in {"x.com", "twitter.com", "t.co"}:
             summary_points = [
                 "该链接为 X 资源，当前自动抓取正文受限，暂未拿到稳定全文。",
                 "已保留原始来源链接与可访问镜像，等待后续补抓或手工补录事实要点。",
@@ -1334,6 +1575,15 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
             ]
     if host in {"x.com", "twitter.com", "t.co"} and len(summary_points) < 2:
         summary_points.append("当前仅抓取到标题级内容，推文/文章正文受站点限制，后续重试补全文。")
+
+    filtered_points: List[str] = []
+    for p in summary_points:
+        p = polish_sentence(p)
+        if not p or is_low_signal_summary_point(p) or is_noisy_sentence(p):
+            continue
+        if p not in filtered_points:
+            filtered_points.append(p)
+    summary_points = filtered_points[:8]
 
     raw_links: List[str] = []
     raw_links.extend(extract_links(hit.message.text))
@@ -1387,7 +1637,9 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
 
 
 def upsert_auto_summary(note_body: str, auto_summary_md: str) -> str:
-    note_body = re.sub(r"(?ms)^## Notes To Expand.*?(?=^## |\Z)", "", note_body).rstrip() + "\n\n"
+    note_body = re.sub(r"(?ms)^## Notes To Expand.*?(?=^## |\Z)", "", note_body)
+    note_body = re.sub(r"(?ms)^## Captured Context.*?(?=^## |\Z)", "", note_body)
+    note_body = note_body.rstrip() + "\n\n"
     block = auto_summary_md.strip() + "\n\n"
     if "## Auto Summary" in note_body:
         replaced = re.sub(
@@ -1436,6 +1688,45 @@ def note_should_refresh_summary(note_body: str) -> bool:
     return False
 
 
+def auto_summary_is_unreadable(auto_summary_md: str) -> bool:
+    block = (auto_summary_md or "").strip()
+    if not block:
+        return True
+    low = block.lower()
+    if any(m.lower() in low for m in UNREADABLE_SUMMARY_MARKERS):
+        return True
+
+    m = re.search(r"(?ms)^### Content Summary\n(.*?)(?=^### |\Z)", block)
+    if not m:
+        return True
+    lines = [ln.strip() for ln in m.group(1).splitlines() if ln.strip().startswith("- ")]
+    good = []
+    for ln in lines:
+        text = ln[2:].strip()
+        if not text:
+            continue
+        if is_noisy_sentence(text) or is_low_signal_summary_point(text):
+            continue
+        good.append(text)
+    return len(good) < 2
+
+
+def should_drop_note_as_unreadable(note_body: str, url: str) -> bool:
+    host = canonical_host(url) if url else ""
+    path_l = (urlparse(url).path or "").lower() if url else ""
+    title = (extract_frontmatter_title(note_body) or extract_h1_title(note_body)).strip().lower()
+    if title == "x 文章洞察" or title.startswith("x 短链 "):
+        return True
+    if host == "t.co":
+        return True
+    auto_block = extract_auto_summary_block(note_body)
+    if auto_block and auto_summary_is_unreadable(auto_block):
+        return True
+    if host in {"x.com", "twitter.com"} and "/i/article/" in path_l and not auto_block:
+        return True
+    return False
+
+
 def parse_note_to_hit(note_path: Path, note_body: str) -> Optional[ResourceHit]:
     # Frontmatter fields.
     url = ""
@@ -1453,17 +1744,7 @@ def parse_note_to_hit(note_path: Path, note_body: str) -> Optional[ResourceHit]:
         m = re.search(rf'^{name}:\s*"([^"]*)"', note_body, flags=re.MULTILINE)
         return m.group(1).strip() if m else default
 
-    context = ""
-    m_ctx = re.search(r"(?ms)^## Captured Context\n(.*?)(?=^## |\Z)", note_body)
-    if m_ctx:
-        raw_ctx = m_ctx.group(1).strip()
-        parts: List[str] = []
-        for ln in raw_ctx.splitlines():
-            ln = ln.strip()
-            ln = ln[1:].strip() if ln.startswith(">") else ln
-            if ln:
-                parts.append(ln)
-        context = " ".join(parts).strip()
+    context = extract_frontmatter_field(note_body, "capture_intent")
 
     msg = FeedMessage(
         date=field("captured_date", note_path.stem[:10] if DATE_RE.match(note_path.stem[:10]) else ""),
@@ -1484,6 +1765,7 @@ def build_note(hit: ResourceHit, host_contexts: Dict[str, HostContext], auto_sum
     category, subtype = classify_resource(meta)
     sender = hit.message.sender or "unknown"
     text = redact_secrets((hit.message.text or "").strip())
+    intent = derive_title_hint_from_message(text) or "来自资源频道的外部链接，已进入知识沉淀流程。"
 
     lines: List[str] = []
     lines.append("---")
@@ -1498,6 +1780,7 @@ def build_note(hit: ResourceHit, host_contexts: Dict[str, HostContext], auto_sum
     lines.append(f"source_title: \"{title}\"")
     lines.append("source_author: \"\"")
     lines.append("published_at: \"\"")
+    lines.append(f"capture_intent: \"{intent}\"")
     lines.append(f"resource_category: \"{category}\"")
     lines.append(f"resource_subtype: \"{subtype}\"")
     lines.append("tags: [resource, discord]")
@@ -1510,11 +1793,8 @@ def build_note(hit: ResourceHit, host_contexts: Dict[str, HostContext], auto_sum
     lines.append(f"- Captured from: {hit.message.date} | {hit.message.channel} | {sender}")
     lines.append(f"- Message ID: {hit.message.message_id}")
     lines.append("")
-    lines.append("## Captured Context")
-    if text:
-        lines.append(f"> {text}")
-    else:
-        lines.append("- (no text body)")
+    lines.append("## Capture Intent")
+    lines.append(f"- {intent}")
     lines.append("")
     lines.append("## Classification")
     lines.append(f"- Category: {category}")
@@ -1578,6 +1858,7 @@ def main() -> int:
     enriched = 0
     enriched_all_notes = 0
     skipped = 0
+    dropped_unreadable = 0
     for fp, h in picked.items():
         if fp in seen:
             file_path = Path(seen[fp].get("file", ""))
@@ -1602,12 +1883,21 @@ def main() -> int:
                     current = upsert_source_title(current, final_title)
                     changed_local = True
                     enriched += 1
+                if should_drop_note_as_unreadable(current, h.url):
+                    file_path.unlink(missing_ok=True)
+                    seen.pop(fp, None)
+                    dropped_unreadable += 1
+                    continue
                 if changed_local or sanitized != raw:
                     file_path.write_text(current, encoding="utf-8")
                 skipped += 1
                 continue
 
         auto = build_auto_summary(h, host_contexts)
+        if auto_summary_is_unreadable(auto):
+            dropped_unreadable += 1
+            seen.pop(fp, None)
+            continue
         title = pick_meaningful_title(h, auto_summary_md=auto)
         stem = title_to_stem(title, slug_from_url(h.url))
         out = resources_dir / f"{stem}.md"
@@ -1673,6 +1963,19 @@ def main() -> int:
                     changed = True
                     title_changed = True
                     enriched_all_notes += 1
+            current_url = ""
+            if hit is not None:
+                current_url = hit.url
+            else:
+                current_url = extract_frontmatter_field(current, "original_url")
+            if should_drop_note_as_unreadable(current, current_url):
+                old_path = str(note)
+                note.unlink(missing_ok=True)
+                for k, rec in list(seen.items()):
+                    if isinstance(rec, dict) and rec.get("file") == old_path:
+                        seen.pop(k, None)
+                dropped_unreadable += 1
+                continue
             if args.force_refresh:
                 changed = True
             if changed:
@@ -1715,6 +2018,7 @@ def main() -> int:
         "enriched_existing": enriched,
         "enriched_all_notes": enriched_all_notes,
         "skipped_existing": skipped,
+        "dropped_unreadable": dropped_unreadable,
         "resources_dir": str(resources_dir),
         "state": str(state_path),
     }, ensure_ascii=False))

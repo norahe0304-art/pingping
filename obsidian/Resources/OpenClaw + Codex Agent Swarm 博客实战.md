@@ -21,12 +21,6 @@ tags: [resource, discord, search-backfill]
 - Captured from: 2026-02-25 | 📦-资源 | Friday
 - Message ID: 1476089922606731334
 
-## Captured Context
-> 我看到的 tweet 信息是：
-- 标题：**OpenClaw + Codex/ClaudeCode Agent Swarm: The One-Person Dev Team [Full Setup]**
-- 链接：https://elvissun.com/blog/openclaw-codex-agent-swarm
-- 作者：Elvis Sun
-
 ## Classification
 - Category: Docs
 - Subtype: Product/Docs

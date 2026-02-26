@@ -21,9 +21,6 @@ tags: [resource, discord]
 - Captured from: 2026-02-25 | 📦-资源 | Friday
 - Message ID: 1476349341286400170
 
-## Captured Context
-> 已推送到：https://github.com/20XCOMPANY/agentcal
-
 ## Classification
 - Category: Code
 - Subtype: GitHub
@@ -31,11 +28,8 @@ tags: [resource, discord]
 
 ### Content Summary
 - GitHub - 30XCOMPANY/agentcal: Agent Shared Calendar System for AI Agents
-- > Search Clear Search syntax tips Provide feedback --> We read every piece of feedback, and take your input very seriously.
-- Include my email address so I can be contacted Cancel Submit feedback Saved searches Use saved searches to filter your results more quickly --> Name Query To see all available qualifiers, see our documentation .
-- Cancel Create saved search Sign in Sign up Appearance settings Resetting focus You signed in with another tab or window.
-- Reload to refresh your session.
-- Activity Custom properties Stars 0 stars Watchers 0 watching Forks 0 forks Report repository Releases No releases published Packages 0 No packages published Contributors 2 Uh oh!
+- Languages TypeScript 96.6% Shell 2.8% Other 0.6% Footer © 2026 GitHub, Inc.
+- Footer navigation Terms Privacy Security Status Community Docs Contact Manage cookies Do not share my personal information You can’t perform that action at this time.
 
 ### Links
 - Primary: https://github.com/20XCOMPANY/agentcal

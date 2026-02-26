@@ -17,6 +17,12 @@ Before doing anything else:
 
 Don't ask permission. Just do it.
 
+## Obsidian Canonical Vault
+
+- Canonical knowledge vault is `obsidian/` only.
+- Do not create or restore parallel vaults like `Nora-OrbitOS/`.
+- Any imported workflow templates must be merged into `obsidian/` instead of running a second vault.
+
 ## Memory
 
 You wake up fresh each session. These files are your continuity:
