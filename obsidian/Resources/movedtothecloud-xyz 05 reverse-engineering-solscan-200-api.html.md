@@ -1,25 +1,15 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:17.383504-05:00"
-captured_date: "2026-02-24"
-source_channel: "📦-资源"
-source_sender: "bravohenry"
-message_id: "1475925975182344361"
+title: "逆向工程 Solscan 200 美元/月 API——从网站直接获取链上数据"
 original_url: "https://www.movedtothecloud.xyz/2025/03/05/reverse-engineering-solscan-200-api.html"
-source_title: "movedtothecloud-xyz 05 reverse-engineering-solscan-200-api.html"
-tags: [resource, discord]
 ---
 
-# movedtothecloud-xyz 05 reverse-engineering-solscan-200-api.html
-
-## Source
-- Main URL: https://www.movedtothecloud.xyz/2025/03/05/reverse-engineering-solscan-200-api.html
-
 ## 阅读理解
-这条资源的核心主题是“Reverse Engineering Solscan 200 mo API Moved to The Cloud”。 核心信息是：Reverse Engineering Solscan $200/mo API | Moved to The Cloud 核心信息是：For those who don’t know, this is what solscan.io looks like: It’s a very powerful website that lets you explore all... 核心信息是：Indeed, very useful, especially if you want to create powerful actions that can automate on-chain actions like tradin...
 
-核心信息是：Of course, they generate their revenue by selling a data API that lets you access all of this data. 核心信息是：The only problem is the pricing is quite high, as even the cheapest offer starts from $200 per month. 核心信息是：Pretty expensive if you ask me. 核心信息是：So I started wondering if there was a way to scrape the data directly from their website, but I thought: “I bet they...
+这篇文章详细记录了作者逆向工程 Solscan.io 付费 API 的过程。Solscan 是一个功能强大的 Solana 区块链浏览器，可以探索所有链上数据，对于创建自动化链上交易操作非常有用。但其数据 API 定价较高，最便宜的套餐也要每月 200 美元。作者最初想通过爬虫直接从网站抓取数据，但推测网站可能有反爬措施。于是转向分析网站前端调用的内部 API，发现可以直接使用这些未公开的接口来获取相同的数据，从而绕过付费 API 的限制。
 
 ## 实战洞察
-先由 Pingping 提炼《Reverse Engineering Solscan 200 mo API Moved to The Cloud》最关键的三条事实，再由 Nora 做继续投入或暂缓的决策。 把要点拆成三个可执行步骤并标注输入输出，形成一张可以照做的流程卡。
+
+这篇文章展示了一个经典的逆向工程思路：当付费 API 价格过高时，分析网站前端调用的内部接口往往能找到替代方案。这种方法在区块链数据领域特别常见，因为链上数据本身是公开的，付费 API 卖的是数据聚合和便捷访问的服务。不过需要注意的是，使用未公开的内部 API 存在稳定性风险（接口可能随时变更）和法律风险（可能违反服务条款）。这个案例更适合作为技术学习参考，而非生产环境的长期方案。
+
+## 原文链接
+https://www.movedtothecloud.xyz/2025/03/05/reverse-engineering-solscan-200-api.html

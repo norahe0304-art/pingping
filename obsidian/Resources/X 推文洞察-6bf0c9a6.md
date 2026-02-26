@@ -1,27 +1,15 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:20.361527-05:00"
-captured_date: "2026-02-22"
-source_channel: "📦-资源"
-source_sender: "yixiaohe"
-message_id: "1475256958666674329"
-original_url: "https://x.com/0XBrianXYZ/status/2022488478953685247?s=20"
-source_title: "X 推文洞察"
-tags: [resource, discord]
+title: "X 洞察：Cloudflare MCP Code Mode——用极低 Token 成本调用 API 的创新"
+original_url: "https://x.com/vikingmute/status/2025098635021877622?s=46&t=gC1r3zh0g-l5o215P0tIzg"
 ---
 
-# X 推文洞察
-
-## Source
-- Main URL: https://x.com/0XBrianXYZ/status/2022488478953685247?s=20
-
 ## 阅读理解
-这条推文/线程的核心主题是“用openclaw 请异人们来家公司 用openclaw 实现了Claude code teams协作能力，不再只是单独并行作战”。 用openclaw 请异人们来家公司 用openclaw 实现了Claude code teams协作能力，不再只是单独并行作战的subagent 了 ## ⚡️ 交叉协作协议 v1 ### 读写规则 1. 读 shared.json 前先获取最新状态 2.
 
-写 shared.json 时只修改自己有权的字段： - 自己的 status_board 条目 → 自由更新 - tasks: 只能 claim open 的 / 更新自己 claimed 的 - messages: 只能添加新消息... CEO 有全局写权限可 reassign、close、override ### Claim 流程 1. 核心信息是：每次 heartbeat 检查 shared.json 的 tasks 2. 看到 assignee_hint 是自己 → 优先 claim 3.
+这条推文介绍了 Cloudflare 新推出的 MCP Code Mode，作者 @vikingmute 认为这是一个重大创新。传统 MCP 的做法是把所有 API endpoint 的描述全部塞进上下文，导致 token 消耗巨大。Code Mode 的做法是又包了一层，只暴露两个工具：search() 和 execute()。search 让 Agent 自己写代码搜索要用到的 endpoint，execute 直接运行并验证结果。这样 Agent 可以用大约 1000 个 token 的极低成本完成 API 调用，而不是把整个 API 文档塞进上下文窗口。
 
 ## 实战洞察
-把观点直接改进到当前流程里：Pingping 先做一个改动，Nora 只批准影响最大的版本。 把执行拆成两个 60 分钟内可完成动作，做完后记录速度、质量和稳定性的变化。
 
-最后保留一条可复盘记录，写清输入、动作、结果和下一步。
+这个设计思路对 MCP 生态有深远影响。当前 MCP 最大的痛点之一就是 token 消耗——每个工具的描述都要占用上下文窗口，工具越多成本越高。Cloudflare 的 Code Mode 通过"搜索+执行"的两步模式，把 token 消耗从线性增长变成了常量级别。这个模式不仅适用于 Cloudflare 自己的服务，任何拥有大量 API endpoint 的 MCP 服务都可以借鉴这个架构。对于正在构建 MCP 服务的开发者来说，这提供了一个全新的设计范式：不要暴露所有工具，而是暴露"发现工具的工具"。
+
+## 原文链接
+https://x.com/vikingmute/status/2025098635021877622?s=46&t=gC1r3zh0g-l5o215P0tIzg

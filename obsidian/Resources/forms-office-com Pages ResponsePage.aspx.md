@@ -1,25 +1,15 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:14.369904-05:00"
-captured_date: "2026-02-21"
-source_channel: "📦-资源"
-source_sender: "pingping"
-message_id: "1474988591716241591"
+title: "Publisher Content Marketplace 兴趣注册表——微软内容市场入驻"
 original_url: "https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR1qEBAms6XZAiDBk6zoHgJVURDZJODMwT1RQUUk0REpaS1BCUU5JSUY3Mi4u"
-source_title: "forms-office-com Pages ResponsePage.aspx"
-tags: [resource, discord]
 ---
 
-# forms-office-com Pages ResponsePage.aspx
-
-## Source
-- Main URL: https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR1qEBAms6XZAiDBk6zoHgJVURDZJODMwT1RQUUk0REpaS1BCUU5JSUY3Mi4u
-
 ## 阅读理解
-这条资源的核心主题是“Publisher Content Marketplace - Interest Registration Form”。 核心信息是：We will get in touch with you soon. 核心信息是：Immersive Reader in Microsoft Forms allows you to hear the text of a form title and questions read out loud while fol... 核心信息是：You can find the Immersive Reader button next to form title or questions after activating this control.
 
-核心信息是：When you submit this form, it will not automatically collect your details like name and email address unless you prov... 核心信息是：Required 1.Name 2.Company 3.Email Please provide a valid email address. 核心信息是：Website Your company's website (optional). 核心信息是：What questions do you have about PCM?
+这是微软 Publisher Content Marketplace（PCM）的兴趣注册表单。PCM 是微软的内容市场平台，允许内容发布者入驻。表单要求填写姓名、公司名称、邮箱（必填），以及公司网站（选填）和关于 PCM 的问题。提交表单后不会自动收集个人详细信息（除非主动提供），微软团队会在收到注册后主动联系。表单支持 Immersive Reader 无障碍功能，可以朗读表单标题和问题。
 
 ## 实战洞察
-先由 Pingping 提炼《Publisher Content Marketplace - Interest Registration Form》最关键的三条事实，再由 Nora 做继续投入或暂缓的决策。 把它拆成两个本周动作，明确负责人和截止时间，避免只停留在阅读层。
+
+Publisher Content Marketplace 代表了一个值得关注的分发渠道。微软正在构建自己的内容生态，对于内容创作者和产品方来说，早期入驻意味着更低的竞争和更高的曝光机会。特别是在 AI 搜索（Copilot/Bing）日益重要的背景下，在微软内容市场建立存在感可能带来 AI 引用层面的免费曝光。注册流程非常简单，只需基本信息，值得作为渠道拓展的低成本尝试。
+
+## 原文链接
+https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR1qEBAms6XZAiDBk6zoHgJVURDZJODMwT1RQUUk0REpaS1BCUU5JSUY3Mi4u
