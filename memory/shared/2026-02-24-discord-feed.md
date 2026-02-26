@@ -2279,3 +2279,67 @@ Obsidian 我这边也没装过，你是说我需要装吗？
   timestamp: 2026-02-24T22:13:31.781000-05:00
   sender: Nora
   text: 让他们单独试试
+## 📦-资源
+
+- message_id: 1475925975182344361
+  timestamp: 2026-02-24T18:42:53.862Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: 学习一下这个： this is how i reversed engineered an API that a company make's people pay $200/mo for its a real MINI-MASTERCLASS on scraping if you understand the logic you can use it to crack anything https://www.movedtothecloud.xyz/2025/03/05/reverse-engineering-solscan-200-api.html wanna share this a...
+
+- message_id: 1475942149211160677
+  timestamp: 2026-02-24T19:47:10.051Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: https://www.xiaohongshu.com/explore/699dd3f3000000001d0258f2?app_platform=android&ignoreEngage=true&app_version=9.19.3&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBGpT5NtnsDrqGRrUASodNNdD0RRK-gIXP_8dkCvcTRrA=&author_share=1&xhsshare=&shareRedId=ODdERkhHSDo2NzUyOTgwNj...
+
+## 📦-资源
+
+- message_id: 1475917681369550908
+  timestamp: 2026-02-24T18:09:56.463Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: 好，你需要去 Google Cloud Console 申请 OAuth 凭证。 **步骤：** 1. 去 https://console.cloud.google.com/ 创建项目 2. 启用 Google+ API（或 Google People API） 3. 创建 OAuth 2.0 凭证 4. 设置授权重定向 URI：`http://127.0.0.1:8767/api/auth/callback` 5. 把 `CLIENT_ID` 和 `CLIENT_SECRET` 复制过来 要我帮你配置到 `.env` 吗？
+
+## 📦-资源
+
+- message_id: 1475913456644526112
+  timestamp: 2026-02-24T17:53:09.210Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **安装：** ```bash pip install https://github.com/Panniantong/agent-reach/archive/main.zip agent-reach install --env=auto agent-reach doctor ```
+
+## 📦-资源
+
+- message_id: 1475912921606394041
+  timestamp: 2026-02-24T17:51:01.647Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: https://x.com/neo_reidlab/status/2026322683756216423?s=46
+
+- message_id: 1475913269796540566
+  timestamp: 2026-02-24T17:52:24.662Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: 再读这个https://x.com/lijiuer92/status/2025678747509391664?s=46
+
+- message_id: 1475913340294271078
+  timestamp: 2026-02-24T17:52:41.470Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: Neo Reid 做了个 **Agent-Reach** **干嘛的：** - 让 agent 有全网调研能力 - 一句话安装，自动检测哪些平台通了 **支持平台：** - 小红书、推特、YouTube、Reddit、B站、RSS... **成本：** - 免费开源 - 服务器跑的话 ~$1 **安装：** ``` 帮我根据 https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md 指示安装 Agent Reach ```
+
+## 📦-资源
+
+- message_id: 1475856143669530684
+  timestamp: 2026-02-24T14:05:24.732Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: https://x.com/elvissun/status/2025920521871716562?s=46 学习
+
+- message_id: 1475878975418142760
+  timestamp: 2026-02-24T15:36:08.245Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: https://x.com/vikingmute/status/2025842815721497009?s=46 读这个
+

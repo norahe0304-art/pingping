@@ -212,3 +212,118 @@
   channel_id: 1474465453442338988
   sender: Alma
   text: nice，两个都起来了 👍
+## 📦-资源
+
+- message_id: 1476618859455713463
+  timestamp: 2026-02-26T16:36:10.346Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: https://x.com/cryptoxiao/status/2026956308092453360?s=20 读这个看看是不是可以给我们clawdfeed有更多source
+
+- message_id: 1476619005564289065
+  timestamp: 2026-02-26T16:36:45.181Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 看到了！6551 把他们的数据基础设施开源了：
+
+- message_id: 1476619007900516356
+  timestamp: 2026-02-26T16:36:45.738Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **新数据源：** - X (Twitter) 数据 - 50+ 实时新闻源 - 链上数据
+
+- message_id: 1476619010459045960
+  timestamp: 2026-02-26T16:36:46.348Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **特点：** - 不用配 API key - 24h 监控 + Telegram 提醒
+
+- message_id: 1476619013063708804
+  timestamp: 2026-02-26T16:36:46.969Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **链接：** - MCP: - https://github.com/6551Team/opennews-mcp - https://github.com/6551Team/opentwitter-mcp - SKILL: - https://clawhub.ai/infra403/opennews-mcp - https://clawhub.ai/infra403/opentwitter-mcp
+
+- message_id: 1476619014464606320
+  timestamp: 2026-02-26T16:36:47.303Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 这个可以给 ClawFeed 用！要我去安装试试吗？
+
+- message_id: 1476619019447435460
+  timestamp: 2026-02-26T16:36:48.491Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: 这个很有意思！6551Team 开源了两个 MCP： **OpenNews MCP** - 全网 50+ 实时新闻源 - 链上数据 - 不用配 API key **OpenTwitter MCP** - X 数据接入 - 24h 监控 + TG 提醒 GitHub 链接： - https://github.com/6551Team/opennews-mcp - https://github.com/6551Team/opentwitter-mcp 装上这俩，ClawFeed 能有更多数据源。要我帮你装吗？
+
+- message_id: 1476619150033031401
+  timestamp: 2026-02-26T16:37:19.625Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: 整呀 pingping TG是什么？
+
+- message_id: 1476619202289729537
+  timestamp: 2026-02-26T16:37:32.084Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: TG = Telegram
+
+- message_id: 1476619203741089957
+  timestamp: 2026-02-26T16:37:32.430Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 这两个 MCP 可以让 ClawFeed： - 接入 X 数据 - 接入 50+ 新闻源 - 接入链上数据 - 自动推送到 Telegram
+
+- message_id: 1476619207797117021
+  timestamp: 2026-02-26T16:37:33.397Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 要我开始安装吗？
+
+- message_id: 1476619309508853802
+  timestamp: 2026-02-26T16:37:57.647Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: TG = Telegram 这两个 MCP 可以 24h 监控 + 推送到 Telegram 提醒。
+
+- message_id: 1476619702351560845
+  timestamp: 2026-02-26T16:39:31.308Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: pingping 我只想要新闻源呢
+
+- message_id: 1476619783796424801
+  timestamp: 2026-02-26T16:39:50.726Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: 那就只装 OpenNews MCP 就行： - GitHub: https://github.com/6551Team/opennews-mcp - Skill: https://clawhub.ai/infra403/opennews-mcp 这个能接入 50+ 实时新闻源 + 链上数据。要我帮你装吗？
+
+- message_id: 1476619787575492720
+  timestamp: 2026-02-26T16:39:51.627Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: 而且我们再discord 我不需要再telegram有信息
+
+- message_id: 1476619855829536798
+  timestamp: 2026-02-26T16:40:07.900Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 明白了。只装 OpenNews MCP，把新闻源加到 Discord 里，不需要 Telegram。
+
+- message_id: 1476619857939271879
+  timestamp: 2026-02-26T16:40:08.403Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 要我开始装吗？
+
+- message_id: 1476619888272609374
+  timestamp: 2026-02-26T16:40:15.635Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: 明白，那就只装 OpenNews MCP，接到 Discord 就行，不需要 Telegram。 要我开始装吗？
+
+- message_id: 1476619959068131520
+  timestamp: 2026-02-26T16:40:32.514Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: 装opennews mcp 然后当成是clawdfeed的信息源 ok吗

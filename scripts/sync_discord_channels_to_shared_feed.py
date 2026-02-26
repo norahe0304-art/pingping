@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import json
+import re
 import subprocess
 from dataclasses import dataclass
 from datetime import datetime
@@ -28,6 +29,8 @@ CHANNELS = [
     ("1474471640854302911", "💙-精华"),
     ("1475004550737035354", "🤑-项目"),
 ]
+RESOURCE_CHANNEL_ID = "1474465453442338988"
+URL_RE = re.compile(r"https?://[^\s)>\]\"']+")
 
 
 @dataclass
@@ -217,6 +220,7 @@ def main() -> int:
     summary = {}
     total_new = 0
     appended_sections = 0
+    resource_url_new = 0
 
     after_map: Dict[str, str] = {}
     for channel_id, _name in CHANNELS:
@@ -249,6 +253,8 @@ def main() -> int:
                     "last_sync": datetime.now().astimezone().isoformat(),
                     "channel_name": name,
                 }
+                if channel_id == RESOURCE_CHANNEL_ID:
+                    resource_url_new += sum(1 for m in messages if URL_RE.search(m.text or ""))
 
         # Performance: avoid ballooning feed files with repeated "no new messages"
         # blocks every 15 minutes. Persist only new messages or read errors.
@@ -260,12 +266,41 @@ def main() -> int:
     state["last_sync"] = datetime.now().astimezone().isoformat()
     save_state(state_path, state)
 
+    resource_sync_invoked = False
+    resource_sync_error = ""
+    if resource_url_new > 0:
+        # Event-style trigger: only compile resources when new URL appears in resource channel.
+        script = ws / "scripts" / "sync_discord_feed_urls_to_resources.py"
+        if script.exists():
+            p = subprocess.run(
+                [
+                    "python3",
+                    str(script),
+                    "--workspace",
+                    str(ws),
+                    "--vault",
+                    "obsidian",
+                    "--days",
+                    "30",
+                ],
+                capture_output=True,
+                text=True,
+            )
+            resource_sync_invoked = True
+            if p.returncode != 0:
+                resource_sync_error = (p.stderr or p.stdout or "").strip()[:800]
+        else:
+            resource_sync_error = f"missing script: {script}"
+
     result = {
         "date": date_s,
         "feed": str(feed_path),
         "state": str(state_path),
         "total_new": total_new,
         "appended_sections": appended_sections,
+        "resource_url_new": resource_url_new,
+        "resource_sync_invoked": resource_sync_invoked,
+        "resource_sync_error": resource_sync_error,
         "channels": summary,
     }
     print(json.dumps(result, ensure_ascii=False))

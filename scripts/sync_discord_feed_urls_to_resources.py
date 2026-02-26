@@ -116,6 +116,16 @@ LOW_SIGNAL_SUMMARY_PHRASES = (
     "妈妈再也",
     "睡觉前我忍不住",
 )
+HYPE_OR_LOW_VALUE_PATTERNS = (
+    "massive mistake",
+    "only getting 1% of the value",
+    "from useless to agi",
+    "must recommend",
+    "我靠",
+    "绝了",
+    "必须推荐",
+    "妈妈再也",
+)
 UNREADABLE_SUMMARY_MARKERS = (
     "正文抓取受限，本摘要基于频道上下文",
     "当前自动抓取正文失败或内容质量不足",
@@ -374,6 +384,11 @@ def sanitize_title(raw: str, fallback: str) -> str:
     t = URL_RE.sub("", t)
     t = t.replace("（", "(").replace("）", ")")
     t = t.replace("/", " ")
+    # Normalize common source prefixes for cleaner knowledge-card titles.
+    t = re.sub(r"(?i)^\s*github\s*[-:：]\s*", "", t)
+    t = re.sub(r"(?i)^\s*github\s+", "", t)
+    # Strip "owner repo:" / "owner repo -" style prefixes.
+    t = re.sub(r"^\s*[A-Za-z0-9_.-]+(?:\s+[A-Za-z0-9_.-]+|[A-Za-z0-9_.-]+)\s*(?:[:：]|\s-\s)\s*", "", t)
     t = re.sub(r"[^\w\u4e00-\u9fff\s\-\+\&:：,，。.()（）]", "", t)
     t = WS_RE.sub(" ", t).strip(" -:;,.()[]{}")
     if len(t) > 64:
@@ -444,7 +459,8 @@ def derive_resource_title(hit: ResourceHit) -> str:
             return sanitize_title("OpenClaw + Codex Agent Swarm 博客实战", fallback)
 
     if host == "github.com" and len(parts) >= 2:
-        return sanitize_title(f"GitHub {parts[0]}/{parts[1]}", fallback)
+        repo = re.sub(r"\.git$", "", parts[1], flags=re.IGNORECASE)
+        return sanitize_title(repo, fallback)
 
     if "/api/" in ("/" + path).lower():
         tail = sanitize_segment(parts[-1] if parts else "endpoint")
@@ -570,11 +586,17 @@ def derive_title_from_auto_summary(auto_md: str, hit: ResourceHit) -> str:
             if not ln.startswith("- "):
                 continue
             candidate = ln[2:].strip()
+            candidate = re.sub(r"^(主题理解|核心观点|作者提醒的误区|可执行做法|结果信号|我的理解|要点|我的启发)：", "", candidate).strip()
+            m_topic = re.search(r"主要讨论[“\"']?(.+?)[”\"']?[。.]?$", candidate)
+            if m_topic:
+                candidate = m_topic.group(1).strip()
             candidate = re.sub(r"^\s*[^:]{1,80}\bon x:\s*", "", candidate, flags=re.IGNORECASE)
             candidate = re.sub(r"\s*/\s*x url source:.*$", "", candidate, flags=re.IGNORECASE)
             candidate = re.sub(r"\s*x url source:.*$", "", candidate, flags=re.IGNORECASE)
             candidate = candidate.strip().strip("\"'“”")
             candidate = sanitize_title(candidate, "")
+            if candidate.startswith("这条") or candidate.startswith("主要讨论"):
+                continue
             if host in {"x.com", "twitter.com", "t.co"}:
                 cl = candidate.lower()
                 if any(p in cl for p in x_ui_noise):
@@ -926,6 +948,12 @@ def is_low_signal_summary_point(sentence: str) -> bool:
         return True
     if any(p in low for p in LOW_SIGNAL_SUMMARY_PHRASES):
         return True
+    if any(p in low for p in HYPE_OR_LOW_VALUE_PATTERNS):
+        return True
+    if mostly_ascii(s) and len(s) < 24:
+        return True
+    if "cp .env.example" in low or "copy and edit environment config" in low:
+        return True
     if s.count("!") + s.count("！") >= 2:
         return True
     if len(s) < 28 and (" fun" in low or " nice" in low or " cool" in low):
@@ -956,6 +984,80 @@ def is_low_signal_summary_point(sentence: str) -> bool:
     if any(f in low for f in noise_fragments):
         return True
     return False
+
+
+def strip_enumeration_prefix(text: str) -> str:
+    s = (text or "").strip()
+    s = re.sub(r"^\d+[\.\)]\s*", "", s)
+    s = re.sub(r"^(?:step|tip|hack)\s*\d+[:：\s-]*", "", s, flags=re.IGNORECASE)
+    return s.strip()
+
+
+def mostly_ascii(text: str) -> bool:
+    s = text or ""
+    if not s:
+        return False
+    ascii_chars = sum(1 for ch in s if ord(ch) < 128)
+    return ascii_chars / max(1, len(s)) >= 0.8
+
+
+def rewrite_as_reading_point(text: str) -> str:
+    s = strip_enumeration_prefix(polish_sentence(text))
+    if not s:
+        return ""
+    if len(s) > 120:
+        s = s[:117].rstrip(" ,.;:") + "..."
+    low = s.lower()
+    if "mistake" in low or "误区" in s or "陷阱" in s:
+        return f"常见误区：{s}"
+    if any(k in low for k in ["use ", "should", "deploy", "host", "workflow", "steps", "method"]) or any(k in s for k in ["建议", "步骤", "方法", "部署", "配置"]):
+        return f"可执行方法：{s}"
+    if re.search(r"\b\d+%|\b\d+\s*(?:hours?|commits?|pr)\b", low) or any(k in s for k in ["提升", "增长", "效率", "产出"]):
+        return f"结果信号：{s}"
+    if mostly_ascii(s):
+        return f"核心观点：{s}"
+    return f"读后理解：{s}"
+
+
+def build_reading_note_points(raw_points: List[str], title: str, host: str) -> List[str]:
+    cleaned: List[str] = []
+    title_low = (title or "").strip().lower()
+    for p in raw_points:
+        s = strip_enumeration_prefix(polish_sentence(p))
+        if not s:
+            continue
+        low = s.lower()
+        if low == title_low:
+            continue
+        if is_low_signal_summary_point(s) or is_noisy_sentence(s):
+            continue
+        if any(h in low for h in HYPE_OR_LOW_VALUE_PATTERNS):
+            continue
+        if s not in cleaned:
+            cleaned.append(s)
+
+    if not cleaned:
+        return []
+
+    host_desc = "资源"
+    if host in {"x.com", "twitter.com"}:
+        host_desc = "推文/线程"
+    elif host == "github.com":
+        host_desc = "开源项目"
+    elif "api" in host:
+        host_desc = "接口文档"
+
+    points: List[str] = []
+    points.append(f"主题：这条{host_desc}围绕“{title}”，核心是可复制的做法与结果。")
+
+    for p in cleaned[:8]:
+        rp = rewrite_as_reading_point(p)
+        if rp and rp not in points:
+            points.append(rp)
+
+    if len(points) < 5:
+        points.append("读后启发：先做一个小范围验证，再决定是否投入更多时间。")
+    return points[:10]
 
 
 def is_weak_context_sentence(sentence: str) -> bool:
@@ -1594,26 +1696,61 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
             continue
         if p not in filtered_points:
             filtered_points.append(p)
-    summary_points = filtered_points[:10]
+    card_title = pick_meaningful_title(hit)
+    summary_points = build_reading_note_points(filtered_points[:10], card_title, host)
 
     actions: List[str] = []
     host_l = host.lower() if host else ""
     path_l = urlparse(hit.url).path.lower()
-    if "x.com" in host_l or "twitter.com" in host_l:
-        actions.append("输出 5 句中文事实摘要（观点、证据、结论），并附上原始链接。")
-        actions.append("把可执行启发拆成 1-2 条具体任务（owner/next_action/due）。")
+    repo_hint = ""
+    if host == "github.com":
+        parts = [x for x in (urlparse(hit.url).path or "").split("/") if x]
+        if len(parts) >= 2:
+            repo_hint = re.sub(r"\.git$", "", parts[1], flags=re.IGNORECASE)
+    if host == "github.com":
+        actions.append(
+            f"场景：判断 {repo_hint or card_title} 是否值得接入你们现有流程。怎么用：按 README 跑通最小示例，记录安装时长、依赖冲突、可复现性。产出：一页《采用决策》结论（采用/观察/放弃）。"
+        )
+        actions.append(
+            "场景：把项目能力接入 Nora 的日常工作流。怎么用：拆成“输入→处理→输出”3步并做一次端到端演示。产出：可直接复用的执行清单（谁做/何时做/做到什么）。"
+        )
+        actions.append(
+            "场景：做增长内容复用。怎么用：把项目提炼成“痛点-方案-结果”三段。产出：1 条可发 X/小红书的内容草稿（附原链接）。"
+        )
+    elif "x.com" in host_l or "twitter.com" in host_l:
+        actions.append(
+            "场景：把观点转成营销实验。怎么用：从要点选 1 条假设，做 24 小时 A/B（标题或开头文案）。产出：CTR/互动率对比与结论。"
+        )
+        actions.append(
+            "场景：把灵感落地到当前产品。怎么用：挑 1 个方法直接应用到你的资源沉淀或分发流程。产出：改动前后效果对比（速度/质量/转化）。"
+        )
+        actions.append(
+            "场景：形成可发布内容。怎么用：按“背景-方法-收益”改写为 150-220 字短帖。产出：1 条 Social 草稿 + 证据链接。"
+        )
+    else:
+        actions.append(
+            "场景：快速判断资料价值。怎么用：提炼 5-10 条可验证事实，并标出与 Nora 当前目标最相关的 2 条。产出：继续投入/暂缓的决策清单。"
+        )
+        actions.append(
+            "场景：形成下周可执行动作。怎么用：把要点拆成 3 个任务（负责人/截止时间/完成标准）。产出：可直接执行的任务列表。"
+        )
     if "api" in host_l or "/api/" in path_l:
-        actions.append("补一段可直接运行的 API 调用示例（请求头、参数、返回字段）。")
+        actions.append(
+            "场景：接口接入验证。怎么用：写 1 个最小可运行请求（鉴权/参数/返回字段）并覆盖一个异常分支。产出：可复制调用示例 + 错误处理说明。"
+        )
     if extract_api_key(hit.message.text):
-        actions.append("立即轮换暴露的 API Key，改为环境变量引用，不再写入聊天与笔记正文。")
+        actions.append(
+            "场景：密钥安全修复。怎么用：立即轮换暴露 key，并迁移到环境变量/密钥管理。产出：新密钥生效记录 + 风险关闭时间。"
+        )
     if hard_fetch_fail:
-        actions.append("补抓正文后再二次复盘，避免基于不完整信息做决策。")
-    actions.append("把本条提炼为 1 条可复用方法，候选加入 Areas（需 Nora 审核）。")
+        actions.append(
+            "场景：源站异常兜底。怎么用：把该条标记为待补抓，不进入决策链。产出：补抓任务 + 下次重试时间。"
+        )
     dedup_actions: List[str] = []
     for a in actions:
         if a not in dedup_actions:
             dedup_actions.append(a)
-    actions = dedup_actions[:5]
+    actions = dedup_actions[:4]
 
     lines: List[str] = []
     lines.append("## Key Points")

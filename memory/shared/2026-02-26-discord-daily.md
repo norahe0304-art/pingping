@@ -39,3 +39,16 @@
 - top_channels: 📦-资源(9)
 - Nora_latest: none
 
+## Discord Feed Sync - 2026-02-26 11:47:31 EST
+
+- source: /Users/nora/.openclaw/workspace/memory/shared/2026-02-26-discord-feed.md
+- new_messages: 19
+- Nora_messages: 5
+- top_channels: 📦-资源(19)
+- Nora_latest:
+  - [16:40:32][📦-资源] 装opennews mcp 然后当成是clawdfeed的信息源 ok吗
+  - [16:39:51][📦-资源] 而且我们再discord 我不需要再telegram有信息
+  - [16:39:31][📦-资源] pingping 我只想要新闻源呢
+  - [16:37:19][📦-资源] 整呀 pingping TG是什么？
+  - [16:36:10][📦-资源] https://x.com/cryptoxiao/status/2026956308092453360?s=20 读这个看看是不是可以给我们clawdfeed有更多source
+

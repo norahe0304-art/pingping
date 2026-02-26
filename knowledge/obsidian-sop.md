@@ -35,7 +35,7 @@ Quality gate:
 
 ## Canonical Flow
 1. Memory pipeline writes channel facts to `memory/shared/*-discord-feed.md`.
-2. URL sync extracts readable links and compiles cards into `obsidian/Resources/`.
+2. Resource hook triggers on new URL events from `📦-资源` channel and compiles cards into `obsidian/Resources/`.
 3. Pingping reviews resources and proposes reusable SOP candidates for `obsidian/Areas/`.
 4. Nora approves/rejects Area proposals.
 
