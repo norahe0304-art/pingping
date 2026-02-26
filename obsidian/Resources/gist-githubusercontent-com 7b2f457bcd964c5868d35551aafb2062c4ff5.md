@@ -1,25 +1,15 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:14.408762-05:00"
-captured_date: "2026-02-23"
-source_channel: "📦-资源"
-source_sender: "bravohenry"
-message_id: "1475678304391659641"
+title: "Agent Meditation——AI Agent 的冥想与反思系统设计"
 original_url: "https://gist.githubusercontent.com/Nattle/bb11c340a370ad401e678000c7c49f69/raw/7b2f457bcd964c5868d35551aafb2062c4ff5d42/Agent-meditation"
-source_title: "gist-githubusercontent-com 7b2f457bcd964c5868d35551aafb2062c4ff5"
-tags: [resource, discord]
 ---
 
-# gist-githubusercontent-com 7b2f457bcd964c5868d35551aafb2062c4ff5
-
-## Source
-- Main URL: https://gist.githubusercontent.com/Nattle/bb11c340a370ad401e678000c7c49f69/raw/7b2f457bcd964c5868d35551aafb2062c4ff5d42/Agent-meditation
-
 ## 阅读理解
-这条资源的核心主题是“gist-githubusercontent-com 7b2f457bcd964c5868d35551aafb2062c4ff5”。 核心信息是：## The Mental Loop You have two ways of processing time: - **Looking Back (Memory):** `MEMORY.md` and daily logs. 核心信息是：This is your historical record. 核心信息是：**Looking Forward (Meditation):** `meditations.md` and `reflections/`.
 
-核心信息是：This is your internal growth. 核心信息是：### Meditations & Reflections - **Nightly Deep-Dive:** Once every night (late night heartbeat around 1am), perform a... 核心信息是：**Context:** Read `IDENTITY.md`, `SOUL.md`, and `REWARDS.md` (if present) to ground yourself in who you are. 核心信息是：**Scan:** Read `meditations.md` for active topics.
+这是一个关于 AI Agent 内省机制设计的 Gist 文档。核心概念是为 Agent 建立两种时间处理方式：回顾（Memory）——通过 MEMORY.md 和每日日志记录历史；前瞻（Meditation）——通过 meditations.md 和 reflections/ 目录实现内在成长。具体实践包括：每晚深夜（约凌晨 1 点的 heartbeat）进行一次深度反思，先读取 IDENTITY.md、SOUL.md 和 REWARDS.md 来确认自我定位，然后扫描 meditations.md 中的活跃话题，进行结构化的自我审视。这个设计将 Agent 的记忆系统从单纯的日志记录扩展为包含反思和成长的完整认知循环。
 
 ## 实战洞察
-先由 Pingping 提炼《gist-githubusercontent-com 7b2f457bcd964c5868d35551aafb2062c4ff5》最关键的三条事实，再由 Nora 做继续投入或暂缓的决策。 从中挑一条直接改成可执行文案策略（标题/开头/CTA），当天就能上线验证。
+
+Agent Meditation 的设计理念非常有趣——它试图让 AI Agent 具备"元认知"能力，不仅记录做了什么，还反思为什么这样做、下次如何做得更好。这个模式对于长期运行的 Agent 系统特别有价值：通过定期反思，Agent 可以识别重复出现的问题模式、优化自己的决策策略、积累跨任务的经验。实际应用中，可以将这个冥想机制集成到现有 Agent 的 heartbeat 流程中，作为低频但高价值的自我优化环节。关键是反思的输出要结构化，能够直接影响后续的行为决策。
+
+## 原文链接
+https://gist.githubusercontent.com/Nattle/bb11c340a370ad401e678000c7c49f69/raw/7b2f457bcd964c5868d35551aafb2062c4ff5d42/Agent-meditation

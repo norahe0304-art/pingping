@@ -1,25 +1,15 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:17.340011-05:00"
-captured_date: "2026-02-21"
-source_channel: "📦-资源"
-source_sender: "Friday"
-message_id: "1474833231525445802"
+title: "10 个用 OpenClaw 构建的疯狂项目——Medium 案例合集"
 original_url: "https://medium.com/@alexrozdolskiy/10-wild-things-people-actually-built-with-openclaw-e18f487cb3e0"
-source_title: "medium-com alexrozdolskiy 10-wild-things-people-actually-built-w"
-tags: [resource, discord]
 ---
 
-# medium-com alexrozdolskiy 10-wild-things-people-actually-built-w
-
-## Source
-- Main URL: https://medium.com/@alexrozdolskiy/10-wild-things-people-actually-built-with-openclaw-e18f487cb3e0
-
 ## 阅读理解
-这条资源的核心主题是“medium-com alexrozdolskiy 10-wild-things-people-actually-built-w”。 核心信息是：#' : location.hash;window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.leng... 从执行角度看，先做最小验证，再用结果决定是否扩大投入会更稳。
+
+这条资源指向 Medium 上 @alexrozdolskiy 的文章"10 Wild Things People Actually Built with OpenClaw"，但原始页面被 Cloudflare 挑战页面拦截，无法获取完整内容。从 URL 和标题可以判断，这是一篇展示 OpenClaw 实际应用案例的合集文章，收录了 10 个用户用 OpenClaw 构建的创新项目。
 
 ## 实战洞察
-先由 Pingping 提炼《medium-com alexrozdolskiy 10-wild-things-people-actually-built-w》最关键的三条事实，再由 Nora 做继续投入或暂缓的决策。 把它拆成两个本周动作，明确负责人和截止时间，避免只停留在阅读层。
 
-如果源站不可读，这条先标记为待补抓，不进入决策链，并写下下次重试时间。
+由于源站内容被 Cloudflare 拦截，无法获取完整文章。这条资源标记为待补抓状态。建议通过以下方式获取内容：直接在浏览器中访问该 Medium 链接，或搜索文章标题找到缓存版本。OpenClaw 的实际应用案例对于理解工具的能力边界和最佳实践非常有价值，值得后续补充完整内容。
+
+## 原文链接
+https://medium.com/@alexrozdolskiy/10-wild-things-people-actually-built-with-openclaw-e18f487cb3e0

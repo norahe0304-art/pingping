@@ -1,27 +1,15 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:13.357326-05:00"
-captured_date: "2026-02-20"
-source_channel: "📦-资源"
-source_sender: "yixiaohe"
-message_id: "1474609385752760435"
+title: "FixTweet 文档——修复 Twitter 链接预览的开源工具"
 original_url: "https://docs.fxtwitter.com/en/latest/"
-source_title: "docs-fxtwitter-com en latest"
-tags: [resource, discord]
 ---
 
-# docs-fxtwitter-com en latest
-
-## Source
-- Main URL: https://docs.fxtwitter.com/en/latest/
-
 ## 阅读理解
-这条资源的核心主题是“FixTweet FixTweet latest documentation”。 核心信息是：FixTweet — FixTweet latest documentation 作者给出的可执行做法是：FixTweet — FixTweet latest documentation --> FixTweet latest User Guide Why use FixTweet? 作者给出的可执行做法是：Supported platforms API Reference About FixTweet API Tweet (Status) Fetch API User Fetch API Deployment Guide Why dep...
 
-作者给出的可执行做法是：Architecture Deploy FixTweet yourself FixTweet FixTweet Edit on GitHub FixTweet  Note This documentation is a work i... 核心信息是：Please check the main GitHub page for more information about FixTweet. 核心信息是： Just add fx before your Tweet URL. 核心信息是：https​:// twitter .com/user/status/XXX becomes https​:// fxtwitter .com/user/status/XXX.
+这是 FixTweet 项目的官方文档。FixTweet 是一个开源工具，解决了 Twitter/X 链接在其他平台（Discord、Telegram、Slack 等）上预览失败或显示不完整的问题。使用方法极其简单：只需在 Twitter URL 中的 "twitter" 前加上 "fx"，即 `twitter.com` 变成 `fxtwitter.com`。文档涵盖了用户指南、支持的平台列表、API 参考（包括 Tweet 获取 API 和 User 获取 API）、部署指南和架构说明。文档仍在完善中，更多信息可参考 GitHub 主页。
 
 ## 实战洞察
-把观点直接改进到当前流程里：Pingping 先做一个改动，Nora 只批准影响最大的版本。 把执行拆成两个 60 分钟内可完成动作，做完后记录速度、质量和稳定性的变化。
 
-最后保留一条可复盘记录，写清输入、动作、结果和下一步。
+FixTweet 对于任何需要在非 Twitter 平台分享推文的工作流都有直接价值。在 Discord 社群运营、内容策展、社交媒体监控等场景中，Twitter 链接预览失败是一个高频痛点。FixTweet 的 API 也可以集成到 Agent 工作流中，用于自动获取推文内容和用户信息，作为 Twitter 数据获取的一个轻量级替代方案。项目开源且支持自部署，适合对数据隐私有要求的团队。
+
+## 原文链接
+https://docs.fxtwitter.com/en/latest/

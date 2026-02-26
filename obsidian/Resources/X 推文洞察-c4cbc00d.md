@@ -1,27 +1,15 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:20.824535-05:00"
-captured_date: "2026-02-25"
-source_channel: "📦-资源"
-source_sender: "yixiaohe"
-message_id: "1476094963229134999"
-original_url: "https://x.com/binghe/status/2026345185614184525?s=46"
-source_title: "X 推文洞察"
-tags: [resource, discord]
+title: "X 洞察：一句话让 Agent 全网语义搜索的开源调研工具"
+original_url: "https://x.com/neo_reidlab/status/2026322683756216423?s=46"
 ---
 
-# X 推文洞察
-
-## Source
-- Main URL: https://x.com/binghe/status/2026345185614184525?s=46
-
 ## 阅读理解
-这条推文/线程的核心主题是“把Youtube 上优秀博主上百小时精华内容，一键加入知识库实操方法”。 作者给出的可执行做法是：把Youtube 上优秀博主上百小时精华内容，一键加入知识库！实操方法 油管上有大量的优秀博主，他们分享的内容即丰富，又有深度，比如 Don Koe、Ali Abdaal、PowerfulJRE、Andrew huberman、Thomas Frank 等等太多了 以前我们想了解他们的视频内容，最笨的办法是把链接扔给 Gemini 然后总结输出
 
-又或者使用插件 Youmind 一个视频一个的总结，最多用NotebookLM 手动把感兴趣的内容一个个的填加Youmind 同样 现在牛逼了，YouTube to NotebookLM 插件可以一下就把某个博主的所有视频，直接导入到... 然后我们看这个插件的神奇功能！ 前提是，你先登录 NotebookLM，没关系插件会引导你打开页面！
+这条推文介绍了作者 @neo_reidlab 开发的一个开源工具，解决了 AI Agent 调研能力配置复杂的痛点。作者发现几乎所有人都想让自己的 Agent 有足够强的调研能力，但手动配置一堆 skill 和 MCP 非常麻烦。于是他直接开发了一个工具，一句话就能让 Agent 具备全网语义搜索能力，支持小红书、推特、YouTube、Reddit、B 站、RSS 等多个平台。项目免费开源，如果部署在服务器上只需 1 美元的硬件成本，安装完成后会自动检测哪些渠道通了哪些没通。
 
 ## 实战洞察
-把这条内容转成一个 24 小时可测实验：Pingping 提假设，Nora 选渠道执行并对比 CTR/互动率。 再按“受众痛点→方法→预期收益”重写成一个选题，并补上原文证据链接。
 
-最后保留一条可复盘记录，写清输入、动作、结果和下一步。
+这个工具解决了 Agent 生态中一个非常实际的问题：调研能力的集成成本太高。目前要让 Agent 能搜索多个平台，需要分别配置各个平台的 MCP 或 API，每个都有自己的认证和配置流程。一个统一的调研层大幅降低了这个门槛。1 美元的服务器成本和自动检测功能说明作者在易用性上下了功夫。对于需要 Agent 具备信息收集能力的场景，这个工具值得优先评估，特别是它覆盖了中文互联网平台（小红书、B 站），这在英文为主的开源生态中比较少见。
+
+## 原文链接
+https://x.com/neo_reidlab/status/2026322683756216423?s=46
