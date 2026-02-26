@@ -128,14 +128,6 @@
       "timestamp": "2026-02-22T04:38:04.228Z",
       "synced_at": "2026-02-26T11:26:44.523345-05:00"
     },
-    "aebab35bd9b090a9eb56a336d39963a6a9de6b5e": {
-      "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases",
-      "file": "/Users/nora/.openclaw/workspace/obsidian/Resources/awesome-openclaw-usecases-aebab35b.md",
-      "message_id": "1474833232150401054",
-      "channel": "📦-资源",
-      "timestamp": "2026-02-21T18:20:43.621Z",
-      "synced_at": "2026-02-26T11:26:45.485520-05:00"
-    },
     "aa2907c337f0425d54dde0ffa630d0818c014244": {
       "url": "https://www.turingcollege.com/blog/openclaw",
       "file": "/Users/nora/.openclaw/workspace/obsidian/Resources/turingcollege-com blog openclaw.md",
@@ -319,7 +311,15 @@
       "channel": "📦-资源",
       "timestamp": "2026-02-22T04:38:03.806Z",
       "synced_at": "2026-02-26T12:50:01.706217-05:00"
+    },
+    "aebab35bd9b090a9eb56a336d39963a6a9de6b5e": {
+      "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases",
+      "file": "/Users/nora/.openclaw/workspace/obsidian/Resources/awesome-openclaw-usecases-aebab35b.md",
+      "message_id": "1474833232150401054",
+      "channel": "📦-资源",
+      "timestamp": "2026-02-21T18:20:43.621Z",
+      "synced_at": "2026-02-26T14:07:31.782530-05:00"
     }
   },
-  "last_sync": "2026-02-26T12:56:26.886891-05:00"
+  "last_sync": "2026-02-26T14:07:53.665715-05:00"
 }

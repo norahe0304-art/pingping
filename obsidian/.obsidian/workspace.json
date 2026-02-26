@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/xskill-ai link.md",
+                "file": "Resources/面向Agent设计-Agent-First思维.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "xskill-ai link"
+              "title": "面向Agent设计-Agent-First思维"
             }
           }
         ]
@@ -203,6 +203,20 @@
   },
   "active": "944d051a68026c71",
   "lastOpenFiles": [
+    "Resources/awesome-openclaw-usecases-aebab35b.md",
+    "Resources/Turing-College-博客-Agent与聊天机器人的区别.md",
+    "Resources/商业案例-OpenClaw真在做事.md",
+    "Resources/Awesome-OpenClaw-UseCases-社区案例集.md",
+    "Resources/OpenTwitter-MCP-Twitter数据服务.md",
+    "Resources/OpenNews-MCP-加密货币新闻聚合.md",
+    "Resources/x-reader-通用内容抓取.md",
+    "Resources/ClawFeed-AI新闻摘要.md",
+    "Resources/OpenClaw-DeepReader-URL转Markdown.md",
+    "Resources/X 推文洞察-b3c80a46.md",
+    "Resources/Agent-Reach-AI互联网眼睛.md",
+    "Resources/about-ads-microsoft-com february-2026 building-toward-a-sustaina.md",
+    "Resources/6551-io mcp.md",
+    "Resources/xskill-ai link.md",
     "Resources/x-reader.md",
     "Resources/X 推文洞察-be7b0aa0.md",
     "Resources/agentcal.md",
@@ -215,20 +229,6 @@
     "Resources/OrbitOS.md",
     "Resources/gist-githubusercontent-com 7b2f457bcd964c5868d35551aafb2062c4ff5.md",
     "Resources/turingcollege-com blog openclaw.md",
-    "Resources/medium-com alexrozdolskiy 10-wild-things-people-actually-built-w.md",
-    "Resources/X 推文洞察.md",
-    "Resources/businessworld-in article openclaw-the-ai-agent-that-actually-doe.md",
-    "Resources/X 推文洞察-99e23cea.md",
-    "Resources/raw-githubusercontent-com docs install.md.md",
-    "Resources/movedtothecloud-xyz 05 reverse-engineering-solscan-200-api.html.md",
-    "Resources/X 推文洞察-bc4e036d.md",
-    "Resources/opentwitter-mcp.md",
-    "Resources/newsletter-levelingup-com p 4-opencla.md",
-    "Resources/OpenClaw-DeepReeder.md",
-    "Resources/又或者使用插件 Youmind 一个视频一个的总结，最多用NotebookLM 手动把感兴趣的内容一个个的填加Youmind 同-c4cbc00d.md",
-    "Resources/X 推文洞察-d09737ae.md",
-    "Resources/写 shared.json 时只修改自己有权的字段： - 自己的 status_board 条目 自由更新 - tasks： 只.md",
-    "Resources/X 推文洞察-1d878f0f.md",
     "Archives/Resources-非资源频道迁移",
     "Inbox",
     "Areas/AI-Marketing",

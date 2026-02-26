@@ -18,3 +18,6 @@
 - important: 1
 - items:
   - [medium] (3) Don’t Miss This Limited-Time 5 Free Nights Offer | Marriott Bonvoy <marriottbonvoy@email-marriott.com> | 2026-02-26 11:54 | id=19c9adf356f6a102 | reason=high:offer
+## run 2026-02-26T13:35:42-05:00
+- new_unread: 3
+- important: 0
