@@ -94,3 +94,29 @@
   - [19:00:29][📦-资源] 存呀～
   - [18:57:32][📦-资源] 这个idea 很有意思 不需要做什么 大家读读 然后以后我们包装github项目的时候 可以有这种mindset https://x.com/PleaseCallMeWhy/status/2026705456455102560?s=20
 
+## Discord Feed Sync - 2026-02-26 16:16:12 EST
+
+- source: /Users/nora/.openclaw/workspace/memory/shared/2026-02-26-discord-feed.md
+- new_messages: 31
+- Nora_messages: 9
+- top_channels: 📦-资源(30), 👋-欢迎(1)
+- Nora_latest:
+  - [19:56:19][📦-资源] 存
+  - [19:47:21][📦-资源] 特指 回复的部分 其余的部分我们有严格规则的 必须严格遵守
+  - [19:45:48][📦-资源] 《记住了》而且我希望你和人一样 像人由记忆驱动一样 我不想把你写死 你明白吗 但是如果你不行 我就要把你灵魂抽掉一点了🙃
+  - [19:42:56][📦-资源] PingPing 你试试 以后如果别人不叫你 不是和你说话 你就别说话 你保持高冷 不要每次和个傻逼一样 什么都回 用你的记忆 用你的上下文 用你的脑子🧠来像人一样交流
+  - [19:41:34][📦-资源] 你们各自作战先
+  - [19:41:26][📦-资源] 闭嘴
+  - [19:41:24][📦-资源] 不要不要哈
+  - [19:40:52][📦-资源] 你别搞我
+
+## Discord Feed Sync - 2026-02-26 16:31:57 EST
+
+- source: /Users/nora/.openclaw/workspace/memory/shared/2026-02-26-discord-feed.md
+- new_messages: 11
+- Nora_messages: 2
+- top_channels: 📦-资源(11)
+- Nora_latest:
+  - [20:22:29][📦-资源] 我觉得 不做这个 很鸡肋 浏览器就是不稳定
+  - [20:18:51][📦-资源] 这个我也看了 我感觉就是有点难做？ 你们觉得呢？ 因为靠的是session缓存
+
