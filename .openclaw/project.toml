@@ -1,7 +1,7 @@
 repo_path = "/Users/nora/.openclaw/workspace"
 base_branch = "main"
 worktree_base = "/Users/nora/code-worktrees/workspace"
-default_driver = "codex"
+default_driver = "auto"
 max_attempts = 3
 notify_on_ready = true
 required_reviews = ["codex", "claude"]
@@ -25,7 +25,7 @@ model = "claude-sonnet-4-6"
 reasoning = "high"
 
 [drivers.opencode]
-model = "openai/gpt-5.3-codex"
+model = "claudefish/claude-opus-4-6"
 reasoning = "high"
 
 [drivers.gemini-cli]

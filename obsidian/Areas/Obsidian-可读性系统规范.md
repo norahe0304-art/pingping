@@ -32,14 +32,14 @@ content_hash: obsidian-readability-kabadoni-v1
 ## Framework / Playbook
 1. Theme baseline: 统一主题为 Kabadoni（或同级护眼主题），保持 2 周稳定观察。
 2. Typography baseline: 固定字体、字号、行高、段宽，禁止频繁改动。
-3. Information hierarchy: Projects/Resources 高对比，Archives 低对比，形成视觉优先级。
+3. Information hierarchy: Resources 高对比，Areas 次级对比，Social 按发布优先级展示。
 4. Review loop: 每周一次 10 分钟可读性回顾，仅调整 1-2 个变量。
 
 ## Checklist (Reusable)
 - [ ] 主题已统一（Kabadoni 或替代主题）并记录版本。
 - [ ] 字体/行高/段宽已固定，不随意漂移。
 - [ ] 代码块、表格、任务列表样式可区分且不刺眼。
-- [ ] PARA 五类目录在视觉层有明确层级。
+- [ ] 三分区目录（Resources/Areas/Social）在视觉层有明确层级。
 - [ ] 一周后完成一次可读性回顾并记录结果。
 
 ## Anti-Patterns

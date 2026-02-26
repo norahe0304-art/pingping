@@ -104,10 +104,6 @@ else
   printf '[%s] STEP resources: skipped (no new discord feed messages)\n' "$(date '+%F %T')" >> "$LOG_FILE"
 fi
 
-run_step "inbox-sanitize" \
-  "$SCRIPTS_DIR/sanitize_obsidian_inbox_knowledge.py" \
-  --workspace "$WORKSPACE" --verbose
-
 # Run Gmail watcher at most once per hour.
 NOW="$(now_epoch)"
 LAST="$(last_mtime_or_zero "$GMAIL_TS_FILE")"

@@ -334,39 +334,21 @@ If data is missing, say "未检索到记录" or "记录不完整".
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 
-## Obsidian Knowledge Sync
+## Obsidian Knowledge System (3 Sections Only)
 
 Use Obsidian as curated knowledge storage on top of MemOS/local memory.
 
 Hard rules:
-- Canonical vault root is `obsidian/`; do not write curated notes into legacy top-level folders.
-- Capture high-value items to `obsidian/Inbox/` first, then route to target folders.
+- Canonical vault root is `obsidian/`; do not write curated notes into legacy folders.
+- Active sections are only: `obsidian/Resources/`, `obsidian/Areas/`, `obsidian/Social/`.
+- `obsidian/Projects/`, `obsidian/Inbox/`, `obsidian/Archives/` are legacy and excluded from current pipeline.
 - Keep memory boundaries: MemOS (semantic) / daily (DM timeline) / shared (channel timeline) / Obsidian (curated knowledge).
 - Resource channel + DM learning links must be stored under `obsidian/Resources/`.
-- Resource notes must include direct source link + substantial content extraction (not one-line summaries).
-- Inbox/Resources 都禁止贴“最近 N 条消息原文摘录”；只允许少量证据句，主体必须是知识结论与行动建议。
-- Run daily Inbox triage and publish a short digest.
+- Resources/Areas/Social 禁止贴“最近 N 条消息原文摘录”；只允许少量证据句，主体必须是知识结论与行动建议。
 
-Classification guardrail (mandatory):
-- If a note contains "goal + executable action + due/priority", it MUST be `Projects/`.
-- `Areas/` only stores reusable principles/frameworks/templates, not active work items.
-- If uncertain, default to `Projects/` and add a short "reusable extraction" note to `Areas/`.
-
-Frontmatter guardrail (mandatory):
-- Every Obsidian note must include `type`: project|area|resource|archive|social.
-- `type=project` must include: `status`, `owner`, `next_action`, `due`.
-
-SOP reference: `knowledge/obsidian-sop.md`
-
-[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
-
-
-
-Resource quality floor (mandatory):
-- For every resource note, include: original_url, source title/author/date, and extracted core content.
-- Minimum extraction depth: 8-12 bullet points OR sectioned summary with key arguments/evidence.
-- Add 3-5 actionable takeaways for Nora (not generic).
-- Notes that only contain 1-3 vague bullets are invalid and must be rewritten.
+Execution guardrail:
+- Before any Obsidian write, always read `obsidian/AGENTS.md` and `knowledge/obsidian-sop.md` first.
+- If rule conflict appears, `knowledge/obsidian-sop.md` is source of truth.
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 
@@ -379,35 +361,30 @@ Resource quality floor (mandatory):
 2) `scripts/sync_discord_feed_urls_to_resources.py` 负责 URL 抽取与去重。
 3) 状态文件：`memory/shared/.resource_url_sync_state.json`。
 
-运行策略（已调整）：
-- 默认不做高频定时同步（避免长期 0 增量空转）。
-- 仅在以下场景手动触发：
-  - 资源频道有明显新链接批量进入后
-  - 日终沉淀前需要补齐 `obsidian/Resources/`
+运行策略：
+- 资源频道新 URL 触发即时编译（hook）。
+- 补跑仅在日终或批量修复时手动触发。
 - 手动命令：
   `python3 /Users/nora/.openclaw/workspace/scripts/sync_discord_feed_urls_to_resources.py --vault obsidian --days 2 --verbose`
 
 规则：
 - 每个 URL 只创建一个资源笔记（按 URL 指纹去重）。
 - 资源笔记必须包含：`original_url`、来源频道、sender、message_id。
-- `obsidian/Resources/` 只存来源沉淀；方法论沉淀仍进 `obsidian/Areas/`。
+- 可复用方法论进入 `obsidian/Areas/`；发布执行资产进入 `obsidian/Social/`。
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 
-## Obsidian Templates (Mandatory)
+## Obsidian Templates (Mandatory, Active Only)
 
-Every section must use canonical templates before writing:
-- obsidian/Projects -> `knowledge/templates/project-note-template.md`
-- obsidian/Areas -> `knowledge/templates/area-note-template.md`
+Every active section must use canonical templates before writing:
 - obsidian/Resources -> `knowledge/templates/resource-note-template.md`
-- obsidian/Archives -> `knowledge/templates/archive-note-template.md`
+- obsidian/Areas -> `knowledge/templates/area-note-template.md`
 - obsidian/Social -> `knowledge/templates/social-note-template.md`
-- obsidian/Inbox -> `knowledge/templates/inbox-capture-template.md`
 
-Directory shortcuts exist as `_TEMPLATE.md` under each `obsidian/*` target folder.
+Directory shortcuts exist as `_TEMPLATE.md` under active `obsidian/*` folders.
 
 Quality policy:
 - No shallow note allowed.
-- If note does not meet section quality floor in `knowledge/obsidian-sop.md`, rewrite before saving.
+- If note does not meet quality floor in `knowledge/obsidian-sop.md`, rewrite before saving.
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md

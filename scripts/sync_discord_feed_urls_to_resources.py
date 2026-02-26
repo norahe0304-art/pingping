@@ -516,6 +516,14 @@ def is_generic_title(title: str) -> bool:
         return True
     if t in GENERIC_TITLE_PHRASES:
         return True
+    if t.startswith("这条推文") or t.startswith("这条资源") or t.startswith("这条开源项目"):
+        return True
+    if t.startswith("作者给出的可执行做法是") or t.startswith("从执行角度看"):
+        return True
+    if t.startswith("核心信息是") or t.startswith("可观察到的结果信号是"):
+        return True
+    if t.startswith("先由 pingping") or t.startswith("把观点直接改进到当前流程里"):
+        return True
     generic_fragments = [
         "当前自动抓取正文失败",
         "暂未形成可靠摘要",
@@ -577,16 +585,35 @@ def derive_title_from_auto_summary(auto_md: str, hit: ResourceHit) -> str:
         "something went wrong",
         "reload to refresh your session",
     ]
-    m = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", auto_md)
+    m = re.search(r"(?ms)^## 阅读理解\n(.*?)(?=^## |\Z)", auto_md)
+    if not m:
+        m = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", auto_md)
     if not m:
         m = re.search(r"(?ms)^### Content Summary\n(.*?)(?=^### |\Z)", auto_md)
     if m:
-        for ln in m.group(1).splitlines():
-            ln = ln.strip()
-            if not ln.startswith("- "):
+        text_block = m.group(1)
+        candidate_lines = [ln.strip() for ln in text_block.splitlines() if ln.strip()]
+        # New paragraph style has no bullet markers; old style keeps "- ".
+        parsed_candidates: List[str] = []
+        for ln in candidate_lines:
+            if ln.startswith("- "):
+                parsed_candidates.append(ln[2:].strip())
+            else:
+                parsed_candidates.append(ln)
+        for candidate in parsed_candidates:
+            if re.match(r"^(主题|主题理解|我的启发|读后启发)\s*[:：]", candidate):
                 continue
-            candidate = ln[2:].strip()
-            candidate = re.sub(r"^(主题理解|核心观点|作者提醒的误区|可执行做法|结果信号|我的理解|要点|我的启发)：", "", candidate).strip()
+            candidate = re.sub(
+                r"^(核心主题|核心观点|常见误区|作者提醒的误区|可执行做法|可执行方法|结果信号|我的理解|读后理解|要点)\s*[:：]",
+                "",
+                candidate,
+            ).strip()
+            if candidate.startswith("这条推文") or candidate.startswith("这条资源") or candidate.startswith("这条开源项目"):
+                continue
+            if candidate.startswith("作者给出的可执行做法是") or candidate.startswith("从执行角度看"):
+                continue
+            if candidate.startswith("核心信息是") or candidate.startswith("可观察到的结果信号是"):
+                continue
             m_topic = re.search(r"主要讨论[“\"']?(.+?)[”\"']?[。.]?$", candidate)
             if m_topic:
                 candidate = m_topic.group(1).strip()
@@ -594,6 +621,13 @@ def derive_title_from_auto_summary(auto_md: str, hit: ResourceHit) -> str:
             candidate = re.sub(r"\s*/\s*x url source:.*$", "", candidate, flags=re.IGNORECASE)
             candidate = re.sub(r"\s*x url source:.*$", "", candidate, flags=re.IGNORECASE)
             candidate = candidate.strip().strip("\"'“”")
+            if candidate.lower().startswith("github - "):
+                candidate = candidate[9:].strip()
+            if candidate.lower().startswith("github "):
+                candidate = candidate[7:].strip()
+            candidate = re.sub(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\s*[:：-]\s*", "", candidate)
+            if len(candidate) < 6:
+                continue
             candidate = sanitize_title(candidate, "")
             if candidate.startswith("这条") or candidate.startswith("主要讨论"):
                 continue
@@ -607,6 +641,11 @@ def derive_title_from_auto_summary(auto_md: str, hit: ResourceHit) -> str:
 
 
 def pick_meaningful_title(hit: ResourceHit, auto_summary_md: str = "", current_note_body: str = "") -> str:
+    host = canonical_host(hit.url)
+    # X/Twitter notes should keep stable, readable stems; never derive from noisy summary sentences.
+    if host in {"x.com", "twitter.com", "t.co"}:
+        return derive_resource_title(hit)
+
     candidates: List[str] = []
 
     if auto_summary_md:
@@ -801,14 +840,18 @@ def first_nonempty(items: Iterable[str]) -> str:
 
 
 def extract_auto_summary_block(note_body: str) -> str:
-    m_key = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", note_body)
-    m_act = re.search(r"(?ms)^## What Pingping \+ Nora Can Do\n(.*?)(?=^## |\Z)", note_body)
+    m_key = re.search(r"(?ms)^## 阅读理解\n(.*?)(?=^## |\Z)", note_body)
+    m_act = re.search(r"(?ms)^## 实战洞察\n(.*?)(?=^## |\Z)", note_body)
+    if not m_key:
+        m_key = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", note_body)
+    if not m_act:
+        m_act = re.search(r"(?ms)^## What Pingping \+ Nora Can Do\n(.*?)(?=^## |\Z)", note_body)
     if m_key and m_act:
         key_block = m_key.group(1).strip()
         act_block = m_act.group(1).strip()
         if not key_block or not act_block:
             return ""
-        return "## Key Points\n" + key_block + "\n\n## What Pingping + Nora Can Do\n" + act_block + "\n"
+        return "## 阅读理解\n" + key_block + "\n\n## 实战洞察\n" + act_block + "\n"
     m = re.search(r"(?ms)^## Auto Summary\n(.*?)(?=^## |\Z)", note_body)
     if not m:
         return ""
@@ -1009,14 +1052,14 @@ def rewrite_as_reading_point(text: str) -> str:
         s = s[:117].rstrip(" ,.;:") + "..."
     low = s.lower()
     if "mistake" in low or "误区" in s or "陷阱" in s:
-        return f"常见误区：{s}"
+        return f"文中提醒了一个常见误区：{s}"
     if any(k in low for k in ["use ", "should", "deploy", "host", "workflow", "steps", "method"]) or any(k in s for k in ["建议", "步骤", "方法", "部署", "配置"]):
-        return f"可执行方法：{s}"
+        return f"作者给出的可执行做法是：{s}"
     if re.search(r"\b\d+%|\b\d+\s*(?:hours?|commits?|pr)\b", low) or any(k in s for k in ["提升", "增长", "效率", "产出"]):
-        return f"结果信号：{s}"
+        return f"可观察到的结果信号是：{s}"
     if mostly_ascii(s):
-        return f"核心观点：{s}"
-    return f"读后理解：{s}"
+        return f"核心信息是：{s}"
+    return s
 
 
 def build_reading_note_points(raw_points: List[str], title: str, host: str) -> List[str]:
@@ -1048,7 +1091,7 @@ def build_reading_note_points(raw_points: List[str], title: str, host: str) -> L
         host_desc = "接口文档"
 
     points: List[str] = []
-    points.append(f"主题：这条{host_desc}围绕“{title}”，核心是可复制的做法与结果。")
+    points.append(f"这条{host_desc}的核心主题是“{title}”。")
 
     for p in cleaned[:8]:
         rp = rewrite_as_reading_point(p)
@@ -1056,7 +1099,7 @@ def build_reading_note_points(raw_points: List[str], title: str, host: str) -> L
             points.append(rp)
 
     if len(points) < 5:
-        points.append("读后启发：先做一个小范围验证，再决定是否投入更多时间。")
+        points.append("从执行角度看，先做最小验证，再用结果决定是否扩大投入会更稳。")
     return points[:10]
 
 
@@ -1697,11 +1740,16 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
         if p not in filtered_points:
             filtered_points.append(p)
     card_title = pick_meaningful_title(hit)
+    if title_hint and not is_noisy_sentence(title_hint) and not is_generic_title(title_hint):
+        card_title = sanitize_title(title_hint, card_title)
     summary_points = build_reading_note_points(filtered_points[:10], card_title, host)
 
     actions: List[str] = []
     host_l = host.lower() if host else ""
     path_l = urlparse(hit.url).path.lower()
+    bag = f"{card_title} {' '.join(summary_points)}".lower()
+    is_marketing = any(k in bag for k in ["marketing", "growth", "ads", "seo", "newsletter", "xiaohongshu", "小红书", "linkedin", "social", "内容"])
+    is_product_ops = any(k in bag for k in ["agent", "workflow", "automation", "openclaw", "mcp", "pipeline", "tool", "api"])
     repo_hint = ""
     if host == "github.com":
         parts = [x for x in (urlparse(hit.url).path or "").split("/") if x]
@@ -1709,42 +1757,64 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
             repo_hint = re.sub(r"\.git$", "", parts[1], flags=re.IGNORECASE)
     if host == "github.com":
         actions.append(
-            f"场景：判断 {repo_hint or card_title} 是否值得接入你们现有流程。怎么用：按 README 跑通最小示例，记录安装时长、依赖冲突、可复现性。产出：一页《采用决策》结论（采用/观察/放弃）。"
+            f"先由 Pingping 跑通 {repo_hint or card_title} 的最小示例并记录依赖冲突，再由 Nora 做采用/观察/放弃决策。"
         )
         actions.append(
-            "场景：把项目能力接入 Nora 的日常工作流。怎么用：拆成“输入→处理→输出”3步并做一次端到端演示。产出：可直接复用的执行清单（谁做/何时做/做到什么）。"
+            "落地时按“输入→处理→输出”做一次端到端演示，把负责人、截止时间和验收标准写清楚。"
         )
-        actions.append(
-            "场景：做增长内容复用。怎么用：把项目提炼成“痛点-方案-结果”三段。产出：1 条可发 X/小红书的内容草稿（附原链接）。"
-        )
+        if is_marketing:
+            actions.append(
+                "如果用于增长，把它整理成“痛点-方案-结果”三段，由 Pingping 出草稿，Nora 定最终口径再发布。"
+            )
+        else:
+            actions.append(
+                "对外同步时用三句话讲清楚为什么要接、接入后省什么、主要风险是什么。"
+            )
     elif "x.com" in host_l or "twitter.com" in host_l:
+        if is_marketing:
+            actions.append(
+                "把这条内容转成一个 24 小时可测实验：Pingping 提假设，Nora 选渠道执行并对比 CTR/互动率。"
+            )
+            actions.append(
+                "再按“受众痛点→方法→预期收益”重写成一个选题，并补上原文证据链接。"
+            )
+        else:
+            actions.append(
+                "把观点直接改进到当前流程里：Pingping 先做一个改动，Nora 只批准影响最大的版本。"
+            )
+            actions.append(
+                "把执行拆成两个 60 分钟内可完成动作，做完后记录速度、质量和稳定性的变化。"
+            )
         actions.append(
-            "场景：把观点转成营销实验。怎么用：从要点选 1 条假设，做 24 小时 A/B（标题或开头文案）。产出：CTR/互动率对比与结论。"
-        )
-        actions.append(
-            "场景：把灵感落地到当前产品。怎么用：挑 1 个方法直接应用到你的资源沉淀或分发流程。产出：改动前后效果对比（速度/质量/转化）。"
-        )
-        actions.append(
-            "场景：形成可发布内容。怎么用：按“背景-方法-收益”改写为 150-220 字短帖。产出：1 条 Social 草稿 + 证据链接。"
+            "最后保留一条可复盘记录，写清输入、动作、结果和下一步。"
         )
     else:
         actions.append(
-            "场景：快速判断资料价值。怎么用：提炼 5-10 条可验证事实，并标出与 Nora 当前目标最相关的 2 条。产出：继续投入/暂缓的决策清单。"
+            f"先由 Pingping 提炼《{card_title}》最关键的三条事实，再由 Nora 做继续投入或暂缓的决策。"
         )
-        actions.append(
-            "场景：形成下周可执行动作。怎么用：把要点拆成 3 个任务（负责人/截止时间/完成标准）。产出：可直接执行的任务列表。"
-        )
+        if is_marketing:
+            actions.append(
+                "从中挑一条直接改成可执行文案策略（标题/开头/CTA），当天就能上线验证。"
+            )
+        elif is_product_ops:
+            actions.append(
+                "把要点拆成三个可执行步骤并标注输入输出，形成一张可以照做的流程卡。"
+            )
+        else:
+            actions.append(
+                "把它拆成两个本周动作，明确负责人和截止时间，避免只停留在阅读层。"
+            )
     if "api" in host_l or "/api/" in path_l:
         actions.append(
-            "场景：接口接入验证。怎么用：写 1 个最小可运行请求（鉴权/参数/返回字段）并覆盖一个异常分支。产出：可复制调用示例 + 错误处理说明。"
+            "如果涉及 API，先写最小可运行请求并覆盖一个异常分支，再复核鉴权和错误处理。"
         )
     if extract_api_key(hit.message.text):
         actions.append(
-            "场景：密钥安全修复。怎么用：立即轮换暴露 key，并迁移到环境变量/密钥管理。产出：新密钥生效记录 + 风险关闭时间。"
+            "如果出现明文 key，立即轮换并迁移到环境变量或密钥管理，避免再次泄露。"
         )
     if hard_fetch_fail:
         actions.append(
-            "场景：源站异常兜底。怎么用：把该条标记为待补抓，不进入决策链。产出：补抓任务 + 下次重试时间。"
+            "如果源站不可读，这条先标记为待补抓，不进入决策链，并写下下次重试时间。"
         )
     dedup_actions: List[str] = []
     for a in actions:
@@ -1752,14 +1822,20 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
             dedup_actions.append(a)
     actions = dedup_actions[:4]
 
+    summary_text = " ".join(summary_points[:4]).strip()
+    if len(summary_points) > 4:
+        summary_text = summary_text + "\n\n" + " ".join(summary_points[4:8]).strip()
+
+    actions_text = " ".join(actions[:2]).strip()
+    if len(actions) > 2:
+        actions_text = actions_text + "\n\n" + " ".join(actions[2:4]).strip()
+
     lines: List[str] = []
-    lines.append("## Key Points")
-    for p in summary_points:
-        lines.append(f"- {p}")
+    lines.append("## 阅读理解")
+    lines.append(summary_text)
     lines.append("")
-    lines.append("## What Pingping + Nora Can Do")
-    for t in actions:
-        lines.append(f"- {t}")
+    lines.append("## 实战洞察")
+    lines.append(actions_text)
     lines.append("")
     return "\n".join(lines)
 
@@ -1771,29 +1847,37 @@ def upsert_auto_summary(note_body: str, auto_summary_md: str) -> str:
     note_body = re.sub(r"(?ms)^## Classification.*?(?=^## |\Z)", "", note_body)
     note_body = re.sub(r"(?ms)^## Auto Summary.*?(?=^## |\Z)", "", note_body)
     note_body = re.sub(r"(?ms)^## Key Points.*?(?=^## |\Z)", "", note_body)
+    note_body = re.sub(r"(?ms)^## 阅读理解.*?(?=^## |\Z)", "", note_body)
     note_body = re.sub(r"(?ms)^## What We Can Do.*?(?=^## |\Z)", "", note_body)
     note_body = re.sub(r"(?ms)^## What Pingping \+ Nora Can Do.*?(?=^## |\Z)", "", note_body)
+    note_body = re.sub(r"(?ms)^## 实战洞察.*?(?=^## |\Z)", "", note_body)
     note_body = note_body.rstrip() + "\n\n"
     block = auto_summary_md.strip() + "\n\n"
     return note_body.rstrip() + "\n\n" + block
 
 
 def note_needs_summary(note_body: str) -> bool:
-    return ("## Key Points" not in note_body) or ("## What Pingping + Nora Can Do" not in note_body)
+    has_summary = ("## 阅读理解" in note_body) or ("## Key Points" in note_body)
+    has_actions = ("## 实战洞察" in note_body) or ("## What Pingping + Nora Can Do" in note_body)
+    return (not has_summary) or (not has_actions)
 
 
 def note_should_refresh_summary(note_body: str) -> bool:
     if note_needs_summary(note_body):
         return True
-    m = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", note_body)
+    m = re.search(r"(?ms)^## 阅读理解\n(.*?)(?=^## |\Z)", note_body)
+    if not m:
+        m = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", note_body)
     if not m:
         return True
-    if "## What Pingping + Nora Can Do" not in note_body:
+    has_actions = ("## 实战洞察" in note_body) or ("## What Pingping + Nora Can Do" in note_body)
+    if not has_actions:
         return True
     block = m.group(1)
-    points = [ln.strip()[2:].strip() for ln in block.splitlines() if ln.strip().startswith("- ")]
-    points = [p for p in points if p and not is_noisy_sentence(p) and not is_low_signal_summary_point(p)]
-    if len(points) < 5 or len(points) > 10:
+    if "核心主题：" in block or "核心观点：" in block or re.search(r"(?m)^\s*-\s+", block):
+        return True
+    compact = normalize_text(block, 4000)
+    if len(compact) < 120:
         return True
     if re.search(r"https?://\S+[）)\]】]", block):
         return True
@@ -1821,21 +1905,19 @@ def auto_summary_is_unreadable(auto_summary_md: str) -> bool:
     if any(m.lower() in low for m in UNREADABLE_SUMMARY_MARKERS):
         return True
 
-    m = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", block)
+    m = re.search(r"(?ms)^## 阅读理解\n(.*?)(?=^## |\Z)", block)
+    if not m:
+        m = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", block)
     if not m:
         m = re.search(r"(?ms)^### Content Summary\n(.*?)(?=^### |\Z)", block)
     if not m:
         return True
-    lines = [ln.strip() for ln in m.group(1).splitlines() if ln.strip().startswith("- ")]
-    good = []
-    for ln in lines:
-        text = ln[2:].strip()
-        if not text:
-            continue
-        if is_noisy_sentence(text) or is_low_signal_summary_point(text):
-            continue
-        good.append(text)
-    return len(good) < 5
+    summary_text = normalize_text(m.group(1), 5000)
+    if len(summary_text) < 100:
+        return True
+    sentences = [s for s in split_sentences(summary_text) if s]
+    good = [s for s in sentences if (not is_noisy_sentence(s)) and (not is_low_signal_summary_point(s))]
+    return len(good) < 3
 
 
 def should_drop_note_as_unreadable(note_body: str, url: str) -> bool:
