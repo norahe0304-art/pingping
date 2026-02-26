@@ -338,6 +338,7 @@ Hard rules:
 - Keep memory boundaries: MemOS (semantic) / daily (DM timeline) / shared (channel timeline) / Obsidian (curated knowledge).
 - Resource channel + DM learning links must be stored under `obsidian/Resources/`.
 - Resource notes must include direct source link + substantial content extraction (not one-line summaries).
+- Inbox/Resources 都禁止贴“最近 N 条消息原文摘录”；只允许少量证据句，主体必须是知识结论与行动建议。
 - Run daily Inbox triage and publish a short digest.
 
 Classification guardrail (mandatory):

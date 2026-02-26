@@ -101,6 +101,18 @@ Validation rules:
   - top 3 captures
   - next actions
 
+## Readability Governance (System Learning)
+- Objective: keep the vault readable enough to sustain daily review behavior.
+- Baseline area: `obsidian/Areas/Obsidian-可读性系统规范.md`
+- Rule:
+  - Resource notes can inspire readability improvements.
+  - Only reusable rules are promoted into Areas.
+  - Never dump chat transcript into Areas.
+- Weekly loop (10 min):
+  - Check one readability metric (review completion rate or reading fatigue score).
+  - Adjust at most 1-2 visual variables.
+  - Write result back to the area note.
+
 ## Boundaries with Memory System
 - MemOS: semantic long-term memory.
 - memory/YYYY-MM-DD.md: DM/personal timeline.

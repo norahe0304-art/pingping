@@ -55,10 +55,10 @@ run_step_capture() {
 }
 
 extract_total_new() {
-  python3 - "$@" <<'PY'
+  python3 - "${1:-}" <<'PY'
 import json
 import sys
-raw = sys.stdin.read().splitlines()
+raw = (sys.argv[1] or "").splitlines()
 value = 0
 for line in raw:
     line = line.strip()
@@ -88,7 +88,7 @@ printf '[%s] PIPELINE start\n' "$(date '+%F %T')" >> "$LOG_FILE"
 DISCORD_OUT="$(run_step_capture "discord-feed" \
   "$SCRIPTS_DIR/sync_discord_channels_to_shared_feed.py" \
   --workspace "$WORKSPACE" --limit 30 --workers 6 --verbose)"
-TOTAL_NEW="$(printf '%s\n' "$DISCORD_OUT" | extract_total_new)"
+TOTAL_NEW="$(extract_total_new "$DISCORD_OUT")"
 printf '[%s] STEP discord-feed result: total_new=%s\n' "$(date '+%F %T')" "$TOTAL_NEW" >> "$LOG_FILE"
 
 if (( TOTAL_NEW > 0 )); then
@@ -103,6 +103,10 @@ else
   printf '[%s] STEP shared-daily: skipped (no new discord feed messages)\n' "$(date '+%F %T')" >> "$LOG_FILE"
   printf '[%s] STEP resources: skipped (no new discord feed messages)\n' "$(date '+%F %T')" >> "$LOG_FILE"
 fi
+
+run_step "inbox-sanitize" \
+  "$SCRIPTS_DIR/sanitize_obsidian_inbox_knowledge.py" \
+  --workspace "$WORKSPACE" --verbose
 
 # Run Gmail watcher at most once per hour.
 NOW="$(now_epoch)"

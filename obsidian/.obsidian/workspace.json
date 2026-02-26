@@ -6,7 +6,7 @@
       {
         "id": "2ce38c7cc4fef84a",
         "type": "tabs",
-        "dimension": 58.79959308240081,
+        "dimension": 58.79959308240082,
         "children": [
           {
             "id": "944d051a68026c71",
@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/GitHub user repo.git.md",
+                "file": "Resources/年薪150万的工作，我用500美金的AI完成：个人业务Agent升级指南 X.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GitHub user repo.git"
+              "title": "年薪150万的工作，我用500美金的AI完成：个人业务Agent升级指南 X"
             }
           }
         ]
@@ -27,7 +27,7 @@
       {
         "id": "f3e7c2b18ff3a479",
         "type": "tabs",
-        "dimension": 41.20040691759919,
+        "dimension": 41.20040691759918,
         "children": [
           {
             "id": "1f06e44a448cebe6",
@@ -203,6 +203,11 @@
   },
   "active": "944d051a68026c71",
   "lastOpenFiles": [
+    "Resources/X 推文 2026192444891811945.md",
+    "Resources/Roro Code 产品页.md",
+    "AGENTS.md",
+    "Areas/Obsidian-可读性系统规范.md",
+    "Resources/GitHub user repo.git.md",
     "Resources/Notion AI Search 官方发布.md",
     "Resources/OpenClaw + Codex Agent Swarm 博客实战.md",
     "Resources/年薪150万的工作，我用500美金的AI完成：个人业务Agent升级指南 X.md",
@@ -213,11 +218,8 @@
     "Resources/Cloudflare Tunnel 链接 lap-gauge-manually-unlike.md",
     "Resources/X Article 2025204864293412864.md",
     "Resources/X 短链 DotZ3V6XhJ.md",
-    "Resources/X 推文 2026192444891811945.md",
     "Resources/Cloudflare Tunnel 链接 councils-knock-tube-stakeholders-a481cb7b.md",
     "Resources/Cloudflare Tunnel 链接 councils-knock-tube-stakeholders.md",
-    "Resources/GitHub user repo.git.md",
-    "Resources/Roro Code 产品页.md",
     "Resources/The host (lap-gauge-manually-unlike.trycloudflare.com) is config.md",
     "Resources/该链接为 X 资源，当前自动抓取正文受限，暂未拿到稳定全文。-f2416312.md",
     "Resources/该链接为 X 资源，当前自动抓取正文受限，暂未拿到稳定全文。-8aa8c440.md",
@@ -227,8 +229,6 @@
     "Resources/当前自动抓取正文失败或内容质量不足，暂未形成可靠摘要。-807da376.md",
     "Resources/530 The origin has been unregistered from Argo Tunnel.md",
     "Resources/当前自动抓取正文失败或内容质量不足，暂未形成可靠摘要。-d4b4c732.md",
-    "Resources/当前自动抓取正文失败或内容质量不足，暂未形成可靠摘要。.md",
-    "Resources/ClawPal v0.3.0 发布啦.md",
     "Archives/Resources-非资源频道迁移",
     "Inbox",
     "Areas/AI-Marketing",
