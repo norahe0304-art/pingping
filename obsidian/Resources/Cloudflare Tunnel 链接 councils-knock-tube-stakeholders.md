@@ -1,5 +1,5 @@
 ---
-title: Cloudflare Tunnel 根地址（502）
+title: Cloudflare Tunnel 链接 councils-knock-tube-stakeholders
 type: resource
 status: inbox
 created_at: "2026-02-25T15:23:36.766099-05:00"
@@ -8,13 +8,13 @@ source_channel: "📦-资源 (11:21 EST 更新) - 16:21 UTC"
 source_sender: "pingping"
 message_id: "1476252861414248648"
 original_url: "https://councils-knock-tube-stakeholders.trycloudflare.com"
-source_title: "Cloudflare Tunnel 根地址（502）"
+source_title: "Cloudflare Tunnel 链接 councils-knock-tube-stakeholders"
 source_author: ""
 published_at: ""
 tags: [resource, discord]
 ---
 
-# Cloudflare Tunnel 根地址（502）
+# Cloudflare Tunnel 链接 councils-knock-tube-stakeholders
 
 ## Source
 - URL: https://councils-knock-tube-stakeholders.trycloudflare.com
@@ -30,8 +30,8 @@ tags: [resource, discord]
 ## Auto Summary
 
 ### Content Summary
-- 502 Bad Gateway Unable to reach the origin service.
-- The service may be down or it may not be responding to traffic from cloudflared
+- 当前自动抓取正文失败或内容质量不足，暂未形成可靠摘要。
+- 已保留来源链接，后续会重试抓取并补齐关键结论。
 
 ### Links
 - Primary: https://councils-knock-tube-stakeholders.trycloudflare.com
@@ -39,4 +39,4 @@ tags: [resource, discord]
 
 ### What We Can Do
 - 当前源站不可达；先基于上下文推进事项，后续由流水线自动二次抓取补全。
-- 把本条内容转成一个可执行任务：owner、截止时间、下一步动作。
+- 将本条内容关联到一个具体项目，避免资源笔记孤立。

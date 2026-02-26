@@ -20,10 +20,11 @@ priority: P2
 content_hash: {{content_hash}}
 ---
 
-## Raw Capture
-- what happened:
-- why it might matter:
-- rough next action:
+## Structured Capture
+- key_facts (3-8):
+- why_it_matters:
+- reusable_pattern:
+- immediate_next_action:
 
 ## Suggested Routing
 - target_folder: Projects|Areas|Resources|Archives|Social
@@ -34,5 +35,10 @@ content_hash: {{content_hash}}
 - final_folder:
 - final_title:
 - keep_or_drop:
+
+## Output Guardrail
+- 禁止粘贴“最近 N 条消息原文摘录”或长聊天转录。
+- 允许保留最多 3 条证据句（短句），其余必须抽象为结论。
+- 目标是知识化沉淀，不是聊天备份。
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md

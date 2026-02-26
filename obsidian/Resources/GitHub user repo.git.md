@@ -37,17 +37,12 @@ exec pty:true workdir:$REVIEW_DIR command:"codex review --base origin/main"
 ## Auto Summary
 
 ### Content Summary
-- 该条资源当前无法稳定抓取正文，已保留来源链接并等待下次自动补抓。
-- 建议先把这条资源归档到对应项目，再补正文事实。
+- 当前自动抓取正文失败或内容质量不足，暂未形成可靠摘要。
+- 已保留来源链接，后续会重试抓取并补齐关键结论。
 
 ### Links
 - Primary: https://github.com/user/repo.git
-- Related: https://github.githubassets.com
-- Related: https://avatars.githubusercontent.com
-- Related: https://github-cloud.s3.amazonaws.com
-- Related: https://user-images.githubusercontent.com/
-- Related: https://github.githubassets.com/assets/global-banner-disable-8a300af6d815087d.js
 
 ### What We Can Do
 - 当前源站不可达；先基于上下文推进事项，后续由流水线自动二次抓取补全。
-- 把本条内容转成一个可执行任务：owner、截止时间、下一步动作。
+- 将本条内容关联到一个具体项目，避免资源笔记孤立。

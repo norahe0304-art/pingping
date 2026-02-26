@@ -80,6 +80,10 @@ GENERIC_TITLE_PHRASES = {
     "help center terms of service privacy policy cookie policy imprint ads info 2026 x corp",
     "include my email address so i can be contacted cancel submit fee",
     "please contact your service provider for more details",
+    "当前自动抓取正文失败或内容质量不足，暂未形成可靠摘要。",
+    "已保留来源链接，后续会重试抓取并补齐关键结论。",
+    "该链接为 x 资源，当前自动抓取正文受限，暂未拿到稳定全文。",
+    "已保留原始来源链接与可访问镜像，等待后续补抓或手工补录事实要点。",
 }
 X_UI_NOISE_TOKENS = (
     "sign up now to get your own personalized timeline",
@@ -95,6 +99,16 @@ X_UI_NOISE_TOKENS = (
     "help center",
     "redirecting you to the video in a moment",
     "there was an error while loading",
+)
+LOW_SIGNAL_SUMMARY_PHRASES = (
+    "is so much fun",
+    "sign up now",
+    "sign up with google",
+    "please reload this page",
+    "you signed out in another tab",
+    "you switched accounts on another tab",
+    "help center terms of service privacy policy",
+    "try again some privacy related extensions may cause issues on x",
 )
 
 
@@ -334,10 +348,12 @@ def slug_from_url(url: str) -> str:
 
 def sanitize_title(raw: str, fallback: str) -> str:
     t = raw or ""
+    t = re.sub(r"[\U00010000-\U0010ffff]", "", t)
     t = re.sub(r"\*\*|`|#+", "", t)
     t = URL_RE.sub("", t)
     t = t.replace("（", "(").replace("）", ")")
     t = t.replace("/", " ")
+    t = re.sub(r"[^\w\u4e00-\u9fff\s\-\+\&:：,，。.()（）]", "", t)
     t = WS_RE.sub(" ", t).strip(" -:;,.()[]{}")
     if len(t) > 64:
         t = t[:64].rstrip(" -:;,.()[]{}")
@@ -458,6 +474,8 @@ def is_generic_title(title: str) -> bool:
         "tryroro code",
         "roro get roro free rock and roro the new way to make is here",
         "add multiple projects add a project to get started",
+        "the host (",
+        "is configured as a cloudflare tunnel",
     ]
     if any(frag in t for frag in noisy_fragments):
         return True
@@ -474,6 +492,8 @@ def is_generic_title(title: str) -> bool:
 
 def derive_title_from_auto_summary(auto_md: str, hit: ResourceHit) -> str:
     host = canonical_host(hit.url)
+    if host.endswith("trycloudflare.com"):
+        return derive_resource_title(hit)
     x_ui_noise = [
         "sign up now to get your own personalized timeline",
         "you signed out in another tab or window",
@@ -737,6 +757,7 @@ def split_sentences(text: str) -> List[str]:
 
 def polish_sentence(sentence: str) -> str:
     s = normalize_text(sentence, 240)
+    s = re.sub(r"[\U00010000-\U0010ffff]", "", s)
     s = re.sub(r"[（(]\s*$", "", s).strip()
     s = re.sub(r"[）)]\s*$", "", s).strip()
     s = s.replace("（", "").replace("）", "")
@@ -790,6 +811,26 @@ def is_noisy_sentence(sentence: str) -> bool:
     if len(s) > 260:
         return True
     if re.search(r"[{}<>]{2,}", s):
+        return True
+    if re.search(r"<[^>]+>", s):
+        return True
+    if "&lt;" in low or "&gt;" in low:
+        return True
+    return False
+
+
+def is_low_signal_summary_point(sentence: str) -> bool:
+    s = (sentence or "").strip()
+    if not s:
+        return True
+    low = s.lower()
+    if re.fullmatch(r"https?://\S+", s):
+        return True
+    if s.startswith("http://") or s.startswith("https://"):
+        return True
+    if any(p in low for p in LOW_SIGNAL_SUMMARY_PHRASES):
+        return True
+    if len(s) < 28 and (" fun" in low or " nice" in low or " cool" in low):
         return True
     return False
 
@@ -858,6 +899,76 @@ def extract_links(*texts: str) -> List[str]:
                 continue
             if n not in out:
                 out.append(n)
+    return out
+
+
+def is_useless_related_link(url: str) -> bool:
+    try:
+        p = urlparse(url)
+    except Exception:
+        return True
+
+    host = canonical_host(url)
+    path = (p.path or "").rstrip("/")
+    low = url.lower()
+    if not host:
+        return True
+
+    if host in {"x.com", "twitter.com"}:
+        if path in {"", "/", "/home", "/explore", "/i", "/login"}:
+            return True
+        if path.startswith("/i/flow/"):
+            return True
+        parts = [x for x in path.split("/") if x]
+        # For X links, only keep status/article URLs.
+        if not ((len(parts) >= 3 and parts[1] == "status") or (len(parts) >= 3 and parts[0] == "i" and parts[1] == "article")):
+            return True
+    if host in {"t.co", "pbs.twimg.com", "abs.twimg.com", "abs-0.twimg.com"}:
+        return True
+    if "x.com/login" in low or "x.com/i/flow/signup" in low:
+        return True
+    return False
+
+
+def canonicalize_resource_url(url: str) -> str:
+    try:
+        p = urlparse(url)
+    except Exception:
+        return url
+
+    host = canonical_host(url)
+    if host in {"x.com", "twitter.com"}:
+        parts = [x for x in (p.path or "").split("/") if x]
+        if len(parts) >= 3 and parts[1] == "status":
+            path = f"/{parts[0]}/status/{parts[2]}"
+            return p._replace(path=path, query="", fragment="").geturl()
+        if len(parts) >= 3 and parts[0] == "i" and parts[1] == "article":
+            path = f"/i/article/{parts[2]}"
+            return p._replace(path=path, query="", fragment="").geturl()
+    return p._replace(fragment="").geturl()
+
+
+def clean_resource_links(urls: List[str], primary: str, max_items: int = 5) -> List[str]:
+    out: List[str] = []
+    seen: set[str] = set()
+    primary_canon = canonicalize_resource_url(primary)
+
+    for cand in [primary] + urls:
+        n = normalize_url(cand)
+        if not n:
+            continue
+        if not is_resource_url(n):
+            continue
+        c = canonicalize_resource_url(n)
+        if c != primary_canon and is_useless_related_link(c):
+            continue
+        if c in seen:
+            continue
+        seen.add(c)
+        out.append(c)
+        if len(out) >= max_items:
+            break
+
     return out
 
 
@@ -1199,38 +1310,51 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
     # Strict mode: only website/tweet body content, never chat context.
     for p in body_points:
         p = redact_secrets(p)
-        if p and p not in summary_points:
+        if p and not is_low_signal_summary_point(p) and p not in summary_points:
             summary_points.append(p)
         if len(summary_points) >= 6:
             break
+
+    title_hint = polish_sentence(snapshot.title or "")
+    if title_hint and not is_noisy_sentence(title_hint) and not is_generic_title(title_hint):
+        if title_hint not in summary_points:
+            summary_points = [title_hint] + summary_points
+            summary_points = summary_points[:6]
+
     if not summary_points:
-        summary_points = [
-            "该条资源当前无法稳定抓取正文，已保留来源链接并等待下次自动补抓。",
-            "建议先把这条资源归档到对应项目，再补正文事实。"
-        ]
-    elif host in {"x.com", "twitter.com", "t.co"} and len(summary_points) < 2:
+        if host in {"x.com", "twitter.com", "t.co"}:
+            summary_points = [
+                "该链接为 X 资源，当前自动抓取正文受限，暂未拿到稳定全文。",
+                "已保留原始来源链接与可访问镜像，等待后续补抓或手工补录事实要点。",
+            ]
+        else:
+            summary_points = [
+                "当前自动抓取正文失败或内容质量不足，暂未形成可靠摘要。",
+                "已保留来源链接，后续会重试抓取并补齐关键结论。",
+            ]
+    if host in {"x.com", "twitter.com", "t.co"} and len(summary_points) < 2:
         summary_points.append("当前仅抓取到标题级内容，推文/文章正文受站点限制，后续重试补全文。")
 
-    links: List[str] = [hit.url]
-    for u in extract_links(hit.message.text, snapshot.body_text):
-        if u not in links:
-            links.append(u)
-        if len(links) >= 6:
-            break
+    raw_links: List[str] = []
+    raw_links.extend(extract_links(hit.message.text))
+    if snapshot.final_url:
+        raw_links.append(snapshot.final_url)
+    raw_links.extend(x_alternative_urls(hit.url))
+    links = clean_resource_links(raw_links, primary=hit.url, max_items=5)
 
     actions: List[str] = []
     host_l = host.lower() if host else ""
     path_l = urlparse(hit.url).path.lower()
     if "x.com" in host_l or "twitter.com" in host_l:
-        actions.append("提炼这条内容的 3 个核心观点，写入对应项目文档，并标注可验证来源。")
-        actions.append("保留原始链接和可访问替代链接，避免下次抓取失败导致信息丢失。")
+        actions.append("输出 5 句中文事实摘要（观点、证据、结论），并附上原始链接。")
+        actions.append("把可执行启发拆成 1-2 条具体任务（owner/next_action/due）。")
     if "api" in host_l or "/api/" in path_l:
         actions.append("补一段可直接运行的 API 调用示例（请求头、参数、返回字段）。")
     if extract_api_key(hit.message.text):
         actions.append("立即轮换暴露的 API Key，改为环境变量引用，不再写入聊天与笔记正文。")
     if hard_fetch_fail:
         actions.append("当前源站不可达；先基于上下文推进事项，后续由流水线自动二次抓取补全。")
-    actions.append("把本条内容转成一个可执行任务：owner、截止时间、下一步动作。")
+    actions.append("将本条内容关联到一个具体项目，避免资源笔记孤立。")
     dedup_actions: List[str] = []
     for a in actions:
         if a not in dedup_actions:
@@ -1299,6 +1423,10 @@ def note_should_refresh_summary(note_body: str) -> bool:
     if "Fetch error:" in block or "Warning: Target URL returned error" in block:
         return True
     if "html,body{" in block or "stylesheet-group" in block or "::cue" in block:
+        return True
+    if "x.com/login" in block or "x.com/i/flow/signup" in block:
+        return True
+    if any(p in block.lower() for p in LOW_SIGNAL_SUMMARY_PHRASES):
         return True
     m_status = re.search(r"Fetch status:\s*`(\d{3})`", block)
     if m_status:

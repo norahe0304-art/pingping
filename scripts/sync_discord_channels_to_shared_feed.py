@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import json
 import subprocess
 from dataclasses import dataclass
@@ -42,6 +43,7 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Sync discord channels into shared feed")
     p.add_argument("--workspace", default=str(Path.home() / ".openclaw" / "workspace"))
     p.add_argument("--limit", type=int, default=50)
+    p.add_argument("--workers", type=int, default=6)
     p.add_argument("--date", default="")
     p.add_argument("--verbose", action="store_true")
     return p.parse_args()
@@ -123,6 +125,22 @@ def run_read(channel_id: str, limit: int, after: str) -> Dict:
     return {"ok": False, "error": "json parse failed after retries"}
 
 
+def run_reads_parallel(channels: List[tuple[str, str]], limit: int, after_map: Dict[str, str], workers: int) -> Dict[str, Dict]:
+    max_workers = max(1, min(workers, len(channels)))
+    out: Dict[str, Dict] = {}
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        future_map = {}
+        for channel_id, _name in channels:
+            future = pool.submit(run_read, channel_id, limit, after_map.get(channel_id, ""))
+            future_map[future] = channel_id
+        for future, channel_id in [(f, cid) for f, cid in future_map.items()]:
+            try:
+                out[channel_id] = future.result()
+            except Exception as e:
+                out[channel_id] = {"ok": False, "error": f"parallel read failed: {e}"}
+    return out
+
+
 def compact_text(content: str, max_len: int = 300) -> str:
     t = " ".join((content or "").split())
     if len(t) <= max_len:
@@ -198,10 +216,17 @@ def main() -> int:
 
     summary = {}
     total_new = 0
+    appended_sections = 0
+
+    after_map: Dict[str, str] = {}
+    for channel_id, _name in CHANNELS:
+        after_map[channel_id] = str(channels_state.get(channel_id, {}).get("last_id") or "")
+
+    read_results = run_reads_parallel(CHANNELS, args.limit, after_map, args.workers)
 
     for channel_id, name in CHANNELS:
         last_id = str(channels_state.get(channel_id, {}).get("last_id") or "")
-        res = run_read(channel_id, args.limit, last_id)
+        res = read_results.get(channel_id, {"ok": False, "error": "missing parallel result"})
         err = ""
         messages: List[Message] = []
 
@@ -225,7 +250,11 @@ def main() -> int:
                     "channel_name": name,
                 }
 
-        append_feed(feed_path, name, messages, err)
+        # Performance: avoid ballooning feed files with repeated "no new messages"
+        # blocks every 15 minutes. Persist only new messages or read errors.
+        if err or messages:
+            append_feed(feed_path, name, messages, err)
+            appended_sections += 1
 
     state["channels"] = channels_state
     state["last_sync"] = datetime.now().astimezone().isoformat()
@@ -236,6 +265,7 @@ def main() -> int:
         "feed": str(feed_path),
         "state": str(state_path),
         "total_new": total_new,
+        "appended_sections": appended_sections,
         "channels": summary,
     }
     print(json.dumps(result, ensure_ascii=False))

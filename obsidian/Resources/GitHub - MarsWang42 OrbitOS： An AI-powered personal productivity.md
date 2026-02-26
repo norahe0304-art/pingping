@@ -39,7 +39,6 @@ tags: [resource, discord, search-backfill]
 
 ### Links
 - Primary: https://github.com/MarsWang42/OrbitOS
-- Related: https://github.com/MarsWang42/OrbitOS.git
 
 ### What We Can Do
-- 把本条内容转成一个可执行任务：owner、截止时间、下一步动作。
+- 将本条内容关联到一个具体项目，避免资源笔记孤立。

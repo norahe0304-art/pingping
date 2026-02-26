@@ -30,22 +30,19 @@ tags: [resource, discord, search-backfill]
 ## Auto Summary
 
 ### Content Summary
+- OpenClaw + Codex/ClaudeCode Agent Swarm: The One-Person Dev Team [Full Setup]" / X
 - OpenClaw + Codex/ClaudeCode Agent Swarm: The One-Person Dev Team [Full Setup]
 - I use OpenClaw as my orchestration layer.
 - My orchestrator, Zoe, spawns the agents, writes their prompts, picks the right model for each task, monitors progress, and pings me on Telegram when PRs are ready to merge.
 - Proof points from the last 4 weeks: - 94 commits in one day.
 - My most productive day - I had 3 client calls and didn't open my editor once.
-- The average is around 50 commits a day.
 
 ### Links
-- Primary: https://x.com/elvissun/status/2025920521871716562?s=20
-- Related: http://vxtwitter.com/elvissun/status/2025920521871716562
-- Related: https://pbs.twimg.com/media/HByXnBmW8AANOl9?format=jpg&name=small
-- Related: https://x.com/elvissun/article/2025920521871716562/media/2025660629109895168
-- Related: https://pbs.twimg.com/media/HB0NSAEW0AAYPOF?format=jpg&name=small
-- Related: https://x.com/elvissun/article/2025920521871716562/media/2025790010293669888
+- Primary: https://x.com/elvissun/status/2025920521871716562
+- Related: https://vxtwitter.com/elvissun/status/2025920521871716562
+- Related: https://fxtwitter.com/elvissun/status/2025920521871716562
 
 ### What We Can Do
-- 提炼这条内容的 3 个核心观点，写入对应项目文档，并标注可验证来源。
-- 保留原始链接和可访问替代链接，避免下次抓取失败导致信息丢失。
-- 把本条内容转成一个可执行任务：owner、截止时间、下一步动作。
+- 输出 5 句中文事实摘要（观点、证据、结论），并附上原始链接。
+- 把可执行启发拆成 1-2 条具体任务（owner/next_action/due）。
+- 将本条内容关联到一个具体项目，避免资源笔记孤立。

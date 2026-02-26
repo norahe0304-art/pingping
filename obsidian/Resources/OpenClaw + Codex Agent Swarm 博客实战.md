@@ -33,13 +33,11 @@ tags: [resource, discord, search-backfill]
 ## Auto Summary
 
 ### Content Summary
-- http://elvissun.com/blog/openclaw-codex-agent-swarm Markdown Content: ### Error.
 - Page cannot be displayed.
 - Please contact your service provider for more details.
 
 ### Links
 - Primary: https://elvissun.com/blog/openclaw-codex-agent-swarm
-- Related: http://elvissun.com/blog/openclaw-codex-agent-swarm
 
 ### What We Can Do
-- 把本条内容转成一个可执行任务：owner、截止时间、下一步动作。
+- 将本条内容关联到一个具体项目，避免资源笔记孤立。

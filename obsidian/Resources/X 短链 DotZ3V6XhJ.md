@@ -30,11 +30,12 @@ tags: [resource, discord, search-backfill]
 ## Auto Summary
 
 ### Content Summary
-- Try again Some privacy related extensions may cause issues on x.com.
-- 当前仅抓取到标题级内容，推文/文章正文受站点限制，后续重试补全文。
+- 该链接为 X 资源，当前自动抓取正文受限，暂未拿到稳定全文。
+- 已保留原始来源链接与可访问镜像，等待后续补抓或手工补录事实要点。
 
 ### Links
 - Primary: https://t.co/DotZ3V6XhJ
+- Related: https://x.com/i/article/2025654698590748672
 
 ### What We Can Do
-- 把本条内容转成一个可执行任务：owner、截止时间、下一步动作。
+- 将本条内容关联到一个具体项目，避免资源笔记孤立。

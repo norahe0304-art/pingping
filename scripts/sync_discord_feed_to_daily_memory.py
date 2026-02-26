@@ -43,19 +43,25 @@ def resolve_date(date_arg: str) -> str:
 
 def load_state(path: Path, date_str: str) -> Dict:
     if not path.exists():
-        return {"date": date_str, "processed_ids": []}
+        return {"date": date_str, "processed_ids": [], "last_feed_size": 0}
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except Exception:
-        return {"date": date_str, "processed_ids": []}
+        return {"date": date_str, "processed_ids": [], "last_feed_size": 0}
 
     if data.get("date") != date_str:
-        return {"date": date_str, "processed_ids": []}
+        return {"date": date_str, "processed_ids": [], "last_feed_size": 0}
 
     ids = data.get("processed_ids", [])
     if not isinstance(ids, list):
         ids = []
-    return {"date": date_str, "processed_ids": ids}
+    try:
+        last_feed_size = int(data.get("last_feed_size", 0))
+    except Exception:
+        last_feed_size = 0
+    if last_feed_size < 0:
+        last_feed_size = 0
+    return {"date": date_str, "processed_ids": ids, "last_feed_size": last_feed_size}
 
 
 def save_state(path: Path, state: Dict) -> None:
@@ -112,6 +118,12 @@ def parse_feed(feed_text: str) -> List[Dict[str, str]]:
         i += 1
 
     return messages
+
+
+def read_feed_delta(feed_path: Path, start_offset: int) -> str:
+    with feed_path.open("rb") as f:
+        f.seek(max(0, start_offset))
+        return f.read().decode("utf-8", errors="ignore")
 
 
 def compact_time(ts: str) -> str:
@@ -186,9 +198,6 @@ def main() -> int:
             print(f"feed file not found: {feed_path}")
         return 0
 
-    feed_text = feed_path.read_text(encoding="utf-8", errors="ignore")
-    all_msgs = parse_feed(feed_text)
-
     if state_path.exists():
         state = load_state(state_path, date_str)
     elif legacy_shared_state_path.exists():
@@ -196,6 +205,22 @@ def main() -> int:
     else:
         # Compatibility: reuse previously processed IDs to avoid one-time flood.
         state = load_state(legacy_state_path, date_str)
+
+    feed_size = feed_path.stat().st_size
+    last_feed_size = int(state.get("last_feed_size", 0))
+    if feed_size == last_feed_size:
+        if args.verbose:
+            print(f"feed unchanged: size={feed_size}")
+        return 0
+
+    if last_feed_size > 0 and feed_size > last_feed_size:
+        # Fast path: parse only appended tail since last successful sync.
+        feed_text = read_feed_delta(feed_path, last_feed_size)
+    else:
+        # Full parse when state missing, file truncated, or day rollover.
+        feed_text = feed_path.read_text(encoding="utf-8", errors="ignore")
+
+    all_msgs = parse_feed(feed_text)
     processed = set(state.get("processed_ids", []))
 
     new_msgs = [m for m in all_msgs if m["message_id"] not in processed]
@@ -204,6 +229,9 @@ def main() -> int:
         print(f"parsed={len(all_msgs)} processed={len(processed)} new={len(new_msgs)}")
 
     if not new_msgs:
+        state["last_feed_size"] = feed_size
+        state["last_sync"] = datetime.now().astimezone().isoformat()
+        save_state(state_path, state)
         return 0
 
     ensure_target_file(target_path, date_str)
@@ -215,6 +243,7 @@ def main() -> int:
     state = {
         "date": date_str,
         "processed_ids": list(processed),
+        "last_feed_size": feed_size,
         "last_sync": datetime.now().astimezone().isoformat(),
         "last_new_count": len(new_msgs),
     }

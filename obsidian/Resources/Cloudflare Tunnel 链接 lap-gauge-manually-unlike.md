@@ -30,16 +30,12 @@ tags: [resource, discord]
 ## Auto Summary
 
 ### Content Summary
-- 该条资源当前无法稳定抓取正文，已保留来源链接并等待下次自动补抓。
-- 建议先把这条资源归档到对应项目，再补正文事实。
+- The host (lap-gauge-manually-unlike.trycloudflare.com) is configured as a Cloudflare Tunnel, and Cloudflare is currently unable to resolve it.
 
 ### Links
 - Primary: https://lap-gauge-manually-unlike.trycloudflare.com
 - Related: https://councils-knock-tube-stakeholders.trycloudflare.com
-- Related: http://lap-gauge-manually-unlike.trycloudflare.com/
-- Related: http://lap-gauge-manually-unlike.trycloudflare.com/calendar
-- Related: http://lap-gauge-manually-unlike.trycloudflare.com/agents
-- Related: http://lap-gauge-manually-unlike.trycloudflare.com/stats
 
 ### What We Can Do
-- 把本条内容转成一个可执行任务：owner、截止时间、下一步动作。
+- 当前源站不可达；先基于上下文推进事项，后续由流水线自动二次抓取补全。
+- 将本条内容关联到一个具体项目，避免资源笔记孤立。

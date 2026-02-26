@@ -86,8 +86,10 @@ Validation rules:
 - Minimum: 1 clear hook + 1 concrete example + 1 CTA.
 
 ### Inbox (capture quality)
-- Must include: what happened, why it matters, suggested route.
+- Must include: key facts, why it matters, suggested route.
 - No polished writing needed, but route must be explicit.
+- Must NOT include raw chat transcript dumps (e.g., "最近20条消息原文摘录").
+- Evidence policy: keep at most 3 short evidence lines; everything else must be abstracted into knowledge conclusions.
 
 ## Daily Operations
 - 21:30 local: Inbox triage + route all new captures.
