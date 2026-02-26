@@ -1,13 +1,5 @@
 {
   "urls": {
-    "743d78f59cb6edde5774ab8869d0e5932f766570": {
-      "url": "https://x.com/zhixianio/status/2026104831870718321?s=20",
-      "file": "/Users/nora/.openclaw/workspace/obsidian/Resources/ClawPal v0.3.0 发布啦 重大更新： help (claws help claws 这就是用另一个 agent 来修.md",
-      "message_id": "1476054866882465854",
-      "channel": "📦-资源",
-      "timestamp": "2026-02-24T22:15:04.038000-05:00",
-      "synced_at": "2026-02-25T15:23:36.766667-05:00"
-    },
     "ce8db826b46aed713ffcc5127391fe3f3cb87043": {
       "url": "https://www.tryroro.com/code",
       "file": "/Users/nora/.openclaw/workspace/obsidian/Resources/Roro works best when you have multiple projects running.md",
@@ -40,14 +32,6 @@
       "timestamp": "2026-02-25T05:35:13.184Z",
       "synced_at": "2026-02-25T15:50:48.421118-05:00"
     },
-    "e64d9e6c492cfddaddb495e31fde08d18cce8d79": {
-      "url": "https://elvissun.com/blog/openclaw-codex-agent-swarm",
-      "file": "/Users/nora/.openclaw/workspace/obsidian/Resources/OpenClaw + Codex Agent Swarm 博客实战.md",
-      "message_id": "1476089922606731334",
-      "channel": "📦-资源",
-      "timestamp": "2026-02-25T05:34:21.974Z",
-      "synced_at": "2026-02-25T15:50:48.421263-05:00"
-    },
     "11e537cc776f4da835694f4b85bbbe77f65c22a4": {
       "url": "https://github.com/MarsWang42/OrbitOS",
       "file": "/Users/nora/.openclaw/workspace/obsidian/Resources/GitHub - MarsWang42 OrbitOS： An AI-powered personal productivity.md",
@@ -55,15 +39,7 @@
       "channel": "📦-资源",
       "timestamp": "2026-02-25T02:30:42.921Z",
       "synced_at": "2026-02-25T15:50:48.422556-05:00"
-    },
-    "11a73d458c0296754e098f6115770cf41707d155": {
-      "url": "https://github.com/20XCOMPANY/agentcal",
-      "file": "/Users/nora/.openclaw/workspace/obsidian/Resources/GitHub - 30XCOMPANY agentcal： Agent Shared Calendar System for A.md",
-      "message_id": "1476349341286400170",
-      "channel": "📦-资源",
-      "timestamp": "2026-02-25T22:45:12.207Z",
-      "synced_at": "2026-02-25T18:56:45.231951-05:00"
     }
   },
-  "last_sync": "2026-02-26T09:50:17.037058-05:00"
+  "last_sync": "2026-02-26T10:38:20.890819-05:00"
 }

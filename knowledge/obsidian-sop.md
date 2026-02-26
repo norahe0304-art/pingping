@@ -1,122 +1,48 @@
 # Obsidian SOP
-> Purpose: capture high-value knowledge from DM/Discord into a durable vault structure.
+> Purpose: keep one clean knowledge system centered on high-signal resources.
 
 ## Vault Root (Canonical)
 - `/Users/nora/.openclaw/workspace/obsidian/`
 
-## Vault Structure
-- obsidian/Projects/
-- obsidian/Areas/
-- obsidian/Resources/
-- obsidian/Archives/
-- obsidian/Social/LinkedIn/
-- obsidian/Social/小红书/
-- obsidian/Social/X/
-- obsidian/Inbox/
+## Active Folders
+- `obsidian/Resources/` (primary, automatic): readable URL -> knowledge cards.
+- `obsidian/Areas/` (manual/proposed): reusable SOP/framework/checklist only.
+- `obsidian/Social/` (optional, manual): publish-ready output artifacts.
 
-## Canonical Flow (Mandatory)
-1. Capture first: write to Inbox.
-2. Classify second: route to one target folder.
-3. Deepen third: expand with quality standard for that folder.
-4. Dedup always: prefer update existing note over creating duplicates.
+## Disabled by Default
+- `obsidian/Projects/` is not part of the current pipeline.
+- Do not auto-route resource notes into Projects.
 
-## Template Mapping (Mandatory)
-- obsidian/Projects/ -> `knowledge/templates/project-note-template.md`
-- obsidian/Areas/ -> `knowledge/templates/area-note-template.md`
-- obsidian/Resources/ -> `knowledge/templates/resource-note-template.md`
-- obsidian/Archives/ -> `knowledge/templates/archive-note-template.md`
-- obsidian/Social/* -> `knowledge/templates/social-note-template.md`
-- obsidian/Inbox/ -> `knowledge/templates/inbox-capture-template.md`
+## Resources Card Contract (Mandatory)
+Every resource note must contain only these three body sections:
+1. `## Source`
+2. `## Key Points`
+3. `## What Pingping + Nora Can Do`
 
-## Classification Decision Tree (Mandatory)
-1. goal + executable action + due/priority -> `type=project` -> Projects/
-2. reusable principle/framework/template (non-active) -> `type=area` -> Areas/
-3. external learning link/material -> `type=resource` -> Resources/
-4. publish draft/asset -> `type=social` -> Social/<platform>/
-5. completed/inactive project -> `type=archive` -> Archives/
+Quality gate:
+- `Key Points` must be 5-10 bullets.
+- Summary must be understanding-level abstraction, not chat transcript dump.
+- Source must keep one main URL as evidence.
+- Unreadable sources are dropped, not stored.
 
-Rule: when uncertain between Projects and Areas, choose Projects.
+## Areas Contract (Mandatory)
+- Areas stores reusable knowledge only: SOP, playbook, framework, checklist, anti-pattern.
+- No active project status/task tracking in Areas.
+- New Areas entry should come from:
+  - Resource pattern repeated >= 2 times, or
+  - explicit Nora request to promote a method.
+- Pingping can propose; Nora approves before merge.
 
-## Required Frontmatter (Mandatory)
----
-title:
-date:
-type: project|area|resource|archive|social
-source_type: discord|dm|web|internal
-source_ref:
-original_url:
-source_title:
-source_author:
-published_at:
-channel_or_dm:
-tags: []
-status: draft|active|done
-owner:
-next_action:
-due:
-priority: P0|P1|P2|P3
-content_hash:
----
-
-Validation rules:
-- type=project -> status/owner/next_action/due required
-- type=area -> next_action and due must stay empty
-- source_type in {discord,dm,web} -> source_ref required
-
-## Quality Floor by Section
-
-### Projects (execution quality)
-- Must include: goal, scope, milestones, active tasks, blockers, decisions.
-- Minimum: 5 actionable bullets + explicit next 24h action.
-
-### Areas (reusability quality)
-- Must include: principles, framework/playbook, checklist, anti-patterns.
-- Minimum: 3 principles + 1 reusable checklist.
-
-### Resources (source quality)
-- Must include: original_url + metadata + deep extraction.
-- Minimum: 8-12 core bullets + 3 quotes/evidence + 3-5 takeaways.
-
-### Archives (retrospective quality)
-- Must include: outcome, what worked, what failed, lessons.
-- Minimum: 2 lessons + 1 reusable asset.
-
-### Social (publish quality)
-- Must include: audience, intent, core message, draft, CTA.
-- Minimum: 1 clear hook + 1 concrete example + 1 CTA.
-
-### Inbox (capture quality)
-- Must include: key facts, why it matters, suggested route.
-- No polished writing needed, but route must be explicit.
-- Must NOT include raw chat transcript dumps (e.g., "最近20条消息原文摘录").
-- Evidence policy: keep at most 3 short evidence lines; everything else must be abstracted into knowledge conclusions.
-
-## Daily Operations
-- 21:30 local: Inbox triage + route all new captures.
-- 21:35 local: classification audit for Areas->Projects misfiles.
-- Output digest:
-  - new notes count
-  - updated notes count
-  - moved notes count
-  - top 3 captures
-  - next actions
-
-## Readability Governance (System Learning)
-- Objective: keep the vault readable enough to sustain daily review behavior.
-- Baseline area: `obsidian/Areas/Obsidian-可读性系统规范.md`
-- Rule:
-  - Resource notes can inspire readability improvements.
-  - Only reusable rules are promoted into Areas.
-  - Never dump chat transcript into Areas.
-- Weekly loop (10 min):
-  - Check one readability metric (review completion rate or reading fatigue score).
-  - Adjust at most 1-2 visual variables.
-  - Write result back to the area note.
+## Canonical Flow
+1. Memory pipeline writes channel facts to `memory/shared/*-discord-feed.md`.
+2. URL sync extracts readable links and compiles cards into `obsidian/Resources/`.
+3. Pingping reviews resources and proposes reusable SOP candidates for `obsidian/Areas/`.
+4. Nora approves/rejects Area proposals.
 
 ## Boundaries with Memory System
-- MemOS: semantic long-term memory.
-- memory/YYYY-MM-DD.md: DM/personal timeline.
-- memory/shared/YYYY-MM-DD-discord-feed.md: channel event stream.
-- Obsidian vault: curated knowledge + reusable artifacts.
+- MemOS: semantic recall (preferences, long-term facts).
+- `memory/YYYY-MM-DD.md`: DM/personal daily memory.
+- `memory/shared/*-discord-feed.md`: channel fact stream.
+- Obsidian: compiled knowledge artifacts only (readable, reusable, reviewable).
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md

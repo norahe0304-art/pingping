@@ -110,6 +110,11 @@ LOW_SIGNAL_SUMMARY_PHRASES = (
     "help center terms of service privacy policy",
     "try again some privacy related extensions may cause issues on x",
     "try reloading",
+    "绝了",
+    "必须推荐",
+    "我靠",
+    "妈妈再也",
+    "睡觉前我忍不住",
 )
 UNREADABLE_SUMMARY_MARKERS = (
     "正文抓取受限，本摘要基于频道上下文",
@@ -176,12 +181,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--enrich-all-notes",
         action="store_true",
-        help="Enrich all existing Resources/*.md that still lack Auto Summary",
+        help="Enrich all existing Resources/*.md that still miss required knowledge-card sections",
     )
     parser.add_argument(
         "--force-refresh",
         action="store_true",
-        help="Force regenerate Auto Summary for all matched notes",
+        help="Force regenerate key points/actions for all matched notes",
     )
     parser.add_argument("--verbose", action="store_true")
     return parser.parse_args()
@@ -556,7 +561,9 @@ def derive_title_from_auto_summary(auto_md: str, hit: ResourceHit) -> str:
         "something went wrong",
         "reload to refresh your session",
     ]
-    m = re.search(r"(?ms)^### Content Summary\n(.*?)(?=^### |\Z)", auto_md)
+    m = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", auto_md)
+    if not m:
+        m = re.search(r"(?ms)^### Content Summary\n(.*?)(?=^### |\Z)", auto_md)
     if m:
         for ln in m.group(1).splitlines():
             ln = ln.strip()
@@ -772,6 +779,14 @@ def first_nonempty(items: Iterable[str]) -> str:
 
 
 def extract_auto_summary_block(note_body: str) -> str:
+    m_key = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", note_body)
+    m_act = re.search(r"(?ms)^## What Pingping \+ Nora Can Do\n(.*?)(?=^## |\Z)", note_body)
+    if m_key and m_act:
+        key_block = m_key.group(1).strip()
+        act_block = m_act.group(1).strip()
+        if not key_block or not act_block:
+            return ""
+        return "## Key Points\n" + key_block + "\n\n## What Pingping + Nora Can Do\n" + act_block + "\n"
     m = re.search(r"(?ms)^## Auto Summary\n(.*?)(?=^## |\Z)", note_body)
     if not m:
         return ""
@@ -869,6 +884,14 @@ def is_noisy_sentence(sentence: str) -> bool:
         "packages 0 no packages published",
         "contributors",
         "uh oh",
+        "git clone",
+        "npx degit",
+        "2> /dev/null",
+        "rmdir ",
+        "├──",
+        "what is ",
+        "option 1:",
+        "option 2:",
     ]
     if any(tok in low for tok in noisy_tokens):
         return True
@@ -879,7 +902,7 @@ def is_noisy_sentence(sentence: str) -> bool:
     symbol_count = sum(1 for ch in s if ch in "{};<>:=[]")
     if symbol_count >= max(6, int(len(s) * 0.08)):
         return True
-    if len(s) > 260:
+    if len(s) > 200:
         return True
     if re.search(r"[{}<>]{2,}", s):
         return True
@@ -902,6 +925,8 @@ def is_low_signal_summary_point(sentence: str) -> bool:
     if s.startswith("http://") or s.startswith("https://"):
         return True
     if any(p in low for p in LOW_SIGNAL_SUMMARY_PHRASES):
+        return True
+    if s.count("!") + s.count("！") >= 2:
         return True
     if len(s) < 28 and (" fun" in low or " nice" in low or " cool" in low):
         return True
@@ -1558,23 +1583,9 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
             summary_points = summary_points[:8]
 
     if not summary_points:
-        context_points = extract_summary_from_context(hit.message.text or "", limit=5)
+        context_points = extract_summary_from_context(hit.message.text or "", limit=10)
         context_points = [p for p in context_points if p and not is_low_signal_summary_point(p)]
-        if context_points:
-            summary_points = context_points[:5]
-            summary_points.append("注：正文抓取受限，本摘要基于频道上下文，待后续正文抓取校验。")
-        elif host in {"x.com", "twitter.com", "t.co"}:
-            summary_points = [
-                "该链接为 X 资源，当前自动抓取正文受限，暂未拿到稳定全文。",
-                "已保留原始来源链接与可访问镜像，等待后续补抓或手工补录事实要点。",
-            ]
-        else:
-            summary_points = [
-                "当前自动抓取正文失败或内容质量不足，暂未形成可靠摘要。",
-                "已保留来源链接，后续会重试抓取并补齐关键结论。",
-            ]
-    if host in {"x.com", "twitter.com", "t.co"} and len(summary_points) < 2:
-        summary_points.append("当前仅抓取到标题级内容，推文/文章正文受站点限制，后续重试补全文。")
+        summary_points = context_points[:10]
 
     filtered_points: List[str] = []
     for p in summary_points:
@@ -1583,14 +1594,7 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
             continue
         if p not in filtered_points:
             filtered_points.append(p)
-    summary_points = filtered_points[:8]
-
-    raw_links: List[str] = []
-    raw_links.extend(extract_links(hit.message.text))
-    if snapshot.final_url:
-        raw_links.append(snapshot.final_url)
-    raw_links.extend(x_alternative_urls(hit.url))
-    links = clean_resource_links(raw_links, primary=hit.url, max_items=5)
+    summary_points = filtered_points[:10]
 
     actions: List[str] = []
     host_l = host.lower() if host else ""
@@ -1603,8 +1607,8 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
     if extract_api_key(hit.message.text):
         actions.append("立即轮换暴露的 API Key，改为环境变量引用，不再写入聊天与笔记正文。")
     if hard_fetch_fail:
-        actions.append("当前源站不可达；先基于上下文推进事项，后续由流水线自动二次抓取补全。")
-    actions.append("将本条内容关联到一个具体项目，避免资源笔记孤立。")
+        actions.append("补抓正文后再二次复盘，避免基于不完整信息做决策。")
+    actions.append("把本条提炼为 1 条可复用方法，候选加入 Areas（需 Nora 审核）。")
     dedup_actions: List[str] = []
     for a in actions:
         if a not in dedup_actions:
@@ -1612,24 +1616,11 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
     actions = dedup_actions[:5]
 
     lines: List[str] = []
-    lines.append("## Auto Summary")
-    lines.append("")
-    lines.append("### Content Summary")
+    lines.append("## Key Points")
     for p in summary_points:
         lines.append(f"- {p}")
-    if not summary_points:
-        lines.append("- (no summary extracted)")
     lines.append("")
-    lines.append("### Links")
-    for idx, link in enumerate(links):
-        if idx == 0:
-            lines.append(f"- Primary: {link}")
-        else:
-            lines.append(f"- Related: {link}")
-    if not links:
-        lines.append("- (no links extracted)")
-    lines.append("")
-    lines.append("### What We Can Do")
+    lines.append("## What Pingping + Nora Can Do")
     for t in actions:
         lines.append(f"- {t}")
     lines.append("")
@@ -1639,36 +1630,33 @@ def build_auto_summary(hit: ResourceHit, host_contexts: Dict[str, HostContext]) 
 def upsert_auto_summary(note_body: str, auto_summary_md: str) -> str:
     note_body = re.sub(r"(?ms)^## Notes To Expand.*?(?=^## |\Z)", "", note_body)
     note_body = re.sub(r"(?ms)^## Captured Context.*?(?=^## |\Z)", "", note_body)
+    note_body = re.sub(r"(?ms)^## Capture Intent.*?(?=^## |\Z)", "", note_body)
+    note_body = re.sub(r"(?ms)^## Classification.*?(?=^## |\Z)", "", note_body)
+    note_body = re.sub(r"(?ms)^## Auto Summary.*?(?=^## |\Z)", "", note_body)
+    note_body = re.sub(r"(?ms)^## Key Points.*?(?=^## |\Z)", "", note_body)
+    note_body = re.sub(r"(?ms)^## What We Can Do.*?(?=^## |\Z)", "", note_body)
+    note_body = re.sub(r"(?ms)^## What Pingping \+ Nora Can Do.*?(?=^## |\Z)", "", note_body)
     note_body = note_body.rstrip() + "\n\n"
     block = auto_summary_md.strip() + "\n\n"
-    if "## Auto Summary" in note_body:
-        replaced = re.sub(
-            r"(?ms)^## Auto Summary.*?(?=^## |\Z)",
-            lambda _m: block.rstrip(),
-            note_body,
-        )
-        if replaced.endswith("\n"):
-            return replaced
-        return replaced + "\n"
-
-    marker = "## Notes To Expand"
-    if marker in note_body:
-        return note_body.replace(marker, block + marker, 1)
     return note_body.rstrip() + "\n\n" + block
 
 
 def note_needs_summary(note_body: str) -> bool:
-    return "## Auto Summary" not in note_body
+    return ("## Key Points" not in note_body) or ("## What Pingping + Nora Can Do" not in note_body)
 
 
 def note_should_refresh_summary(note_body: str) -> bool:
     if note_needs_summary(note_body):
         return True
-    m = re.search(r"(?ms)^## Auto Summary\n(.*?)(?=^## |\Z)", note_body)
+    m = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", note_body)
     if not m:
         return True
+    if "## What Pingping + Nora Can Do" not in note_body:
+        return True
     block = m.group(1)
-    if "### Content Summary" not in block or "### Links" not in block or "### What We Can Do" not in block:
+    points = [ln.strip()[2:].strip() for ln in block.splitlines() if ln.strip().startswith("- ")]
+    points = [p for p in points if p and not is_noisy_sentence(p) and not is_low_signal_summary_point(p)]
+    if len(points) < 5 or len(points) > 10:
         return True
     if re.search(r"https?://\S+[）)\]】]", block):
         return True
@@ -1696,7 +1684,9 @@ def auto_summary_is_unreadable(auto_summary_md: str) -> bool:
     if any(m.lower() in low for m in UNREADABLE_SUMMARY_MARKERS):
         return True
 
-    m = re.search(r"(?ms)^### Content Summary\n(.*?)(?=^### |\Z)", block)
+    m = re.search(r"(?ms)^## Key Points\n(.*?)(?=^## |\Z)", block)
+    if not m:
+        m = re.search(r"(?ms)^### Content Summary\n(.*?)(?=^### |\Z)", block)
     if not m:
         return True
     lines = [ln.strip() for ln in m.group(1).splitlines() if ln.strip().startswith("- ")]
@@ -1708,7 +1698,7 @@ def auto_summary_is_unreadable(auto_summary_md: str) -> bool:
         if is_noisy_sentence(text) or is_low_signal_summary_point(text):
             continue
         good.append(text)
-    return len(good) < 2
+    return len(good) < 5
 
 
 def should_drop_note_as_unreadable(note_body: str, url: str) -> bool:
@@ -1761,11 +1751,7 @@ def build_note(hit: ResourceHit, host_contexts: Dict[str, HostContext], auto_sum
     now_iso = datetime.now().astimezone().isoformat()
     auto_summary = auto_summary_md or build_auto_summary(hit, host_contexts)
     title = pick_meaningful_title(hit, auto_summary_md=auto_summary)
-    meta = NoteMeta(title=title, url=hit.url, context=hit.message.text or "")
-    category, subtype = classify_resource(meta)
     sender = hit.message.sender or "unknown"
-    text = redact_secrets((hit.message.text or "").strip())
-    intent = derive_title_hint_from_message(text) or "来自资源频道的外部链接，已进入知识沉淀流程。"
 
     lines: List[str] = []
     lines.append("---")
@@ -1778,27 +1764,13 @@ def build_note(hit: ResourceHit, host_contexts: Dict[str, HostContext], auto_sum
     lines.append(f"message_id: \"{hit.message.message_id}\"")
     lines.append(f"original_url: \"{hit.url}\"")
     lines.append(f"source_title: \"{title}\"")
-    lines.append("source_author: \"\"")
-    lines.append("published_at: \"\"")
-    lines.append(f"capture_intent: \"{intent}\"")
-    lines.append(f"resource_category: \"{category}\"")
-    lines.append(f"resource_subtype: \"{subtype}\"")
     lines.append("tags: [resource, discord]")
     lines.append("---")
     lines.append("")
     lines.append(f"# {title}")
     lines.append("")
     lines.append("## Source")
-    lines.append(f"- URL: {hit.url}")
-    lines.append(f"- Captured from: {hit.message.date} | {hit.message.channel} | {sender}")
-    lines.append(f"- Message ID: {hit.message.message_id}")
-    lines.append("")
-    lines.append("## Capture Intent")
-    lines.append(f"- {intent}")
-    lines.append("")
-    lines.append("## Classification")
-    lines.append(f"- Category: {category}")
-    lines.append(f"- Subtype: {subtype}")
+    lines.append(f"- Main URL: {hit.url}")
     lines.append("")
     lines.append(auto_summary)
     return "\n".join(lines)
@@ -1870,17 +1842,14 @@ def main() -> int:
                 sanitized = redact_secrets(raw)
                 changed_local = False
                 current = sanitized
-                category, subtype = classify_resource(NoteMeta(title=derive_resource_title(h), url=h.url, context=h.message.text or ""))
-                classified = upsert_classification(current, category, subtype)
-                if classified != current:
-                    current = classified
-                    changed_local = True
                 if args.force_refresh or note_should_refresh_summary(current):
                     auto = build_auto_summary(h, host_contexts)
-                    current = upsert_auto_summary(current, auto)
-                    final_title = pick_meaningful_title(h, auto_summary_md=auto, current_note_body=current)
-                    current = upsert_note_title(current, final_title)
-                    current = upsert_source_title(current, final_title)
+                    if auto_summary_is_unreadable(auto):
+                        file_path.unlink(missing_ok=True)
+                        seen.pop(fp, None)
+                        dropped_unreadable += 1
+                        continue
+                    current = build_note(h, host_contexts, auto_summary_md=auto)
                     changed_local = True
                     enriched += 1
                 if should_drop_note_as_unreadable(current, h.url):
@@ -1928,12 +1897,6 @@ def main() -> int:
             current = sanitized
             if sanitized != raw:
                 changed = True
-            base_meta = extract_note_meta(note, current)
-            base_category, base_subtype = classify_resource(base_meta)
-            with_base_class = upsert_classification(current, base_category, base_subtype)
-            if with_base_class != current:
-                current = with_base_class
-                changed = True
             title_changed = False
             hit = parse_note_to_hit(note, current)
             if hit is not None:
@@ -1948,18 +1911,18 @@ def main() -> int:
                 if with_source_title != current:
                     current = with_source_title
                     changed = True
-                category, subtype = classify_resource(NoteMeta(title=new_title, url=hit.url, context=hit.message.text or ""))
-                with_class = upsert_classification(current, category, subtype)
-                if with_class != current:
-                    current = with_class
-                    changed = True
             if args.force_refresh or note_should_refresh_summary(current):
                 if hit is not None:
                     auto = build_auto_summary(hit, host_contexts)
-                    current = upsert_auto_summary(current, auto)
-                    final_title = pick_meaningful_title(hit, auto_summary_md=auto, current_note_body=current)
-                    current = upsert_note_title(current, final_title)
-                    current = upsert_source_title(current, final_title)
+                    if auto_summary_is_unreadable(auto):
+                        old_path = str(note)
+                        note.unlink(missing_ok=True)
+                        for k, rec in list(seen.items()):
+                            if isinstance(rec, dict) and rec.get("file") == old_path:
+                                seen.pop(k, None)
+                        dropped_unreadable += 1
+                        continue
+                    current = build_note(hit, host_contexts, auto_summary_md=auto)
                     changed = True
                     title_changed = True
                     enriched_all_notes += 1

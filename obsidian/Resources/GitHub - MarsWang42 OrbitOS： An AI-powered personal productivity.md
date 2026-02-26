@@ -1,43 +1,29 @@
 ---
-title: GitHub - MarsWang42 OrbitOS: An AI-powered personal productivity
 type: resource
 status: inbox
-created_at: "2026-02-25T15:50:48.422459-05:00"
+created_at: "2026-02-26T10:38:19.774055-05:00"
 captured_date: "2026-02-25"
 source_channel: "📦-资源"
 source_sender: "bravohenry"
 message_id: "1476043705348788274"
 original_url: "https://github.com/MarsWang42/OrbitOS"
 source_title: "GitHub - MarsWang42 OrbitOS: An AI-powered personal productivity"
-source_author: ""
-published_at: ""
-tags: [resource, discord, search-backfill]
+tags: [resource, discord]
 ---
 
 # GitHub - MarsWang42 OrbitOS: An AI-powered personal productivity
 
 ## Source
-- URL: https://github.com/MarsWang42/OrbitOS
-- Captured from: 2026-02-25 | 📦-资源 | bravohenry
-- Message ID: 1476043705348788274
+- Main URL: https://github.com/MarsWang42/OrbitOS
 
-## Classification
-- Category: Code
-- Subtype: GitHub
-## Auto Summary
-
-### Content Summary
+## Key Points
 - GitHub - MarsWang42/OrbitOS: An AI-powered personal productivity system where knowledge management and daily task planning are intelligently orchestrated by your AI assistant.
-- Installation Option 1: Git Sparse Checkout (downloads only English version) git clone --filter=blob:none --sparse https://github.com/MarsWang42/OrbitOS.git my-vault cd my-vault git sparse-checkout set EN mv EN/ * EN/.
-- 2> /dev/null ; rmdir EN Option 2: Using degit (no git history, simpler) npx degit MarsWang42/OrbitOS/EN my-vault What is OrbitOS?
 - OrbitOS is an Obsidian-based productivity framework designed around a simple principle: everything orbits around you .
 - Your projects, knowledge, and daily tasks stay in motion and connected — all managed through natural language conversations with AI.
 - Unlike traditional note-taking systems that require manual organization, OrbitOS leverages Claude Code or Gemini CLI as your intelligent knowledge manager and daily planner.
-- The AI doesn't just store your information — it actively helps you: Capture ideas and transform them into structured, actionable projects Plan your day with context-aware recommendations based on your active work Research topics and automat...
-- Structured Yet Flexible The folder structure provides clear organization while remaining adaptable: ├── 00_Inbox/ # Quick captures — the AI processes these into proper locations ├── 10_Daily/ # Daily logs (YYYY-MM-DD.md) — AI-generated each...
+- Project Layout Every project follows a consistent structure: Context : What are we trying to achieve?
+- What does success look like?
+- About An AI-powered personal productivity system where knowledge management and daily task planning are intelligently orchestrated by your AI assistant.
 
-### Links
-- Primary: https://github.com/MarsWang42/OrbitOS
-
-### What We Can Do
-- 将本条内容关联到一个具体项目，避免资源笔记孤立。
+## What Pingping + Nora Can Do
+- 把本条提炼为 1 条可复用方法，候选加入 Areas（需 Nora 审核）。
