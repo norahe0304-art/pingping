@@ -15,3 +15,8 @@
 ## run 2026-02-27T14:28:09-05:00
 - new_unread: 4
 - important: 0
+## run 2026-02-27T15:59:20-05:00
+- new_unread: 2
+- important: 1
+- items:
+  - [medium] (3) Your receipt from CellCog AI Inc. #2251-2249 | "CellCog AI Inc." <invoice+statements+acct_1ScaUhDjsD5bpJOo@stripe.com> | 2026-02-27 15:38 | id=19ca0d2aa05eff9c | reason=high:invoice
