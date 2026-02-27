@@ -44,6 +44,16 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - **Primary**: fxtwitter API `https://api.fxtwitter.com/status/{tweet_id}`
 - **Fallback**: browser + extension relay
 
+### AgentReach (默认搜索工具)
+- **用途**: 搜索 GitHub, Twitter, YouTube, Reddit, B站, 小红书
+- **命令**:
+  - `agent-reach search "关键词"` - 通用搜索
+  - `agent-reach search-github "关键词"` - GitHub
+  - `agent-reach search-twitter "关键词"` - Twitter
+  - `agent-reach search-youtube "关键词"` - YouTube
+  - `agent-reach read <URL>` - 读取网页内容
+- **优先级**: 优先于 web_search（web_search 需要 API key）
+
 ### 内容抓取
 
 - **x-reader**: 通用内容抓取工具，支持 X、微信、小红书、B站、Telegram、RSS 等
