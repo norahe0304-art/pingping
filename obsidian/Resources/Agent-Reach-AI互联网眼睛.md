@@ -2,42 +2,32 @@
 type: Resource
 original_url: https://github.com/Panniantong/agent-reach
 source: GitHub
-tags:
-  - ai-agent
-  - tool
-  - social-media
+source_title: Agent Reach: 给 AI 装上互联网眼睛
+source_author: Panniantong
+tags: [ai-agent, tool, social-media, twitter, github]
 ---
 
-# Agent Reach: 给 AI 装上互联网眼睛
+# Agent Reach: 让 AI 能够读取和搜索互联网
 
-## 阅读理解
+## 内容摘要
 
-Agent Reach 是一个让 AI Agent 能够读取和搜索互联网的开源工具。核心理念是：AI Agent 已经能写代码、管项目，但让它们去网上找信息就抓瞎了——每个平台都有门槛（付费 API、IP 封锁、登录限制、数据清洗），折腾半天才能让 Agent 读个推特。
+1. Agent Reach 是一个让 AI Agent 能够读取和搜索互联网的开源工具
+2. 核心理念：AI Agent 已经能写代码、管项目，但让它们去网上找信息很困难
+3. 每个平台都有门槛：付费 API、IP 封锁、登录限制、数据清洗
+4. 项目一键安装，零 API 费用，完全免费开源
+5. Cookie 只存本地，代码开源可审查，安全可靠
+6. 支持搜索 Twitter 和 Reddit
+7. 支持读取 YouTube 字幕
+8. 支持刷小红书内容
+9. 支持爬取 GitHub 仓库和 Issue
+10. 支持读取 B 站视频内容
+11. 支持通用网页抓取
+12. 支持 RSS 订阅
 
-这个项目一键安装，让 Agent 能直接读 Twitter、Reddit、YouTube、GitHub、B站、小红书，零 API 费用。完全免费开源，Cookie 只存本地，代码开源可审查。
+## 我们可以做什么
 
-支持的功能：
-
-- 搜 Twitter/Reddit
-- 读 YouTube 字幕
-- 刷小红书
-- 爬 GitHub 仓库和 Issue
-- 读 B站视频
-- 网页抓取
-- RSS 订阅
-
-## 实战洞察
-
-对你们的价值：
-
-1. **做内容/舆情监控** — 可以让 Agent 自动搜各平台动态
-2. **研究竞品** — 快速抓取 Twitter/小红书上的产品讨论
-3. **零成本** — 不需要 API 费用
-
-但要注意：
-
-- 服务器代理可能需要（$1/月）
-- 平台政策变化可能影响稳定性
-- 建议先在测试环境跑通，再决定是否用于生产
-
----
+1. **做内容/舆情监控**：让 Agent 自动搜索各平台动态，监控竞品和行业信息
+2. **研究竞品**：快速抓取 Twitter/小红书上的产品讨论和用户反馈
+3. **零成本信息获取**：利用免费特性搭建内部情报系统
+4. **注意服务器代理**：如果需要，配置 $1/月的代理服务
+5. **先测试后生产**：在测试环境验证稳定性，再决定是否用于生产环境

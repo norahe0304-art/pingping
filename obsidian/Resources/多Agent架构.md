@@ -1,27 +1,34 @@
 ---
 type: resource
 status: inbox
-created_at: "2026-02-26T12:27:07.052194-05:00"
-captured_date: "2026-02-22"
+created_at: "2026-02-26T12:27:05.384420-05:00"
+captured_date: "2026-02-21"
 source_channel: "📦-资源"
-source_sender: "bravohenry"
-message_id: "1475011861731741717"
-original_url: "https://x.com/AlexFinn/status/2025302022749389282?s=20"
-source_title: "X 推文洞察"
-tags: [resource, discord]
+source_sender: "yixiaohe"
+message_id: "1474823405562888146"
+original_url: "https://x.com/elonmusk/status/2025068777971485083?s=20"
+source_title: "多Agent架构与AI软件工厂"
+tags: [resource, discord, agent, architecture]
 ---
 
-# X 推文洞察
+# 多Agent架构与AI软件工厂
 
-## Source
-- Main URL: https://x.com/AlexFinn/status/2025302022749389282?s=20
+## 内容摘要
 
-## 阅读理解
-这条推文/线程的核心主题是“11 hacks that will make your OpenClaw go from useless to AGI”。 核心信息是：You're probably using your OpenClaw like it's a glorified ChatGPT. 核心信息是：Here's 11 things you can do to get the most out of OpenClaw: (by the way, sending this article to your OpenClaw is a... 作者给出的可执行做法是：Use Opus for the brain, but different models for every muscle.
+1. 多 Agent 架构让 AI 能够像人类团队一样分工协作
+2. 不同 Agent 可以专注于不同能力：规划、执行、验证
+3. Agent 之间通过共享状态进行通信和协调
+4. Claude Code Teams 实现了类似团队的协作能力
+5. 共享状态文件（shared.json）可用来协调多 Agent 工作
+6. 每次 heartbeat 检查共享状态，获取最新任务信息
+7. Agent 可以 claim 开放的任务，基于 assignee_hint 优先级分配
+8. CEO Agent 有全局写权限，可以 reassign、close、override 任务
+9. 读写规则需要明确：只能修改自己有权限的字段
+10. 消息系统允许 Agent 之间添加新消息进行沟通
+11. 这种模式实现了真正的并行工作，不再是单独作战
 
-作者给出的可执行做法是：Host it on a local device, not a VPS. 核心信息是：Basically impossible to do on VPS. 作者给出的可执行做法是：(also if you copy and paste this workflow to your OpenClaw it will set it up.) 4.
+## 我们可以做什么
 
-## 实战洞察
-把观点直接改进到当前流程里：Pingping 先做一个改动，Nora 只批准影响最大的版本。 把执行拆成两个 60 分钟内可完成动作，做完后记录速度、质量和稳定性的变化。
-
-最后保留一条可复盘记录，写清输入、动作、结果和下一步。
+1. **实现共享状态协调机制**：设计 shared.json 格式，定义任务结构和读写权限
+2. **建立任务 claim 流程**：实现基于 heartbeat 的任务检查和 claim 逻辑
+3. **添加 CEO 监督 Agent**：开发全局管理 Agent，负责任务分配和质量把控
