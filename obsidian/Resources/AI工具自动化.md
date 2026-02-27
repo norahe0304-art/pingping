@@ -1,27 +1,32 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:20.361527-05:00"
+type: Resource
+original_url: https://x.com/0XBrianXYZ/status/2022488478953685247
+source_title: X 推文洞察
+source_author: 0XBrianXYZ
 captured_date: "2026-02-22"
 source_channel: "📦-资源"
 source_sender: "yixiaohe"
 message_id: "1475256958666674329"
-original_url: "https://x.com/0XBrianXYZ/status/2022488478953685247?s=20"
-source_title: "X 推文洞察"
-tags: [resource, discord]
+tags: [resource, discord, openclaw, collaboration]
 ---
 
-# X 推文洞察
+# OpenClaw 实现多 Agent 协同工作模式
 
-## Source
-- Main URL: https://x.com/0XBrianXYZ/status/2022488478953685247?s=20
+## 内容摘要
 
-## 阅读理解
-这条推文/线程的核心主题是“用openclaw 请异人们来家公司 用openclaw 实现了Claude code teams协作能力，不再只是单独并行作战”。 用openclaw 请异人们来家公司 用openclaw 实现了Claude code teams协作能力，不再只是单独并行作战的subagent 了 ## ⚡️ 交叉协作协议 v1 ### 读写规则 1. 读 shared.json 前先获取最新状态 2.
+1. **核心思路是通过共享的 shared.json 文件实现多 Agent 间的状态同步和任务协调**
+2. **每个 Agent 执行前先读取最新状态**，写入时只修改自己有权限的字段
+3. **CEO（主 Agent）拥有全局写权限**，可以重新分配、关闭、覆盖任何任务
+4. **"共享状态 + 权限分层"是极简的分布式协作协议**
+5. **不需要复杂的消息队列或共识算法**，用文件锁就能实现基本的并发控制
+6. **Agent 协作最难的不是通信，而是"谁负责什么"的边界划分**
+7. **assignee_hint（分配暗示）和 claim（认领）机制**解决了边界问题
+8. **对一人团队来说略过度设计**，但对多 Agent 分工场景（如一个写前端、一个改后端、一个做测试）很有价值
+9. **不再是单独的 subagent 并行作战**，而是多个 Agent 协同工作
 
-写 shared.json 时只修改自己有权的字段： - 自己的 status_board 条目 → 自由更新 - tasks: 只能 claim open 的 / 更新自己 claimed 的 - messages: 只能添加新消息... CEO 有全局写权限可 reassign、close、override ### Claim 流程 1. 核心信息是：每次 heartbeat 检查 shared.json 的 tasks 2. 看到 assignee_hint 是自己 → 优先 claim 3.
+## 我们可以做什么
 
-## 实战洞察
-把观点直接改进到当前流程里：Pingping 先做一个改动，Nora 只批准影响最大的版本。 把执行拆成两个 60 分钟内可完成动作，做完后记录速度、质量和稳定性的变化。
-
-最后保留一条可复盘记录，写清输入、动作、结果和下一步。
+1. **尝试双 Agent 协作模式**——Pingping 先做一个改动，Nora 只批准影响最大的版本
+2. **把执行拆分成两个 60 分钟内可完成的动作**，便于快速迭代
+3. **建立简单任务看板**（Notion 或本地文件），记录谁在做什么
+4. **记录每次协作的速度、质量和稳定性变化**，作为优化依据

@@ -1,27 +1,31 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:05.865584-05:00"
+type: Resource
+original_url: https://x.com/vikingmute/status/2025842815721497009
+source_title: X 推文洞察
+source_author: vikingmute
 captured_date: "2026-02-24"
 source_channel: "📦-资源"
 source_sender: "yixiaohe"
 message_id: "1475878975418142760"
-original_url: "https://x.com/vikingmute/status/2025842815721497009?s=46"
-source_title: "X 推文洞察"
-tags: [resource, discord]
+tags: [resource, discord, design, ai, taste]
 ---
 
-# X 推文洞察
+# taste-skill：让 AI 生成内容更有审美
 
-## Source
-- Main URL: https://x.com/vikingmute/status/2025842815721497009?s=46
+## 内容摘要
 
-## 阅读理解
-这条推文/线程的核心主题是“这个 SKILL 文件称之为 taste skill： 各种 AI slop 的页面太多了，现在产品的 taste 是最稀缺的，”。 核心信息是：这个 SKILL 文件称之为 taste skill：https://github.com/Leonxlnx/taste-skill/blob/main/SKILL.md 各种 AI slop 的页面太多了，现在产品的 “taste”... 总结的非常棒，从字体/配色/布局/卡片进行约束，各种 anti slop 的规则，各种高级动效与微交互，非常丰富 还总结了 100 条 AI 常见低级模式 什么最垃圾的渐变字体 超大 h1 都在里面 很值得收藏
+1. **taste-skill 项目**（https://github.com/Leonxlnx/taste-skill）专门解决"AI 做的页面太丑"的问题
+2. **总结了从字体、配色、布局到卡片的约束规则**
+3. **包含大量"反 slop"规则**
+4. **总结了 100 条 AI 常见的低级模式**——垃圾渐变字体、超大 H1 等
+5. **AI 生成内容太"AI 味"**：一言难尽的渐变、辣眼睛的配色、仿佛被压缩过的排版
+6. **不是技术做不到，是训练数据本身就是"平均水准"**
+7. **taste-skill 思路正确：不是让 AI 做得更快，而是让 AI 做得更有"审美"**
+8. **对 LinkCard 特别有用**：AI 生成的内容需要经过"审美过滤"
+9. **形成 checklist 后，每次 AI 产出东西过一遍，比人工改十遍效率高**
 
-从执行角度看，先做最小验证，再用结果决定是否扩大投入会更稳。
+## 我们可以做什么
 
-## 实战洞察
-把观点直接改进到当前流程里：Pingping 先做一个改动，Nora 只批准影响最大的版本。 把执行拆成两个 60 分钟内可完成动作，做完后记录速度、质量和稳定性的变化。
-
-最后保留一条可复盘记录，写清输入、动作、结果和下一步。
+1. **把 taste-skill 的规则沉淀成一份"AI 输出审美 checklist"**
+2. **每次 AI 生成页面/文案后，用 checklist 过一遍**
+3. **记录常见的"踩坑"模式，持续迭代 checklist**

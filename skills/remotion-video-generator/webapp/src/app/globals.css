@@ -1,0 +1,205 @@
+/*
+ * [INPUT]: Consumed by app/layout.tsx at runtime.
+ * [OUTPUT]: Provides global visual system, asymmetric grid, and component-level styling.
+ * [POS]: webapp/src/app styling foundation for taste-skill aligned UI.
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+:root {
+  --bg-0: #0a0c10;
+  --bg-1: #111621;
+  --bg-2: #191f2d;
+  --panel: rgba(17, 22, 33, 0.76);
+  --panel-border: rgba(255, 255, 255, 0.11);
+  --text-0: #f4f6fb;
+  --text-1: #bcc5d6;
+  --accent: #27d3b0;
+  --accent-2: #8fe8d8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  color: var(--text-0);
+  background:
+    radial-gradient(1200px 700px at 14% 8%, rgba(39, 211, 176, 0.18), transparent 62%),
+    radial-gradient(1000px 620px at 88% 92%, rgba(67, 132, 255, 0.15), transparent 58%),
+    linear-gradient(160deg, var(--bg-0), var(--bg-1) 38%, var(--bg-2));
+  font-family: Outfit, Satoshi, Geist, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.shell {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  grid-template-columns: 1.35fr 1fr;
+  grid-template-areas:
+    "hero preview"
+    "composer preview"
+    "composer insight";
+}
+
+.panel {
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 40px rgba(0, 0, 0, 0.35);
+  padding: 1.1rem;
+}
+
+.hero {
+  grid-area: hero;
+}
+
+.composer {
+  grid-area: composer;
+}
+
+.preview {
+  grid-area: preview;
+}
+
+.insight {
+  grid-area: insight;
+}
+
+.eyebrow {
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.4vw, 2.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.lede,
+.placeholder {
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.statusRow {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-1);
+  flex-wrap: wrap;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.status-idle {
+  background: #7f8ca8;
+}
+
+.status-loading {
+  background: #f3b24b;
+}
+
+.status-ok {
+  background: var(--accent);
+}
+
+.status-error {
+  background: #ff6d6d;
+}
+
+.statusMsg {
+  color: var(--text-0);
+}
+
+.fieldLabel {
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 180px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(9, 12, 18, 0.55);
+  color: var(--text-0);
+  padding: 0.85rem;
+  line-height: 1.45;
+}
+
+.controls {
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+select {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(7, 10, 16, 0.72);
+  color: var(--text-0);
+  padding: 0.45rem 0.55rem;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  background: linear-gradient(120deg, var(--accent), #1abfca);
+  color: #042018;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.56;
+  cursor: not-allowed;
+}
+
+.audio {
+  width: 100%;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .shell {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "hero"
+      "composer"
+      "preview"
+      "insight";
+  }
+}

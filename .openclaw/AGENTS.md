@@ -13,6 +13,7 @@
 - check-agents.sh: 兼容旧入口，转发到 `swarm monitor tick`。
 - cleanup.sh: 兼容旧入口，转发到 `swarm cleanup tick`。
 - status.sh: 兼容旧入口，转发到 `swarm status`。
+- swarm-dashboard.sh: 本地实时可视化面板，展示派遣状态、driver 分工、僵尸任务与日志尾部。
 - run-agent.sh: 废弃占位，提示改走 swarm 编排。
 
 法则

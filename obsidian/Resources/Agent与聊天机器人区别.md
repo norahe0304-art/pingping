@@ -1,27 +1,31 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:06.239912-05:00"
+type: Resource
+original_url: https://x.com/elvissun/status/2025920521871716562
+source_title: X 推文洞察
+source_author: elvissun
 captured_date: "2026-02-24"
 source_channel: "📦-资源"
 source_sender: "yixiaohe"
 message_id: "1475856143669530684"
-original_url: "https://x.com/elvissun/status/2025920521871716562?s=46"
-source_title: "X 推文洞察"
-tags: [resource, discord]
+tags: [resource, discord, openclaw, productivity]
 ---
 
-# X 推文洞察
+# OpenClaw + Agent Swarm：一人开发团队模式
 
-## Source
-- Main URL: https://x.com/elvissun/status/2025920521871716562?s=46
+## 内容摘要
 
-## 阅读理解
-这条推文/线程的核心主题是“OpenClaw + Codex ClaudeCode Agent Swarm: The One-Person Dev Team”。 核心信息是：OpenClaw + Codex/ClaudeCode Agent Swarm: The One-Person Dev Team [Full Setup] 作者给出的可执行做法是：I don't use Codex or Claude Code directly anymore. 可观察到的结果信号是：Proof points from the last 4 weeks: - 94 commits in one day.
+1. **核心做法是通过 OpenClaw 调度 Codex 或 Claude Code**，实现"一人拥有一个开发团队"
+2. **成果数据惊人**：过去 4 周，最高一天 94 次 commit，平均每天 50 次
+3. **"我打了 3 个客户电话，一天没开编辑器"**——从想法到上线全是 AI 在跑
+4. **AI 正在重新定义"开发者"角色**：以前是"人写代码"，以后是"人指挥 AI 写代码"
+5. **人的价值不在于"能写代码"，而在于"知道要写什么代码"**
+6. **未来趋势：AI 负责执行，人负责决策**
+7. **不要把自己当成"写代码的"，而是"定义需求、验收结果的人"**
+8. **这是"想法→产出"完整自动化验证的范例**
 
-核心信息是：My most productive day - I had 3 client calls and didn't open my editor once. 可观察到的结果信号是：The average is around 50 commits a day. 作者给出的可执行做法是：Idea to production are blazing fast because coding and validations are mostly automated. 作者给出的可执行做法是：Commits → MRR: I use this for a real B2B SaaS I'm building — bundling it with founder-led sales to deliver most featu...
+## 我们可以做什么
 
-## 实战洞察
-把这条内容转成一个 24 小时可测实验：Pingping 提假设，Nora 选渠道执行并对比 CTR/互动率。 再按“受众痛点→方法→预期收益”重写成一个选题，并补上原文证据链接。
-
-最后保留一条可复盘记录，写清输入、动作、结果和下一步。
+1. **建立"想法 → 产出"的快速验证流程**，最大化 AI 执行效率
+2. **把能自动化的部分都交给 Agent**，人只做判断和决策
+3. **人的时间花在判断"做什么"而不是"怎么做"**
+4. **记录每次 AI 执行的效率**，作为优化依据

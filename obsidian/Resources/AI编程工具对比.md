@@ -1,27 +1,32 @@
 ---
-type: resource
-status: inbox
-created_at: "2026-02-26T12:27:06.408436-05:00"
+type: Resource
+original_url: https://x.com/zstmfhy/status/2024438473437192372
+source_title: X 推文洞察
+source_author: zstmfhy
 captured_date: "2026-02-20"
 source_channel: "📦-资源"
 source_sender: "yixiaohe"
 message_id: "1474608747753242686"
-original_url: "https://x.com/zstmfhy/status/2024438473437192372?s=46"
-source_title: "X 推文洞察"
-tags: [resource, discord]
+tags: [resource, discord, seedance, video, xskill]
 ---
 
-# X 推文洞察
+# OpenClaw 集成 Seedance 2.0 实现电影级视频生成
 
-## Source
-- Main URL: https://x.com/zstmfhy/status/2024438473437192372?s=46
+## 内容摘要
 
-## 阅读理解
-这条推文/线程的核心主题是“兄弟姐妹们奶爸的 openclaw 已经集成了 Seedance 2.0 就是字节那个电影级视频王者 Seedance 2.0，”。 奶爸今天做了四个测试场景，全是用 http://xskill.ai 一键搞定的，给大家直观看看效果质量直接对标专业短片： ✅ 街头霸王之父女对打 ✅ iPhone 17 广告视频 ✅ 绝美韩国女团成员 ✅ 奶爸的AI助手 看到这些，奶... 可观察到的结果信号是：想规模化出片的团队，1分钟集成到你的 Agent 里，效率直接起飞！ 链接放这儿：https://xskill.ai/#/?ref=XI90BF6W。通过链接注册可以获得500积分，正常注册没有积分可送
+1. **OpenClaw 集成了 Seedance 2.0**（字节的视频生成工具），可通过 xskill.ai 一键调用
+2. **xskill.ai 在中间做了一层封装**，让用户不需要写代码就能调用 Seedance
+3. **博主测试了四个场景**：街头霸王之父女对打、iPhone 17 广告、绝美韩国女团、AI 助手形象展示
+4. **视频生成赛道竞争激烈**：Runway、Pika、OpenAI Sora、字节 Seedance 都在抢门票
+5. **大部分生成的视频存在动作不自然或画质模糊的问题**
+6. **Seedance 2.0 评测效果不错**，尤其是"对打"和"广告"场景
+7. **xskill.ai 模式类似"AI 工具的拼多多"**——聚合各种能力，按需调用
+8. **对内容创作者来说重要的是"能快速产出可用的东西"**，而不是"底层技术多先进"
+9. **用户可获得 500 积分**用于测试
 
-从执行角度看，先做最小验证，再用结果决定是否扩大投入会更稳。
+## 我们可以做什么
 
-## 实战洞察
-把观点直接改进到当前流程里：Pingping 先做一个改动，Nora 只批准影响最大的版本。 把执行拆成两个 60 分钟内可完成动作，做完后记录速度、质量和稳定性的变化。
-
-最后保留一条可复盘记录，写清输入、动作、结果和下一步。
+1. **去 xskill.ai 注册获取 500 积分**
+2. **选一个跟 LinkCard 相关的场景**（比如产品演示视频）做测试
+3. **评估产出质量是否达到"可对外"的水平**
+4. **记录投入产出比**，决定是否规模化使用

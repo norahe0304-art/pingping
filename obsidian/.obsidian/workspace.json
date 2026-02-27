@@ -6,20 +6,18 @@
       {
         "id": "2ce38c7cc4fef84a",
         "type": "tabs",
-        "dimension": 58.79959308240082,
+        "dimension": 78.72340425531915,
         "children": [
           {
             "id": "944d051a68026c71",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "Areas/Obsidian-可读性系统规范.md",
-                "mode": "source",
-                "source": false
+                "file": "Resources/af64e513-bdd3-4c4f-a076-171c83d40d56.pdf"
               },
-              "icon": "lucide-file",
-              "title": "Obsidian-可读性系统规范"
+              "icon": "lucide-file-text",
+              "title": "af64e513-bdd3-4c4f-a076-171c83d40d56"
             }
           }
         ]
@@ -27,7 +25,7 @@
       {
         "id": "f3e7c2b18ff3a479",
         "type": "tabs",
-        "dimension": 41.20040691759918,
+        "dimension": 21.27659574468085,
         "children": [
           {
             "id": "1f06e44a448cebe6",
@@ -96,7 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 414.5
+    "width": 487.5
   },
   "right": {
     "id": "553a81f84aeb8a36",
@@ -201,12 +199,28 @@
       "bases:Create new base": false
     }
   },
-  "active": "a517c0287cc4f293",
+  "active": "944d051a68026c71",
   "lastOpenFiles": [
     "Social/LinkedIn/the-real-ai-divide.md",
+    "AGENTS.md",
+    "Resources/面向Agent设计-Agent-First思维.md",
+    "Resources/_TEMPLATE.md",
+    "Resources/用户意图分析.md",
+    "Resources/安全规则集中管理.md",
+    "Resources/Agent与聊天机器人区别.md",
+    "Resources/af64e513-bdd3-4c4f-a076-171c83d40d56.pdf",
+    "Resources/1b6c19ed-5b6d-4f50-806f-d05ec0d034e5.pdf",
+    "Resources/6551-io-MCP服务.md",
+    "Resources/Turing-College-博客-Agent与聊天机器人的区别.md",
+    "Resources/OpenTwitter-MCP-Twitter数据服务.md",
+    "Resources/OrbitOS-AI个人生产力框架.md",
+    "Resources/OpenNews-MCP-加密货币新闻聚合.md",
+    "Resources/OpenClaw社区技能筛选标准.md",
+    "Resources/OpenClaw-金融投研应用系列报告.md",
+    "Resources/OpenClaw-DeepReader-URL转Markdown.md",
+    "Areas/Obsidian-可读性系统规范.md",
     "Resources/AI工具自动化.md",
     "Resources/ClawFeed-AI新闻摘要.md",
-    "Resources/6551-io-MCP服务.md",
     "Resources/X 推文洞察-d2425966.md",
     "Resources/6551-io mcp.md",
     "Resources/awesome-openclaw-usecases.md",
@@ -215,20 +229,6 @@
     "Resources/_资源分类索引.md",
     "Resources/X 推文洞察-be7b0aa0.md",
     "Resources/docs-fxtwitter-com en latest.md",
-    "Resources/xskill-ai link.md",
-    "Resources/X 推文洞察-1d878f0f.md",
-    "Resources/pingping学习一下.md",
-    "Resources/businessworld-in article openclaw-the-ai-agent-that-actually-doe.md",
-    "Resources/turingcollege-com blog openclaw.md",
-    "Resources/medium-com alexrozdolskiy 10-wild-things-people-actually-built-w.md",
-    "Resources/forms-office link.md",
-    "Resources/about-ads-microsoft-com february-2026 building-toward-a-sustaina.md",
-    "Resources/forms-office-com Pages ResponsePage.aspx.md",
-    "Resources/groas-ai post google-ads-ai-max-complete-2026-guide.md",
-    "Resources/OpenClaw-DeepReeder.md",
-    "Resources/newsletter-levelingup-com p 4-opencla.md",
-    "Resources/MemOS.md",
-    "Resources/X 推文洞察-4906465d.md",
     "Archives/Resources-非资源频道迁移",
     "Inbox",
     "Areas/AI-Marketing",
@@ -236,8 +236,6 @@
     "Social/X",
     "Social/LinkedIn",
     "Social",
-    "Areas/AI Marketing",
-    "Areas/Marketing",
-    "Areas/AI"
+    "Areas/AI Marketing"
   ]
 }
