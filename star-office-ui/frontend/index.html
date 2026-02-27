@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star 像素办公室</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #1a1a2e; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+        }
+        #game-container { 
+            border: 4px solid #ff6b35; 
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+    <script>
+    // 状态配置
+    const STATE_CONFIG = {
+        idle: { zone: 'breakroom', color: '#4ade80', emoji: '😴' },
+        writing: { zone: 'workdesk', color: '#60a5fa', emoji: '✍️' },
+        researching: { zone: 'workdesk', color: '#c084fc', emoji: '🔍' },
+        executing: { zone: 'workdesk', color: '#f97316', emoji: '⚡' },
+        syncing: { zone: 'breakroom', color: '#fbbf24', emoji: '🔄' },
+        error: { zone: 'breakroom', color: '#ef4444', emoji: '❌' }
+    };
+
+    // 区域坐标
+    const ZONES = {
+        workdesk: { x: 250, y: 300, width: 300, height: 200 },
+        breakroom: { x: 550, y: 300, width: 200, height: 200 }
+    };
+
+    class OfficeScene extends Phaser.Scene {
+        constructor() {
+            super({ key: 'OfficeScene' });
+            this.character = null;
+            this.currentState = 'idle';
+            this.blinkTimer = 0;
+            this.bubbleTimer = 0;
+            this.walkTimer = 0;
+            this.isWalking = false;
+            this.targetX = 0;
+            this.targetY = 0;
+        }
+
+        create() {
+            // 绘制办公室背景
+            this.drawOffice();
+
+            // 绘制区域标签
+            this.add.text(250, 180, '🖥️ 工作区', { fontSize: '20px', color: '#60a5fa' }).setOrigin(0.5);
+            this.add.text(550, 180, '☕ 休息区', { fontSize: '20px', color: '#4ade80' }).setOrigin(0.5);
+
+            // 创建像素小人
+            this.createCharacter();
+
+            // 状态显示
+            this.statusText = this.add.text(400, 50, '等待任务中...', {
+                fontSize: '18px',
+                color: '#fff',
+                backgroundColor: '#333',
+                padding: { x: 10, y: 5 }
+            }).setOrigin(0.5);
+
+            // 启动定时轮询
+            this.time.addEvent({
+                delay: 5000,
+                callback: this.fetchStatus,
+                callbackScope: this,
+                loop: true
+            });
+
+            this.fetchStatus();
+        }
+
+        drawOffice() {
+            const graphics = this.add.graphics();
+            
+            // 地板
+            graphics.fillStyle(0x2d2d44);
+            graphics.fillRect(0, 0, 800, 600);
+
+            // 工作区 - 木质桌面
+            graphics.fillStyle(0x8b5a2b);
+            graphics.fillRect(150, 220, 300, 260);
+            graphics.fillStyle(0x6b4423);
+            graphics.fillRect(150, 220, 300, 20);
+
+            // 显示器
+            graphics.fillStyle(0x333);
+            graphics.fillRect(220, 180, 80, 50);
+            graphics.fillStyle(0x4a90d9);
+            graphics.fillRect(225, 185, 70, 40);
+            graphics.fillStyle(0x222);
+            graphics.fillRect(250, 230, 20, 30);
+
+            // 休息区 - 沙发
+            graphics.fillStyle(0x9c27b0);
+            graphics.fillRect(500, 350, 150, 60);
+            graphics.fillStyle(0x7b1fa2);
+            graphics.fillRect(500, 350, 150, 15);
+
+            // 咖啡机
+            graphics.fillStyle(0x607d8b);
+            graphics.fillRect(620, 280, 40, 50);
+            graphics.fillStyle(0xffd700);
+            graphics.fillRect(625, 285, 30, 10);
+
+            // 地板装饰
+            graphics.fillStyle(0x3d3d5c);
+            for (let i = 0; i < 10; i++) {
+                graphics.fillRect(50 + i * 75, 500, 50, 50);
+            }
+        }
+
+        createCharacter() {
+            // 像素小人 (16x24)
+            this.character = this.add.container(400, 300);
+            
+            // 身体
+            const body = this.add.graphics();
+            body.fillStyle(0xff6b35);
+            body.fillRect(-8, -12, 16, 20);
+            
+            // 头
+            body.fillStyle(0xffdbac);
+            body.fillRect(-6, -20, 12, 10);
+            
+            // 眼睛
+            body.fillStyle(0x000);
+            body.fillRect(-4, -18, 2, 2);
+            body.fillRect(2, -18, 2, 2);
+
+            // 状态气泡
+            this.bubble = this.add.graphics();
+            this.character.add(this.bubble);
+            this.character.add(body);
+
+            // 保存眼睛位置用于眨眼
+            this.eyeLeft = { x: -4, y: -18 };
+            this.eyeRight = { x: 2, y: -18 };
+        }
+
+        fetchStatus() {
+            fetch('/status')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.state !== this.currentState) {
+                        this.currentState = data.state;
+                        this.moveToZone(STATE_CONFIG[data.state].zone);
+                    }
+                    this.statusText.setText(data.detail || STATE_CONFIG[data.state].emoji + ' ' + data.state);
+                })
+                .catch(e => console.error('Status fetch error:', e));
+        }
+
+        moveToZone(zone) {
+            const z = ZONES[zone];
+            this.targetX = z.x + Math.random() * z.width - z.width/2;
+            this.targetY = z.y + Math.random() * z.height - z.height/2;
+            this.isWalking = true;
+        }
+
+        update(time, delta) {
+            if (this.isWalking) {
+                const dx = this.targetX - this.character.x;
+                const dy = this.targetY - this.character.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                
+                if (dist > 5) {
+                    this.character.x += (dx / dist) * 2;
+                    this.character.y += (dy / dist) * 2;
+                    // 走路颠簸
+                    this.character.y += Math.sin(time / 50) * 0.5;
+                } else {
+                    this.isWalking = false;
+                }
+            }
+
+            // 眨眼
+            this.blinkTimer += delta;
+            if (this.blinkTimer > 3000 + Math.random() * 2000) {
+                this.blinkTimer = 0;
+                // 眨眼动画
+            }
+
+            // 随机移动
+            this.walkTimer += delta;
+            if (this.walkTimer > 10000) {
+                this.walkTimer = 0;
+                const config = STATE_CONFIG[this.currentState];
+                this.moveToZone(config.zone);
+            }
+        }
+    }
+
+    const config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        parent: 'game-container',
+        scene: OfficeScene
+    };
+
+    const game = new Phaser.Game(config);
+    </script>
+</body>
+</html>
