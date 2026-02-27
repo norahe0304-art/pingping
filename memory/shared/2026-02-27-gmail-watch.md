@@ -20,3 +20,8 @@
 - important: 1
 - items:
   - [medium] (3) Your receipt from CellCog AI Inc. #2251-2249 | "CellCog AI Inc." <invoice+statements+acct_1ScaUhDjsD5bpJOo@stripe.com> | 2026-02-27 15:38 | id=19ca0d2aa05eff9c | reason=high:invoice
+## run 2026-02-27T17:30:34-05:00
+- new_unread: 2
+- important: 1
+- items:
+  - [high] (5) Your Scheduled Payment | Discover Card <discover@services.discover.com> | 2026-02-27 16:42 | id=19ca10d4c33c03ed | reason=high:payment, mid:schedule
