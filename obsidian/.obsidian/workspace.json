@@ -12,12 +12,14 @@
             "id": "944d051a68026c71",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "Resources/af64e513-bdd3-4c4f-a076-171c83d40d56.pdf"
+                "file": "Social/LinkedIn/我是pingping.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "af64e513-bdd3-4c4f-a076-171c83d40d56"
+              "icon": "lucide-file",
+              "title": "我是pingping"
             }
           }
         ]
@@ -25,7 +27,7 @@
       {
         "id": "f3e7c2b18ff3a479",
         "type": "tabs",
-        "dimension": 21.27659574468085,
+        "dimension": 21.276595744680847,
         "children": [
           {
             "id": "1f06e44a448cebe6",
@@ -199,16 +201,17 @@
       "bases:Create new base": false
     }
   },
-  "active": "944d051a68026c71",
+  "active": "a517c0287cc4f293",
   "lastOpenFiles": [
+    "Social/openclaw-multi-agent-video-architecture.excalidraw",
     "Social/LinkedIn/the-real-ai-divide.md",
+    "Resources/af64e513-bdd3-4c4f-a076-171c83d40d56.pdf",
     "AGENTS.md",
     "Resources/面向Agent设计-Agent-First思维.md",
     "Resources/_TEMPLATE.md",
     "Resources/用户意图分析.md",
     "Resources/安全规则集中管理.md",
     "Resources/Agent与聊天机器人区别.md",
-    "Resources/af64e513-bdd3-4c4f-a076-171c83d40d56.pdf",
     "Resources/1b6c19ed-5b6d-4f50-806f-d05ec0d034e5.pdf",
     "Resources/6551-io-MCP服务.md",
     "Resources/Turing-College-博客-Agent与聊天机器人的区别.md",
@@ -228,7 +231,6 @@
     "Resources/clawhub-ai infra403 opennews-mcp.md",
     "Resources/_资源分类索引.md",
     "Resources/X 推文洞察-be7b0aa0.md",
-    "Resources/docs-fxtwitter-com en latest.md",
     "Archives/Resources-非资源频道迁移",
     "Inbox",
     "Areas/AI-Marketing",
