@@ -25,3 +25,6 @@
 - important: 1
 - items:
   - [high] (5) Your Scheduled Payment | Discover Card <discover@services.discover.com> | 2026-02-27 16:42 | id=19ca10d4c33c03ed | reason=high:payment, mid:schedule
+## run 2026-02-27T18:31:11-05:00
+- new_unread: 2
+- important: 0
