@@ -1,15 +1,21 @@
 ---
-type: Resource
-original_url: https://github.com/hesamsheikh/awesome-openclaw-usecases
-source_title: Awesome OpenClaw UseCases 社区案例集
-source_author: hesamsheikh
+type: resource
+status: inbox
+created_at: "2026-02-27"
 captured_date: "2026-02-27"
 source_channel: "📦-资源"
 source_sender: "yixiaohe"
+message_id: ""
+original_url: "https://github.com/hesamsheikh/awesome-openclaw-usecases"
+source_title: "Awesome OpenClaw UseCases 社区案例集"
+source_author: "hesamsheikh"
 tags: [openclaw, use-cases, community, discord]
 ---
 
 # Awesome OpenClaw UseCases：社区真实用例集合
+
+## Source
+- Main URL: https://github.com/hesamsheikh/awesome-openclaw-usecases
 
 ## 内容摘要
 
@@ -22,6 +28,7 @@ tags: [openclaw, use-cases, community, discord]
 7. **还在持续更新中**
 8. **安全警告：引用的 skill 和第三方依赖可能有安全漏洞**
 9. **使用前务必审查源码，检查权限请求，不要硬编码 API Key**
+10. **是学习 OpenClaw 实际应用场景的重要资源**
 
 ## 我们可以做什么
 
@@ -30,3 +37,4 @@ tags: [openclaw, use-cases, community, discord]
 3. **贡献我们的用例**——把我们的用法也提交到社区
 4. **每周看一次这个仓库的更新**
 5. **挑一个跟工作相关的用例做测试**
+6. **挖掘与一人开发团队模式相关的用例**

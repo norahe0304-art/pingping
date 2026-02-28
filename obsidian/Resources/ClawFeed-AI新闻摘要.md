@@ -1,15 +1,21 @@
 ---
-type: Resource
-original_url: https://github.com/kevinho/clawfeed
-source_title: ClawFeed AI 新闻摘要生成器
-source_author: Kevin He
+type: resource
+status: inbox
+created_at: "2026-02-27"
 captured_date: "2026-02-27"
 source_channel: "📦-资源"
 source_sender: "yixiaohe"
+message_id: ""
+original_url: "https://github.com/kevinho/clawfeed"
+source_title: "ClawFeed AI 新闻摘要生成器"
+source_author: "Kevin He"
 tags: [news, digest, automation, openclaw, discord]
 ---
 
 # ClawFeed：AI 驱动的新闻摘要生成器
+
+## Source
+- Main URL: https://github.com/kevinho/clawfeed
 
 ## 内容摘要
 
@@ -28,6 +34,7 @@ tags: [news, digest, automation, openclaw, discord]
 9. **Demo 地址：https://clawfeed.kevinhe.io**
 10. **4H 模式比"摘要"更有信息量**，阅读者可以快速判断要不要深入看
 11. **适合做"每日简报"类内容**，人工只需做筛选和润色
+12. **是 LinkCard 做"每日 AI 新闻"简报的可选方案**
 
 ## 我们可以做什么
 
@@ -35,3 +42,4 @@ tags: [news, digest, automation, openclaw, discord]
 2. **配置几个我们关注的 RSS 源测试**
 3. **做成 LinkCard 的"每日 AI 新闻"简报**
 4. **对比 AI 摘要质量**，决定是否用于 Newsletter 生产
+5. **评估是否比现有方案更高效**

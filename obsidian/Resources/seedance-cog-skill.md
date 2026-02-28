@@ -1,106 +1,40 @@
 ---
-title: Seedance Cog - 视频生成 Skill
 type: resource
-source: ClawHub
-original_url: https://clawhub.com/skills/seedance-cog
-tags: [video, ai-video, seedance, cellcog, bytedance]
-last_updated: 2026-02-27
+status: inbox
+created_at: "2026-02-27"
+captured_date: "2026-02-27"
+source_channel: "📦-资源"
+source_sender: "yixiaohe"
+message_id: ""
+original_url: "https://clawhub.com/skills/seedance-cog"
+source_title: "Seedance Cog - 视频生成 Skill"
+source_author: "ClawHub"
+tags: [video, ai-video, seedance, cellcog, bytetdance, openclaw]
 ---
 
-# Seedance Cog - Seedance × CellCog
+# Seedance × CellCog：字节视频生成 + 多Agent编排
 
-**Seedance × CellCog.** ByteDance's #1 video model meets the frontier of multi-agent coordination.
+## Source
+- Main URL: https://clawhub.com/skills/seedance-cog
 
-Seedance generates the smoothest motion in AI video — cinematic 1080p with physics that look real. CellCog orchestrates it with scripting, voice synthesis, lipsync, scoring, and editing to produce complete videos from a single prompt. Not just clips — full productions.
+## 内容摘要
 
----
+1. **Seedance 是字节旗下最强的 AI 视频生成模型**，主打电影级 1080p 物理真实感 motion
+2. **CellCog 是多 Agent 编排框架**，负责脚本、语音、配音、口型、音乐、剪辑全流程
+3. **两者结合可以实现"一句话生成完整视频"**，不只是片段，而是完整成品
+4. **安装方式**：需要先装 cellcog skill (`clawhub install cellcog`)
+5. **调用方式**：通过 client.create_chat 传入 prompt，支持 notify_session_key 回调
+6. **支持的视频类型很广**：营销视频、产品演示、品牌故事、解释视频、短片、音乐视频、主持人视频、培训视频等
+7. **视频规格**：最高 1080p，3秒到4分钟，支持写实/电影/动漫/纪实等多种风格
+8. **生成质量取决于 prompt 描述的详细程度**，建议包含场景、情绪、音乐偏好、人物描述
+9. **6-7 个基础模型协同工作**：Seedance + LLM脚本 + TTS + 口型同步 + 音乐生成 + 自动剪辑
+10. **输出格式为 MP4**，自带语音、背景音乐、音效
+11. **对比竞品（Runway、Pika、OpenAI Sora）**，Seedance 在动作自然度和画面质量上有优势
 
-## Prerequisites
+## 我们可以做什么
 
-需要安装 cellcog skill：
-```bash
-clawhub install cellcog
-```
-
-Quick pattern (v1.0+):
-```python
-result = client.create_chat(
-    prompt="[your video request]",
-    notify_session_key="agent:main:main",
-    task_label="video-task",
-    chat_mode="agent"
-)
-```
-
----
-
-## What You Can Create
-
-### Marketing Videos
-- **Product Demos**: "Create a 60-second product demo video for our project management app"
-- **Brand Videos**: "Create a 30-second brand story video for a sustainable fashion startup"
-- **Social Ads**: "Create a 15-second Instagram ad for our new coffee blend"
-
-### Explainer Videos
-- **Product Explainers**: "Create a 90-second explainer for how our API works"
-- **Concept Videos**: "Create a video explaining blockchain in simple terms"
-
-### Cinematic Content
-- **Short Films**: "Create a 2-minute short film about a robot discovering nature"
-- **Music Videos**: "Create a cinematic music video with dramatic landscapes"
-
-### Spokesperson Videos
-- **News Reports**: "Create a news-style report on recent AI developments"
-- **Training Videos**: "Create a training video with a presenter explaining safety protocols"
-
----
-
-## CellCog Video Orchestration
-
-```
-Script Writing → Scene Planning → Frame Generation → Voice Synthesis
-     → Lipsync → Background Music → Sound Design → Editing → Final Output
-```
-
-**6-7 foundation models** work together:
-- Seedance for video generation
-- Frontier LLMs for scripting
-- TTS models for voice synthesis
-- Lipsync models for speaker alignment
-- Music generation for scoring
-- Automated editing
-
----
-
-## Video Specifications
-
-| Spec | Details |
-|------|---------|
-| **Resolution** | Up to 1080p |
-| **Duration** | 3 seconds to 4 minutes |
-| **Styles** | Photorealistic, cinematic, anime, stylized, documentary |
-| **Audio** | Voice synthesis, background music, sound effects |
-| **Output** | MP4 |
-
----
-
-## Tips for Better Videos
-
-1. **Describe the story**: "A video about our app" → "A 60-second video showing a stressed founder discovering our app, their workflow transforming, ending with them confidently presenting to investors"
-
-2. **Specify duration**: "30-second social ad" vs. "2-minute explainer"
-
-3. **Set the mood**: "Upbeat and energetic", "calm and professional", "dramatic and cinematic"
-
-4. **Mention music preferences**: "Uplifting corporate background", "lo-fi beats", "cinematic orchestral"
-
-5. **For spokesperson videos**: Describe the presenter's appearance and tone of voice
-
----
-
-## 🎯 我们的改进方向
-
-- [ ] 研究如何生成"油画风格动起来"而非真人人像
-- [ ] 测试不同 prompt 风格对生成效果的影响
-- [ ] 探索直接调用 Seedance API 而非通过 CellCog
-- [ ] 建立自己的 prompt 模板库
+1. **去 xskill.ai 注册获取 500 积分测试额度**，选一个产品演示场景生成视频
+2. **研究如何生成"油画风格动起来"而非真人人像**，建立自己的 prompt 模板库
+3. **测试不同 prompt 风格对生成效果的影响**，记录最佳实践
+4. **探索直接调用 Seedance API 而非通过 CellCog**，评估成本和灵活性
+5. **评估产出质量是否达到"可对外"水平**，决定是否用于 LinkCard 营销

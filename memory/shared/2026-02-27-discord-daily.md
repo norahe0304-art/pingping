@@ -345,3 +345,65 @@
   - [02:42:34][🎮-访客] 我笑死了
   - [02:42:33][🎮-访客] 哈哈哈哈哈哈哈哈哈哈哈
 
+## Discord Feed Sync - 2026-02-27 22:18:37 EST
+
+- source: /Users/nora/.openclaw/workspace/memory/shared/2026-02-27-discord-feed.md
+- new_messages: 30
+- Nora_messages: 0
+- top_channels: 🎮-访客(30)
+- Nora_latest: none
+
+## Discord Feed Sync - 2026-02-27 22:33:49 EST
+
+- source: /Users/nora/.openclaw/workspace/memory/shared/2026-02-27-discord-feed.md
+- new_messages: 30
+- Nora_messages: 6
+- top_channels: 🎮-访客(30)
+- Nora_latest:
+  - [03:27:35][🎮-访客] 谁查
+  - [03:27:33][🎮-访客] 谁审查 可以claude写完codex查吗
+  - [03:26:23][🎮-访客] 但是我门不是本来就是planning mode先行吗
+  - [03:25:42][🎮-访客] pingping 加obsidian资源
+  - [03:22:12][🎮-访客] 就是插件自己升级？
+  - [03:21:54][🎮-访客] 工作流我没懂
+
+## Discord Feed Sync - 2026-02-27 22:45:34 EST
+
+- source: /Users/nora/.openclaw/workspace/memory/shared/2026-02-27-discord-feed.md
+- new_messages: 60
+- Nora_messages: 16
+- top_channels: 🔧-调试(31), 🎮-访客(25), 📚-学习(4)
+- Nora_latest:
+  - [03:44:17][📚-学习] 干的好
+  - [03:44:13][📚-学习] pingping来确认自己的链接了
+  - [03:44:05][📚-学习] https://tenor.com/view/the-office-michael-scott-thank-you-bow-steve-carell-gif-5009516783019270794
+  - [03:42:51][🔧-调试] 笑死我了
+  - [03:42:18][🔧-调试] 😆
+  - [03:42:12][🔧-调试] 没事 就留着装逼吧
+  - [03:41:52][🔧-调试] soga
+  - [03:40:43][🔧-调试] 怎么定义
+
+## Discord Feed Sync - 2026-02-27 22:48:59 EST
+
+- source: /Users/nora/.openclaw/workspace/memory/shared/2026-02-27-discord-feed.md
+- new_messages: 30
+- Nora_messages: 5
+- top_channels: 🎮-访客(30)
+- Nora_latest:
+  - [03:33:22][🎮-访客] 说人话
+  - [03:33:20][🎮-访客] 我没懂 你给我说一下呢子涵
+  - [03:30:14][🎮-访客] 🙃
+  - [03:30:05][🎮-访客] 算了 我脑子麻的 没吃透 明天继续教我
+  - [03:29:11][🎮-访客] 那不是自带的吗
+
+## Discord Feed Sync - 2026-02-27 23:04:08 EST
+
+- source: /Users/nora/.openclaw/workspace/memory/shared/2026-02-27-discord-feed.md
+- new_messages: 34
+- Nora_messages: 3
+- top_channels: 🎮-访客(30), 📚-学习(4)
+- Nora_latest:
+  - [03:34:54][🎮-访客] 可以选择性生成skill吗？ skill相同的可以合并吗？
+  - [03:34:33][🎮-访客] 天天都在学习
+  - [03:34:30][🎮-访客] 那这样不会skill爆炸吗？
+
