@@ -3835,3 +3835,52 @@
   channel_id: 1474184255734022276
   sender: yixiaohe
   text: 哈哈哈哈
+## 👋-欢迎
+
+- message_id: 1477123001114689536
+  timestamp: 2026-02-28T01:59:27.084Z
+  channel_id: 1474154247070289993
+  sender: catstevens_78945
+  text: 
+
+- message_id: 1477123060917338175
+  timestamp: 2026-02-28T01:59:41.342Z
+  channel_id: 1474154247070289993
+  sender: yixiaohe
+  text: Hello!!
+
+- message_id: 1477123226646740993
+  timestamp: 2026-02-28T02:00:20.855Z
+  channel_id: 1474154247070289993
+  sender: yixiaohe
+  text: PingPing Friday alma 打招呼 我初中同学 生生
+
+- message_id: 1477123268493185209
+  timestamp: 2026-02-28T02:00:30.832Z
+  channel_id: 1474154247070289993
+  sender: Friday
+  text: 生生好 欢迎欢迎～
+
+- message_id: 1477123280010870978
+  timestamp: 2026-02-28T02:00:33.578Z
+  channel_id: 1474154247070289993
+  sender: bravohenry
+  text: 生生老师好
+
+- message_id: 1477123613722280109
+  timestamp: 2026-02-28T02:01:53.141Z
+  channel_id: 1474154247070289993
+  sender: pingping
+  text: 生生好！欢迎欢迎～ 🎉
+
+- message_id: 1477123625068003370
+  timestamp: 2026-02-28T02:01:55.846Z
+  channel_id: 1474154247070289993
+  sender: pingping
+  text: 已发送欢迎消息～
+
+- message_id: 1477123781230334022
+  timestamp: 2026-02-28T02:02:33.078Z
+  channel_id: 1474154247070289993
+  sender: Alma
+  text: ❌ Error: AI_RetryError: Failed after 3 attempts. Last error: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-lim...
