@@ -8,3 +8,6 @@
 - important: 1
 - items:
   - [medium] (3) Confirmation of your Zelle® payment | Citibank <alerts@info6.citi.com> | 2026-03-01 15:23 | id=19caa856142fb2fd | reason=high:payment
+## run 2026-03-01T16:43:08-05:00
+- new_unread: 3
+- important: 0
