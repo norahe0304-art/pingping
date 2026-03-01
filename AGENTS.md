@@ -330,7 +330,8 @@ If data is missing, say "未检索到记录" or "记录不完整".
 ## Deterministic Memory Sync
 
 - Script: scripts/sync_discord_feed_to_daily_memory.py
-- Status: disabled (to keep DM memory and channel shared memory strictly separated).
+- Status: enabled for `memory/shared/*` only; does not write `memory/YYYY-MM-DD.md`.
+- QA Guard: scripts/normalize_daily_memory_time.py generates `memory/shared/YYYY-MM-DD-memory-quality.md` to detect/fix time-label drift in daily memory.
 
 [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 

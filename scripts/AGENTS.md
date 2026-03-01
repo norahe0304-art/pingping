@@ -7,6 +7,7 @@ check_discord_silence.py: 读取 Discord 最近消息并判断频道是否静默
 sync_discord_channels_to_shared_feed.py: 并发增量读取多频道消息，写入 memory/shared/YYYY-MM-DD-discord-feed.md（仅落盘新增/错误段）；资源频道检测到新 URL 时即时触发 Resources 编译。
 sync_discord_feed_to_daily_memory.py: 将 shared discord-feed 增量摘要同步到 memory/shared/YYYY-MM-DD-discord-daily.md（按日期 state + 文件偏移增量解析，避免全量重扫）。
 sync_discord_feed_urls_to_resources.py: 将 shared discord-feed 中 URL 增量落盘到 obsidian/Resources/ 并用 state 去重。
+normalize_daily_memory_time.py: 用 shared discord-feed 时间戳校验 daily memory 时段描述，输出质量报告并可选择自动纠偏。
 sanitize_obsidian_inbox_knowledge.py: 旧 Inbox 流程清理脚本（legacy）；当前三分区体系默认不启用。
 check_gmail_important.py: 增量读取 Gmail 未读邮件并按规则打分，写入 memory/shared/gmail-watch 与 state。
 md2pdf.py: Markdown 转 PDF 的主入口。

@@ -104,6 +104,12 @@ else
   printf '[%s] STEP resources: skipped (no new discord feed messages)\n' "$(date '+%F %T')" >> "$LOG_FILE"
 fi
 
+# Run deterministic daily-memory QA (report-only by default).
+TODAY_LOCAL="$(date +%F)"
+run_step "daily-memory-qa" \
+  "$SCRIPTS_DIR/normalize_daily_memory_time.py" \
+  --workspace "$WORKSPACE" --date "$TODAY_LOCAL" --tz "${MEMORY_TZ:-America/New_York}"
+
 # Run Gmail watcher at most once per hour.
 NOW="$(now_epoch)"
 LAST="$(last_mtime_or_zero "$GMAIL_TS_FILE")"
