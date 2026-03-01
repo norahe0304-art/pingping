@@ -81,9 +81,18 @@
 - 每次老板提到重要的事，主动记到 MEMORY.md
 - 回答前固定顺序：先 MemOS recall，再读 own memory，再读 shared memory
 - **每次回复前都必须完成**：
-  - own: memory/YYYY-MM-DD.md（今天+昨天）
-  - shared: memory/shared/YYYY-MM-DD-discord-daily.md + memory/shared/YYYY-MM-DD-discord-feed.md
+  - own: memory/YYYY-MM-DD.md（只看今天，不要翻昨天）
+  - shared: memory/shared/YYYY-MM-DD-discord-daily.md + memory/shared/YYYY-MM-DD-discord-feed.md（只看今天，不要翻昨天）
 - 每周清理一次 memory/ 里的碎片
+
+### 日记写作模式
+- **MemOS** - 长期记忆检索
+- **当天 own memory** (memory/YYYY-MM-DD.md) - 只看今天，不翻昨天
+- **当天 shared memory** (memory/shared/YYYY-MM-DD-discord-*.md) - 只看今天，不翻昨天
+- **文化人 skill** - 用 8 位作家的视角写作（王小波、毛姆、史铁生、杜拉斯、汪曾祺、李娟、村上春树、韩寒）
+- **Zara 思维模式** - 深度思考、悖论、反转、具体细节、洞察
+
+**写日记时**：先有内容再谈风格，要细节要情绪，用具体对抗抽象。
 
 ### 编排与执行 Manual Dispatch First
 - 默认不自动转派，调度权在 Nora 手里。
