@@ -286,3 +286,263 @@ error: Error: Unknown Channel
 
 error: Error: Unknown Channel
 
+## 📦-资源
+
+- message_id: 1477913855366533243
+  timestamp: 2026-03-02T06:22:01.431Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: Codex 稳定性： - 我们用了一段时间，整体还行，但有时会抽风（任务卡住、响应慢） - 适合长期任务，短期快速验证不如直接开窗口 ACP 是官方内置的协议，OpenClaw 自己开发的。Swarm 是我们在 ACP 基础上魔改的定制版。
+
+- message_id: 1477913868520132610
+  timestamp: 2026-03-02T06:22:04.567Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **ACP 是官方的** - OpenClaw 内置的协议，不是 Alma 写的。
+
+- message_id: 1477913869463720007
+  timestamp: 2026-03-02T06:22:04.792Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **稳定性方面：** - ACP 更稳定，因为是官方维护的 - Swarm 是我们自己的，依赖我们维护
+
+- message_id: 1477913870747304111
+  timestamp: 2026-03-02T06:22:05.098Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 不过我们 Swarm 功能更多（自动 PR、CI、review），ACP 比较简单直接。
+
+- message_id: 1477913923469705237
+  timestamp: 2026-03-02T06:22:17.668Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: 是的
+
+- message_id: 1477914007175303239
+  timestamp: 2026-03-02T06:22:37.625Z
+  channel_id: 1474465453442338988
+  sender: Alma
+  text: ACP 是 OpenClaw 官方内置的协议，稳定性更可靠，因为是系统原生支持。Swarm 是我们的定制版，虽然功能更强大，但有时会因实现细节而出现稳定性问题（如任务卡顿或响应延迟）。 如果你需要稳定运行的任务，推荐使用 ACP；如果涉及复杂多角色协作，Swarm 更灵活。具体情况看你想做什么。
+
+- message_id: 1477914031930212475
+  timestamp: 2026-03-02T06:22:43.527Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: 收到 👍
+
+- message_id: 1477925232290562089
+  timestamp: 2026-03-02T07:07:13.901Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: qwen3.5-plus 号码
+
+- message_id: 1477925247805165570
+  timestamp: 2026-03-02T07:07:17.600Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: 好吗
+
+- message_id: 1477925461349765172
+  timestamp: 2026-03-02T07:08:08.513Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: qwen3.5-plus 是阿里云百炼的大模型，Qwen3.5 系列里的增强版。
+
+- message_id: 1477925463505768481
+  timestamp: 2026-03-02T07:08:09.027Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **特点：** - 中文能力强 - 推理和代码都不错 - 性价比挺高
+
+- message_id: 1477925465959305418
+  timestamp: 2026-03-02T07:08:09.612Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 刚系统自动切到这个模型了。
+
+- message_id: 1477925581617106975
+  timestamp: 2026-03-02T07:08:37.187Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: 和 minimax2.5 比呢 查查资料
+
+- message_id: 1477925612713803898
+  timestamp: 2026-03-02T07:08:44.601Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 挺好的！Qwen3.5-plus 中文能力强，推理和代码都不错，性价比也高。
+
+- message_id: 1477925612826923012
+  timestamp: 2026-03-02T07:08:44.628Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 比之前的模型怎么样？
+
+- message_id: 1477925893438705675
+  timestamp: 2026-03-02T07:09:51.531Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: 你查一下啊
+
+- message_id: 1477925966700482711
+  timestamp: 2026-03-02T07:10:08.998Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: <@1473511098669076511> 人呢
+
+- message_id: 1477926004914782208
+  timestamp: 2026-03-02T07:10:18.109Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 查到了！
+
+- message_id: 1477926005703442453
+  timestamp: 2026-03-02T07:10:18.297Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **MiniMax M2.5：** - 顶尖性能 + 极致性价比 - 有高速版（M2.5-highspeed） - 强大多语言编程能力
+
+- message_id: 1477926006319874101
+  timestamp: 2026-03-02T07:10:18.444Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **Qwen3.5-plus：** - 阿里云百炼旗舰 - 中文能力强 - 推理和代码都不错
+
+- message_id: 1477926007401877589
+  timestamp: 2026-03-02T07:10:18.702Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **对比：** - 代码能力：MiniMax M2.5 专门强调编程能力，可能更强 - 中文：Qwen 是阿里的，中文场景更优 - 价格：MiniMax 性价比更高
+
+- message_id: 1477926008324624394
+  timestamp: 2026-03-02T07:10:18.922Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 简单说：写代码用 MiniMax，中文场景用 Qwen。
+
+- message_id: 1477926151757500493
+  timestamp: 2026-03-02T07:10:53.119Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 在呢！刚查完了：
+
+- message_id: 1477926152495566878
+  timestamp: 2026-03-02T07:10:53.295Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **MiniMax M2.5：** - 顶尖性能 + 极致性价比 - 有高速版（M2.5-highspeed） - 强大多语言编程能力
+
+- message_id: 1477926153246343333
+  timestamp: 2026-03-02T07:10:53.474Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **Qwen3.5-plus：** - 阿里云百炼旗舰 - 中文能力强 - 推理和代码都不错
+
+- message_id: 1477926154420879556
+  timestamp: 2026-03-02T07:10:53.754Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **对比：** - 代码能力：MiniMax M2.5 专门强调编程能力，可能更强 - 中文：Qwen 是阿里的，中文场景更优 - 价格：MiniMax 性价比更高
+
+- message_id: 1477926155997806704
+  timestamp: 2026-03-02T07:10:54.130Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 简单说：写代码用 MiniMax，中文场景用 Qwen。
+
+- message_id: 1477927461139386501
+  timestamp: 2026-03-02T07:16:05.300Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: 看一下 acp 和 swarm 的详细对比 再思考 acp 协议是否对 swarm 有好处
+
+- message_id: 1477928612094017669
+  timestamp: 2026-03-02T07:20:39.709Z
+  channel_id: 1474465453442338988
+  sender: bravohenry
+  text: <@1473511098669076511> answer
+
+- message_id: 1477928853258109000
+  timestamp: 2026-03-02T07:21:37.207Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **ACP vs Swarm 详细对比**
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📦-资源
+
+- message_id: 1477928854319403008
+  timestamp: 2026-03-02T07:21:37.460Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: ``` | 维度 | ACP | Swarm | | ----- | ----------------------------- | ----------------------------- | | 来源 | OpenClaw 官方协议 | 我们基于 Elvis 架构自建 | | 核心能力 | 调用外部 coding harness | 多 agent 协作 + 自动 PR/CI/review | | 会话管理 | /acp spawn/steer/cancel/close | tmux sessions + JSON registry | | 线程绑定 | ✅ Discord thr...
+
+- message_id: 1477928855363653713
+  timestamp: 2026-03-02T07:21:37.709Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **ACP 对 Swarm 的好处**
+
+- message_id: 1477928856785653912
+  timestamp: 2026-03-02T07:21:38.048Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 1. **可以简化底层通信** • 现在用 tmux + 手动脚本管理 agents • ACP 提供标准化的 spawn/steer/cancel 接口 • 可以用 `/acp steer` 中途重定向 agent（现在我们用 `tmux send-keys`） 2. **Thread binding 很有用** • 现在 agent 输出散落在各处 • ACP 可以自动把 agent 输出路由到 Discord thread • 适合团队协作场景 3. **稳定性可能更好** • 官方维护，bug 修复及时 • 我们自己写的脚本容易出问题
+
+- message_id: 1477928858182226122
+  timestamp: 2026-03-02T07:21:38.381Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: ───
+
+- message_id: 1477928858723291248
+  timestamp: 2026-03-02T07:21:38.510Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **结论：ACP 可以作为 Swarm 的底层协议**
+
+- message_id: 1477928881032921212
+  timestamp: 2026-03-02T07:21:43.829Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: Swarm 的核心价值不在 spawn/cancel 这些基础操作，而在：
+
+- message_id: 1477928882576298058
+  timestamp: 2026-03-02T07:21:44.197Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: • 自动 PR + CI + review pipeline • 失败重试 + 奖励信号学习 • 业务上下文管理
+
+- message_id: 1477928884123996303
+  timestamp: 2026-03-02T07:21:44.566Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **建议：**
+
+- message_id: 1477928886112092160
+  timestamp: 2026-03-02T07:21:45.040Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: • 保留 Swarm 的高层逻辑（review pipeline、重试机制） • 用 ACP 替换底层 tmux 脚本 • 这样更稳定，维护成本更低
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📚-学习
+
+error: Error: Unknown Channel
+

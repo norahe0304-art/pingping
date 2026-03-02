@@ -18,6 +18,8 @@
 - [ ] 一人开发团队案例（Elvis Sun）
 - [ ] 冰河 - YouTube知识库提取工具
 - [ ] XinGPT - AI Agent升级指南
+- [ ] Claude Code + Obsidian 工作流 - 跟进
+- [ ] Google Nano Banana 2 图像模型 - 跟进
 
 ## 重要记录
 
