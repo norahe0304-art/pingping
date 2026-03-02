@@ -1,5 +1,6 @@
 ---
 type: Resource
+title: "OpenClaw 自主购车 - 案例分析"
 original_url: https://www.businessworld.in/article/openclaw-the-ai-agent-that-actually-does-things-593640
 source_title: "OpenClaw: The AI Agent That Actually Does Things"
 source_author: BusinessWorld

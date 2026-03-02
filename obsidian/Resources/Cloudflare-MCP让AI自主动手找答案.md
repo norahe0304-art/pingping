@@ -1,5 +1,6 @@
 ---
 type: Resource
+title: "Cloudflare MCP 让 AI 自主动手找答案"
 original_url: https://x.com/vikingmute/status/2025098635021877622
 source_title: "Cloudflare MCP Code Mode 低成本AI编程"
 source_author: vikingmute
@@ -11,7 +12,7 @@ message_id: "1474823405562888202"
 tags: [cloudflare, mcp, coding, token-optimization]
 ---
 
-# Cloudflare MCP Code Mode - 低成本AI编程
+# Cloudflare MCP 让 AI 自主动手找答案
 
 ## 内容摘要
 

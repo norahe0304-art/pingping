@@ -1,5 +1,6 @@
 ---
 type: Resource
+title: "DeepReader - 任意URL自动转Markdown"
 original_url: https://github.com/astonysh/OpenClaw-DeepReeder
 source_title: OpenClaw DeepReader
 source_author: astonysh

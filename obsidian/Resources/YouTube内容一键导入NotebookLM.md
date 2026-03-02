@@ -1,5 +1,6 @@
 ---
 type: Resource
+title: "YouTube 内容一键导入 NotebookLM"
 original_url: https://x.com/binghe/status/2026345185614184525
 source_title: "YouTube博主内容一键导入NotebookLM"
 source_author: binghe

@@ -1,5 +1,6 @@
 ---
 type: Resource
+title: "多Agent架构与AI软件工厂"
 original_url: https://x.com/elonmusk/status/2025068777971485083
 source_title: "多Agent架构与AI软件工厂"
 source_author: elonmusk

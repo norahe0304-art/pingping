@@ -1,5 +1,6 @@
 ---
 type: Resource
+title: "OpenClaw 社区技能筛选标准"
 original_url: https://x.com/GoSailGlobal/status/2025402533972480275
 source_title: "X 推文洞察 - OpenClaw Skills 筛选调研"
 source_author: GoSailGlobal
