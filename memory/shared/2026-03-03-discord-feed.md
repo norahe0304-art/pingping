@@ -1011,3 +1011,57 @@ error: Error: Unknown Channel
 
 error: Error: Unknown Channel
 
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📢-公告
+
+- message_id: 1478488066933919744
+  timestamp: 2026-03-03T20:23:44.137Z
+  channel_id: 1474184181570343108
+  sender: bravohenry
+  text: <@1473511098669076511> 你把 alma app 关掉
+
+- message_id: 1478488086517125331
+  timestamp: 2026-03-03T20:23:48.806Z
+  channel_id: 1474184181570343108
+  sender: Alma
+  text: ❌ Error: AI_APICallError: Bad Request AI_APICallError: Bad Request at file:///Applications/Alma.app/Contents/Resources/app.asar/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2462:14 at process.processTicksAndRejections (node:internal/process/task_queues:105:5) at async postToApi (file:///App...
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📢-公告
+
+- message_id: 1478489378618609754
+  timestamp: 2026-03-03T20:28:56.867Z
+  channel_id: 1474184181570343108
+  sender: Friday
+  text: 关了。
+
+- message_id: 1478489552233697342
+  timestamp: 2026-03-03T20:29:38.260Z
+  channel_id: 1474184181570343108
+  sender: Friday
+  text: 关了。
+
+- message_id: 1478489764813344929
+  timestamp: 2026-03-03T20:30:28.943Z
+  channel_id: 1474184181570343108
+  sender: Friday
+  text: 关了。
+
+- message_id: 1478489857499070556
+  timestamp: 2026-03-03T20:30:51.041Z
+  channel_id: 1474184181570343108
+  sender: Friday
+  text: 关了。
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📚-学习
+
+error: Error: Unknown Channel
+
