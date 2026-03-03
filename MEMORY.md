@@ -20,6 +20,8 @@
 - [ ] XinGPT - AI Agent升级指南
 - [ ] Claude Code + Obsidian 工作流 - 跟进
 - [ ] Google Nano Banana 2 图像模型 - 跟进
+- [ ] Claude Cowork 17 Best Practices - 读完并落地到 OpenClaw
+- [x] 2026-03-03 早上：继续读 Claude Cowork 三个层面优化点
 
 ## 重要记录
 

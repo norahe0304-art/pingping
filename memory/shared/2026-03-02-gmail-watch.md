@@ -13,3 +13,26 @@
 ## run 2026-03-02T12:13:43-05:00
 - new_unread: 5
 - important: 0
+## run 2026-03-02T13:14:20-05:00
+- new_unread: 5
+- important: 0
+## run 2026-03-02T14:15:03-05:00
+- new_unread: 2
+- important: 0
+## run 2026-03-02T15:15:49-05:00
+- new_unread: 1
+- important: 1
+- items:
+  - [medium] (3) This $20 offer won’t last long | Venmo <venmo@email.venmo.com> | 2026-03-02 15:03 | id=19cb0263f5a1b8d0 | reason=high:offer
+## run 2026-03-02T16:16:34-05:00
+- new_unread: 2
+- important: 0
+## run 2026-03-02T17:18:22-05:00
+- new_unread: 0
+- important: 0
+## run 2026-03-02T18:19:54-05:00
+- new_unread: 1
+- important: 0
+## run 2026-03-02T19:20:37-05:00
+- new_unread: 1
+- important: 0
