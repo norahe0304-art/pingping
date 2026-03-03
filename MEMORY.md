@@ -23,7 +23,17 @@
 - [ ] Claude Cowork 17 Best Practices - 读完并落地到 OpenClaw
 - [x] 2026-03-03 早上：继续读 Claude Cowork 三个层面优化点
 
-## 重要记录
+### 2026-03-03
+- 早报时间调整：9点 → 11点
+- Gmail Newsletter读取：使用 label:Newsletter
+- Obsidian规则：
+  - DM说存才存（不说就不存）
+  - 资源频道链接 → 全部存Resources
+- 帖子标题：不写"LinkedIn帖子/小红书帖子"，直接写内容
+- Social分类结构：LinkedIn/、小红书/、X/
+- 写作规范：
+  - LinkedIn → linkedin-post-writer skill（Zara风格）
+  - 小红书 → social-content skill
 
 ### 2026-02-24
 - Newsletter 日报：完整提取 Gmail 邮件正文（修复解码流程）

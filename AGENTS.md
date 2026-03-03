@@ -25,6 +25,11 @@ Don't ask permission. Just do it.
 - `PROMPT_PINGPING.md`: pingping-specific overlay (voice, social behavior, delivery format).
 - `SOUL.md`: lived identity + habits, loaded after base/overlay prompts.
 
+## Folder Map
+
+- Canonical folder职责总览见 `FOLDER_MAP.md`。
+- 目录用途有变更时，先更新对应目录的 `AGENTS.md`，再更新 `FOLDER_MAP.md`。
+
 ## Repository Topology
 
 - Canonical standalone-repo root is `projects/`.
@@ -72,6 +77,39 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 处理 Gmail 邮件时，统一使用以下流程：
 
 1. 用 `gog gmail threads get <thread_id> --json` 取完整 JSON
+2. 从 `payload.body.data` 或 `payload.parts[*].body.data` 提取正文
+3. base64url 解码（不是普通 base64），再处理字符集
+4. 解码失败才回退到 snippet，并标注"摘要模式"
+5. 输出时优先给完整正文要点，再给摘要
+
+## Newsletter 早报 (11点)
+
+- 时间：每天 11:00
+- 任务：读取 Gmail Newsletter 标签邮件
+- 流程：
+  1. `gog gmail search "label:Newsletter"` 获取新邮件
+  2. 提取新教程和资源
+  3. 整理发送到 Discord DM
+
+## Obsidian 资源管理
+
+### 文件结构
+```
+Resources/        # 原文 + 解读
+Social/
+  LinkedIn/     # LinkedIn帖子
+  小红书/        # 小红书帖子
+  X/            # X帖子
+```
+
+### 规则
+- **DM说存才存** → 不说就不存
+- **资源频道链接** → 全部存 Resources
+- 帖子标题：不写"LinkedIn帖子/小红书帖子"，直接写内容
+
+### 写作规范
+- **LinkedIn** → 用 `linkedin-post-writer` skill（Zara风格）
+- **小红书** → 用 `social-content` skill
 2. 从 `payload.body.data` 或 `payload.parts[*].body.data` 提取正文
 3. base64url 解码（不是普通 base64），再处理字符集
 4. 解码失败才回退到 snippet，并标注"摘要模式"
@@ -297,7 +335,7 @@ This is a starting point. Add your own conventions, style, and rules as you figu
 - Run this audit before large refactor or weekly maintenance:
   `python3 /Users/nora/.openclaw/workspace/scripts/sustainability_audit.py --root /Users/nora/.openclaw --strict`
 - Keep report dimensions explicit:
-  - L1/L2/L3 documentation coverage
+  - L1/L2 documentation coverage
   - file length > 800 lines
   - folder fanout > 8 files or > 8 subdirectories
   - runtime-vs-source boundary violations

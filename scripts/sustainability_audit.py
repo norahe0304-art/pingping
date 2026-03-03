@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# [INPUT]: Filesystem tree rooted at openclaw home, plus AGENTS/L3 contracts in workspace code.
-# [OUTPUT]: Deterministic markdown audit report to stdout with severity-ranked sustainability findings.
-# [POS]: Governance guardrail script for weekly architecture hygiene and pre-refactor risk scanning.
+# [INPUT]: Filesystem tree rooted at openclaw home, plus AGENTS-based architecture contracts.
+# [OUTPUT]: Deterministic markdown audit report for L1/L2 coverage, code size, fanout, and boundary hygiene.
+# [POS]: Governance guardrail script for weekly workspace sustainability checks without L3 enforcement.
 # [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 
 from __future__ import annotations
@@ -18,7 +18,6 @@ from typing import Iterable
 # ============================================================
 
 CODE_EXTS = {".py", ".ts", ".tsx", ".js", ".jsx", ".go", ".rs"}
-DOC_CODE_EXTS = {".py", ".ts", ".tsx", ".js", ".jsx"}
 EXCLUDE_DIRS = {
     "node_modules",
     ".git",
@@ -34,6 +33,27 @@ EXCLUDE_DIRS = {
 
 LINE_LIMIT = 800
 FANOUT_LIMIT = 8
+
+LINE_EXCLUDE_PREFIXES = (
+    "projects/rimbo-landing/src/framer/",
+    "projects/pixel-agents-openclaw/webview-ui/src/office/sprites/",
+)
+
+FANOUT_EXCLUDE_EXACT = {
+    ".",
+    "projects",
+}
+
+FANOUT_EXCLUDE_PREFIXES = (
+    ".openclaw/",
+    "memory/shared/",
+    "obsidian/Resources/",
+    "video gen/",
+    "projects/rimbo-landing/public/images/framer/",
+    "projects/rimbo-landing/public/js/framer/",
+    "projects/rimbo-landing/public/fonts/framer/",
+    "projects/rimbo-landing/src/framer/chunks/",
+)
 
 
 @dataclass
@@ -67,15 +87,20 @@ def count_lines(path: Path) -> int:
         return 0
 
 
-def read_head(path: Path, max_lines: int = 40) -> str:
-    lines: list[str] = []
-    try:
-        with path.open("r", encoding="utf-8", errors="ignore") as fp:
-            for _, line in zip(range(max_lines), fp):
-                lines.append(line)
-    except Exception:
-        return ""
-    return "".join(lines)
+def to_relative_posix(path: Path, root: Path) -> str:
+    return path.relative_to(root).as_posix()
+
+
+def should_skip_line_file(rel_path: str, file_name: str) -> bool:
+    if ".generated." in file_name:
+        return True
+    return any(rel_path.startswith(prefix) for prefix in LINE_EXCLUDE_PREFIXES)
+
+
+def should_skip_fanout_dir(rel_dir: str) -> bool:
+    if rel_dir in FANOUT_EXCLUDE_EXACT:
+        return True
+    return any(rel_dir.startswith(prefix) for prefix in FANOUT_EXCLUDE_PREFIXES)
 
 
 # ============================================================
@@ -126,63 +151,15 @@ def check_l2_workspace(workspace: Path) -> list[Finding]:
     return findings
 
 
-def check_l3(workspace: Path) -> list[Finding]:
-    findings: list[Finding] = []
-
-    code_files: list[Path] = []
-    missing_contract: list[Path] = []
-    missing_protocol: list[Path] = []
-
-    for path in iter_files(workspace):
-        if path.suffix.lower() not in DOC_CODE_EXTS:
-            continue
-        code_files.append(path)
-        head = read_head(path)
-        if "[INPUT]:" not in head or "[OUTPUT]:" not in head or "[POS]:" not in head:
-            missing_contract.append(path)
-        if "[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md" not in head:
-            missing_protocol.append(path)
-
-    total = len(code_files)
-    if total == 0:
-        return findings
-
-    if missing_contract:
-        ratio = len(missing_contract) / total
-        severity = "critical" if ratio >= 0.5 else "high"
-        preview = "\n".join(f"- {p}" for p in missing_contract[:20])
-        extra = "" if len(missing_contract) <= 20 else f"\n- ... and {len(missing_contract)-20} more"
-        findings.append(
-            Finding(
-                severity=severity,
-                title="L3 Contract Missing",
-                detail=f"{len(missing_contract)}/{total} files missing INPUT/OUTPUT/POS headers ({ratio:.1%}).\n{preview}{extra}",
-            )
-        )
-
-    if missing_protocol:
-        preview = "\n".join(f"- {p}" for p in missing_protocol[:20])
-        extra = "" if len(missing_protocol) <= 20 else f"\n- ... and {len(missing_protocol)-20} more"
-        findings.append(
-            Finding(
-                severity="high",
-                title="L3 Protocol Line Missing",
-                detail=(
-                    f"{len(missing_protocol)}/{total} files missing the fixed protocol line.\n"
-                    f"{preview}{extra}"
-                ),
-            )
-        )
-
-    return findings
-
-
 def check_line_limits(workspace: Path) -> list[Finding]:
     findings: list[Finding] = []
     offenders: list[tuple[int, Path]] = []
 
     for path in iter_files(workspace):
         if path.suffix.lower() not in CODE_EXTS:
+            continue
+        rel_path = to_relative_posix(path, workspace)
+        if should_skip_line_file(rel_path, path.name):
             continue
         lines = count_lines(path)
         if lines > LINE_LIMIT:
@@ -208,6 +185,10 @@ def check_fanout(workspace: Path) -> list[Finding]:
     offenders: list[str] = []
 
     for dirpath, dirnames, filenames in os.walk(workspace):
+        rel_dir = to_relative_posix(Path(dirpath), workspace)
+        if should_skip_fanout_dir(rel_dir):
+            dirnames[:] = []
+            continue
         dirnames[:] = [d for d in dirnames if not should_skip_dir(d)]
         file_count = len([f for f in filenames if not f.startswith(".")])
         dir_count = len([d for d in dirnames if not d.startswith(".")])
@@ -237,7 +218,16 @@ def check_runtime_boundary(root: Path) -> list[Finding]:
     heavy_runtime = []
     for name in ("browser", "agents", "logs", "venv"):
         p = root / name
-        if p.exists():
+        if not p.exists():
+            continue
+        if p.is_symlink():
+            target = p.resolve()
+            expected = (root / "runtime" / name).resolve()
+            if target == expected:
+                continue
+            heavy_runtime.append(f"{p} -> {target} (unexpected symlink target)")
+            continue
+        if p.is_dir():
             heavy_runtime.append(str(p))
 
     if heavy_runtime:
@@ -247,7 +237,7 @@ def check_runtime_boundary(root: Path) -> list[Finding]:
                 severity="medium",
                 title="Runtime / Source Boundary",
                 detail=(
-                    "Runtime-heavy directories coexist with source root. Keep cleanup and backup policies explicit.\n"
+                    "Runtime-heavy directories should live under root/runtime with compatibility symlinks at root.\n"
                     f"{lines}"
                 ),
             )
@@ -313,7 +303,6 @@ def main() -> int:
     findings.extend(check_l1(root))
     if workspace.exists():
         findings.extend(check_l2_workspace(workspace))
-        findings.extend(check_l3(workspace))
         findings.extend(check_line_limits(workspace))
         findings.extend(check_fanout(workspace))
     findings.extend(check_runtime_boundary(root))

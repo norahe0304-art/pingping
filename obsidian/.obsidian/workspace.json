@@ -12,14 +12,10 @@
             "id": "944d051a68026c71",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Social/LinkedIn/我是pingping.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "我是pingping"
+              "title": "New tab"
             }
           }
         ]
@@ -96,7 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 487.5
+    "width": 372.5
   },
   "right": {
     "id": "553a81f84aeb8a36",
@@ -201,43 +197,43 @@
       "bases:Create new base": false
     }
   },
-  "active": "944d051a68026c71",
+  "active": "a517c0287cc4f293",
   "lastOpenFiles": [
-    "Resources/claude-cowork-17-best-practices.md",
-    "Resources/Cloudflare-MCP让AI自主动手找答案.md",
-    "Resources/代码契约模式-让AI自动生成合规代码.md",
-    "Resources/taste-skill-让AI生成内容更有审美.md",
-    "Resources/OpenClaw集成Seedance2-0-电影级视频生成.md",
-    "Resources/多Agent协同工作模式-共享状态与权限分层.md",
-    "Resources/AI驱动新闻摘要生成器-4H模式快速获取要点.md",
-    "Resources/Claude-Code插件一键转成多平台-跨平台开发利器.md",
-    "Resources/OpenClaw社区真实用例集合-找到能改善你生活的用法.md",
-    "Resources/让AI自己折腾直到达成目标-Agent-Native应用架构.md",
-    "Social/LinkedIn/my-view-of-the-world.md",
+    "Social/小红书/Vibe-Coding-AI生成代码必问的10个问题.md",
+    "Social/小红书/OpenRouter-一个key调用所有AI模型.md",
+    "Social/小红书/Anthropic-Skills-官方技能构建指南.md",
+    "Social/LinkedIn/Vibe-Coding-AI生成代码必问的10个问题.md",
+    "Social/LinkedIn/OpenRouter-一个key调用所有AI模型.md",
+    "Social/LinkedIn/Anthropic-Skills-官方技能构建指南.md",
+    "Social/小红书/Vibe-Coding-10问-小红书帖子.md",
+    "Social/小红书/OpenRouter统一API-小红书帖子.md",
+    "Social/小红书/Anthropic-Skills-小红书帖子.md",
+    "Social/LinkedIn/Vibe-Coding-10问-LinkedIn帖子.md",
+    "Social/LinkedIn/OpenRouter统一API-LinkedIn帖子.md",
+    "Social/LinkedIn/Anthropic-Skills-LinkedIn帖子.md",
+    "Resources/Anthropic-Skills官方指南-解读.md",
+    "Resources/OpenRouter统一API-解读.md",
+    "Resources/AGENTS.md",
+    "Areas/AGENTS.md",
+    "Resources/Vibe-Coding-10问-解读.md",
+    "Resources/Anthropic-Skills-小红书帖子.md",
+    "Social/Vibe-Coding-10问-小红书帖子.md",
+    "Social/OpenRouter统一API-小红书帖子.md",
+    "Social/Anthropic-Skills-小红书帖子.md",
+    "Social/Vibe-Coding-10问-LinkedIn帖子.md",
+    "Social/OpenRouter统一API-LinkedIn帖子.md",
+    "Social/Anthropic-Skills-LinkedIn帖子.md",
+    "Resources/Anthropic-Skills-LinkedIn帖子.md",
+    "Social/LinkedIn/我是pingping.md",
+    "Resources/claude-skill-building-guide.pdf",
     "Social/openclaw-multi-agent-video-architecture.excalidraw",
-    "Social/LinkedIn/the-real-ai-divide.md",
     "Resources/af64e513-bdd3-4c4f-a076-171c83d40d56.pdf",
-    "AGENTS.md",
-    "Resources/面向Agent设计-Agent-First思维.md",
-    "Resources/_TEMPLATE.md",
-    "Resources/用户意图分析.md",
-    "Resources/安全规则集中管理.md",
-    "Resources/Agent与聊天机器人区别.md",
     "Resources/1b6c19ed-5b6d-4f50-806f-d05ec0d034e5.pdf",
-    "Resources/6551-io-MCP服务.md",
-    "Resources/Turing-College-博客-Agent与聊天机器人的区别.md",
-    "Resources/OpenTwitter-MCP-Twitter数据服务.md",
-    "Resources/OrbitOS-AI个人生产力框架.md",
-    "Resources/OpenNews-MCP-加密货币新闻聚合.md",
-    "Resources/OpenClaw社区技能筛选标准.md",
-    "Resources/OpenClaw-金融投研应用系列报告.md",
-    "Resources/OpenClaw-DeepReader-URL转Markdown.md",
     "Archives/Resources-非资源频道迁移",
     "Inbox",
     "Areas/AI-Marketing",
     "Social/小红书",
     "Social/X",
-    "Social/LinkedIn",
-    "Social"
+    "Social/LinkedIn"
   ]
 }

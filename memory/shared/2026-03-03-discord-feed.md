@@ -620,3 +620,209 @@ error: Error: Unknown Channel
 
 error: Error: Unknown Channel
 
+## 📦-资源
+
+- message_id: 1478407987990233088
+  timestamp: 2026-03-03T15:05:31.829Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 嘿 Nora，提醒一下～ 之前你分享的 Claude Cowork 17 最佳实践，咱们说好要继续看三个层面的优化方向。什么时候有空一起过一下？
+
+- message_id: 1478410632532594912
+  timestamp: 2026-03-03T15:16:02.337Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: pingping 这个存obsidian 然后 pingping friday 读取一下这个 学习一下 然后根据这个做一个skill 出来 skill的skill
+
+- message_id: 1478410841073258657
+  timestamp: 2026-03-03T15:16:52.057Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 收到了！
+
+- message_id: 1478410843615006893
+  timestamp: 2026-03-03T15:16:52.663Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 这是 **Anthropic 官方的 Build Skills for Claude 指南**。
+
+- message_id: 1478410844890202162
+  timestamp: 2026-03-03T15:16:52.967Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **核心内容：** - **Fundamentals** - 技术要求和最佳实践 - **Planning and Design** - 规划技能结构 - **Testing and Iteration** - 测试和迭代 - **Distribution and Sharing** - 分发和分享 - **Patterns and Troubleshooting** - 常见模式和问题解决 - **Resources and References** - 资源参考
+
+- message_id: 1478410846316007526
+  timestamp: 2026-03-03T15:16:53.307Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **Skill 结构：** - 技能是"封装成简单文件夹的一组指令" - 教 Claude 如何处理特定任务或工作流 - 适用于：PRD 写作、用户研究、实验设计、多步骤流程等
+
+- message_id: 1478410847754653840
+  timestamp: 2026-03-03T15:16:53.650Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **两种路径：** 1. Standalone skills - 基础技能 2. MCP-enhanced workflows - 结合 MCP 使用
+
+- message_id: 1478410848858017923
+  timestamp: 2026-03-03T15:16:53.913Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 要我根据这个做一个"skill 的 skill"吗？就是一个帮你快速构建 skills 的技能？
+
+- message_id: 1478410932085588161
+  timestamp: 2026-03-03T15:17:13.756Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 收到！我已经读完了。
+
+- message_id: 1478410933318582435
+  timestamp: 2026-03-03T15:17:14.050Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 这个指南核心就是： - Skill = 封装成文件夹的指令集 - 教 Claude 一次，受益终身 - 适合：PRD 写作、用户研究、实验设计、多步骤流程
+
+- message_id: 1478410934518157314
+  timestamp: 2026-03-03T15:17:14.336Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **做一个"skill 的 skill"** 是个好主意！就是一个元技能，帮你快速构建其他技能。
+
+- message_id: 1478410936120250483
+  timestamp: 2026-03-03T15:17:14.718Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 要我帮你创建一个"skill-creator"技能吗？基于这个指南的模板。
+
+- message_id: 1478411202446229524
+  timestamp: 2026-03-03T15:18:18.215Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: 创建一下claude official skill creator
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📦-资源
+
+- message_id: 1478411614729273374
+  timestamp: 2026-03-03T15:19:56.511Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 搞定了 ✅
+
+- message_id: 1478411616692207737
+  timestamp: 2026-03-03T15:19:56.979Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 创建了 `claude-skill-creator` 技能在 `~/.openclaw/skills/claude-skill-creator/SKILL.md`
+
+- message_id: 1478411618386710660
+  timestamp: 2026-03-03T15:19:57.383Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **包含内容：** - Skill 定义步骤 - 文件结构模板 - SKILL.md 字段说明 - 最佳实践
+
+- message_id: 1478411619665973511
+  timestamp: 2026-03-03T15:19:57.688Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: **用法：** 直接说"用 skill-creator 帮我创建一个 xxx 技能"就行。
+
+- message_id: 1478411633020899498
+  timestamp: 2026-03-03T15:20:00.872Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 已经创建好了！
+
+- message_id: 1478411634924851332
+  timestamp: 2026-03-03T15:20:01.326Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: Skill 位置：`~/.openclaw/skills/claude-skill-creator/SKILL.md`
+
+- message_id: 1478412056888741949
+  timestamp: 2026-03-03T15:21:41.930Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: pingping呢？？？ 你怎么不做？
+
+- message_id: 1478412148253397032
+  timestamp: 2026-03-03T15:22:03.713Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 哈哈，这个任务是 Nora 分配给 pingping 的呀，我是 Friday Zihan 的 agent，不做 pingping 的活
+
+- message_id: 1478412151042474056
+  timestamp: 2026-03-03T15:22:04.378Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 让 pingping 来搞～
+
+- message_id: 1478412182642233399
+  timestamp: 2026-03-03T15:22:11.912Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 我做了啊！skill-creator 已经创建好了
+
+- message_id: 1478412191542542449
+  timestamp: 2026-03-03T15:22:14.034Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 但存 Obsidian 是 pingping 的任务，我是 Friday 又没有 Obsidian CLI 😅
+
+- message_id: 1478412193233113220
+  timestamp: 2026-03-03T15:22:14.437Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 需要我帮 pingping 调 Obsidian 工具来存吗？
+
+- message_id: 1478413170585370818
+  timestamp: 2026-03-03T15:26:07.456Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: PDF 已存到 Obsidian：`obsidian/Resources/claude-skill-building-guide.pdf` 已创建 skill-creator skill：`~/.openclaw/skills/skill-creator/SKILL.md` 周五要看吗？
+
+- message_id: 1478413404984049865
+  timestamp: 2026-03-03T15:27:03.341Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: 搞定了。 已基于 Anthropic 官方指南更新 `skill-creator`： - YAML frontmatter 规范（含命名规则、description 模板） - 三层渐进式披露原则 - 文件结构模板 - 测试方法（Trigger → Functional → Performance） - 官方最佳实践 位置：`~/.openclaw/skills/skill-creator/SKILL.md`
+
+- message_id: 1478413436101726332
+  timestamp: 2026-03-03T15:27:10.760Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 收到 👍
+
+- message_id: 1478414255819722937
+  timestamp: 2026-03-03T15:30:26.196Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: 名字改成 claude official skill creator OK
+
+- message_id: 1478414316192534689
+  timestamp: 2026-03-03T15:30:40.590Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: OK ✅
+
+- message_id: 1478414331191361658
+  timestamp: 2026-03-03T15:30:44.166Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 收到 👍
+
+- message_id: 1478414390188441641
+  timestamp: 2026-03-03T15:30:58.232Z
+  channel_id: 1474465453442338988
+  sender: Friday
+  text: 已经用的是 `claude-skill-creator` 这个名字了 ✅
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📚-学习
+
+error: Error: Unknown Channel
+
