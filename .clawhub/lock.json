@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "skills": {
+    "seedance-cog": {
+      "version": "1.0.0",
+      "installedAt": 1772578692257
+    },
+    "cellcog": {
+      "version": "1.0.21",
+      "installedAt": 1772578712428
+    }
+  }
+}
