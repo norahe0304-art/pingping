@@ -8,6 +8,9 @@ sync_discord_channels_to_shared_feed.py: 并发增量读取多频道消息，写
 sync_discord_feed_to_daily_memory.py: 将 shared discord-feed 增量摘要同步到 memory/shared/YYYY-MM-DD-discord-daily.md（按日期 state + 文件偏移增量解析，避免全量重扫）。
 sync_discord_feed_urls_to_resources.py: 将 shared discord-feed 中 URL 增量落盘到 obsidian/Resources/ 并用 state 去重。
 normalize_daily_memory_time.py: 用 shared discord-feed 时间戳校验 daily memory 时段描述，输出质量报告并可选择自动纠偏。
+sustainability_audit.py: 全局可持续性审计器，检查 L1/L2/L3 覆盖、超长文件、目录扇出和运行态边界风险。
+repo_topology_guard.py: 仓库拓扑守卫，校验独立仓是否统一在 `workspace/projects` 并检查兼容软链接。
+apply_layout_governance.sh: 一次性布局治理脚本，执行运行态目录隔离与仓库目录规范化，并建立兼容软链接。
 sanitize_obsidian_inbox_knowledge.py: 旧 Inbox 流程清理脚本（legacy）；当前三分区体系默认不启用。
 check_gmail_important.py: 增量读取 Gmail 未读邮件并按规则打分，写入 memory/shared/gmail-watch 与 state。
 md2pdf.py: Markdown 转 PDF 的主入口。

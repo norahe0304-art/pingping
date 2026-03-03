@@ -1,0 +1,47 @@
+# Canonical repository topology for workspace
+
+[policy]
+workspace_root = "/Users/nora/.openclaw/workspace"
+canonical_repos_root = "/Users/nora/.openclaw/workspace/projects"
+workspace_meta_git = "/Users/nora/.openclaw/workspace/.git"
+require_legacy_symlinks = true
+
+[[repo]]
+name = "agentcal"
+kind = "standalone-git"
+path = "/Users/nora/.openclaw/workspace/projects/agentcal"
+legacy_symlink = "/Users/nora/.openclaw/workspace/agentcal"
+
+[[repo]]
+name = "nora-excalidraw-drawer"
+kind = "standalone-git"
+path = "/Users/nora/.openclaw/workspace/projects/nora-excalidraw-drawer"
+legacy_symlink = "/Users/nora/.openclaw/workspace/nora-excalidraw-drawer"
+
+[[repo]]
+name = "pixel-agents-openclaw"
+kind = "standalone-git"
+path = "/Users/nora/.openclaw/workspace/projects/pixel-agents-openclaw"
+legacy_symlink = "/Users/nora/.openclaw/workspace/pixel-agents-openclaw"
+
+[[repo]]
+name = "rimbo-landing"
+kind = "standalone-git"
+path = "/Users/nora/.openclaw/workspace/projects/rimbo-landing"
+legacy_symlink = "/Users/nora/.openclaw/workspace/rimbo-landing"
+
+[[repo]]
+name = "LinkCard"
+kind = "standalone-git"
+path = "/Users/nora/.openclaw/workspace/projects/LinkCard"
+
+[[repo]]
+name = "brand-extractor"
+kind = "standalone-git"
+path = "/Users/nora/.openclaw/workspace/projects/brand-extractor"
+
+[[repo]]
+name = "star-office-ui"
+kind = "workspace-project"
+path = "/Users/nora/.openclaw/workspace/projects/star-office-ui"
+legacy_symlink = "/Users/nora/.openclaw/workspace/star-office-ui"

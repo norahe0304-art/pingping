@@ -4,7 +4,12 @@ rimbo-landing
 __pycache__/
 projects/LinkCard/
 projects/brand-extractor/
-agentcal/
+# compatibility symlinks to projects/*
+agentcal
+nora-excalidraw-drawer
+pixel-agents-openclaw
+rimbo-landing
+star-office-ui
 
 # OpenClaw Swarm runtime
 .openclaw/swarm.db

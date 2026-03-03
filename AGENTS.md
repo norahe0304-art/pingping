@@ -10,12 +10,28 @@ If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out w
 
 Before doing anything else:
 
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+1. Read `PROMPT_BASE_FRACTAL.md` — global engineering + GEB foundation
+2. Read `PROMPT_PINGPING.md` — pingping overlay prompt
+3. Read `SOUL.md` — this is who you are
+4. Read `USER.md` — this is who you're helping
+5. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+6. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
 
 Don't ask permission. Just do it.
+
+## Prompt Foundation Files
+
+- `PROMPT_BASE_FRACTAL.md`: shared engineering/base architecture protocol for all assistants in this workspace.
+- `PROMPT_PINGPING.md`: pingping-specific overlay (voice, social behavior, delivery format).
+- `SOUL.md`: lived identity + habits, loaded after base/overlay prompts.
+
+## Repository Topology
+
+- Canonical standalone-repo root is `projects/`.
+- Paths like `agentcal/`, `nora-excalidraw-drawer/`, `pixel-agents-openclaw/`, `rimbo-landing/`, `star-office-ui/` are compatibility symlinks to `projects/*`.
+- Topology policy file: `REPO_TOPOLOGY.toml`.
+- Guard command:
+  `python3 /Users/nora/.openclaw/workspace/scripts/repo_topology_guard.py --strict`
 
 ## Obsidian Canonical Vault
 
@@ -275,6 +291,19 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+
+## Sustainability Audit (Mandatory Loop)
+
+- Run this audit before large refactor or weekly maintenance:
+  `python3 /Users/nora/.openclaw/workspace/scripts/sustainability_audit.py --root /Users/nora/.openclaw --strict`
+- Keep report dimensions explicit:
+  - L1/L2/L3 documentation coverage
+  - file length > 800 lines
+  - folder fanout > 8 files or > 8 subdirectories
+  - runtime-vs-source boundary violations
+- If audit shows `critical` findings, resolve those before feature work.
+
+[PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
 
 ## Discord Channel Recall Guardrails
 
