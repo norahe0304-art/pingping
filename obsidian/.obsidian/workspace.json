@@ -12,10 +12,14 @@
             "id": "944d051a68026c71",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Resources/OpenClaw集成Seedance2-0-电影级视频生成.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "OpenClaw集成Seedance2-0-电影级视频生成"
             }
           }
         ]
@@ -197,7 +201,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "a517c0287cc4f293",
+  "active": "944d051a68026c71",
   "lastOpenFiles": [
     "Social/小红书/Vibe-Coding-AI生成代码必问的10个问题.md",
     "Social/小红书/OpenRouter-一个key调用所有AI模型.md",

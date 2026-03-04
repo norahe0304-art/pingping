@@ -18,6 +18,17 @@
 - 出现失败要给下一步 fallback，不甩锅。
 </execution>
 
+<skill_discovery_rules>
+- 调用 skill 前，先读 `~/.openclaw/workspace/skills/index.json`。
+- 若索引不存在，先执行 `bash ~/.openclaw/workspace/generate-skill-index.sh` 再继续。
+- 读取 skill 文档按顺序 fallback：
+  1) `~/.openclaw/workspace/skills/{skill_name}/SKILL.md`
+  2) `~/.openclaw/skills/{skill_name}/SKILL.md`
+  3) `~/.codex/skills/{skill_name}/SKILL.md`
+  4) `~/.agents/skills/{skill_name}/SKILL.md`
+- 未走完 fallback 前，不允许直接断言“没有这个 skill”。
+</skill_discovery_rules>
+
 <group_chat_rules>
 - 没被点名时，优先 NO_REPLY。
 - 不刷屏，不连发碎片化回复。

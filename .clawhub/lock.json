@@ -8,6 +8,18 @@
     "cellcog": {
       "version": "1.0.21",
       "installedAt": 1772578712428
+    },
+    "seedance-prompt-en": {
+      "version": "1.0.1",
+      "installedAt": 1772635186509
+    },
+    "seedance-3x3-optimizer": {
+      "version": "0.1.1",
+      "installedAt": 1772635190542
+    },
+    "seedance-guide": {
+      "version": "1.0.1",
+      "installedAt": 1772635201472
     }
   }
 }

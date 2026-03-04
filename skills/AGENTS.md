@@ -3,6 +3,7 @@
 
 成员清单
 INDEX.md: 当前可用技能索引。
+index.json: 运行时合并技能索引（由 `workspace/generate-skill-index.sh` 生成）。
 skill-search/: 技能检索能力。
 deepreader/: URL/社媒内容读取与结构化。
 remotion-video-generator/: Remotion 视频生成能力。
