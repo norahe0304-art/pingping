@@ -63,11 +63,11 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ### Skills (Code Mode Style)
 
-- **skill_index (primary)**: `~/.openclaw/workspace/skills/index.json` — 合并后的技能索引（推荐）
-- **skill_index (compat)**: `~/.agents/skills/index.json`，`~/.openclaw/skills/index.json`
+- **single source**: `~/.openclaw/skills/`（找和放都在这里）
+- **skill_index (primary)**: `~/.openclaw/skills/index.json`
 - **refresh index**: `bash ~/.openclaw/workspace/generate-skill-index.sh`
-- **skill_search(query)**: 先查 index，再选 skill 名称
-- **skill_read(skill_name)**: 按顺序尝试 `workspace/skills` → `~/.openclaw/skills` → `~/.codex/skills` → `~/.agents/skills`
+- **skill_search(query)**: 先查 primary index，再选 skill 名称
+- **skill_read(skill_name)**: 只读 `~/.openclaw/skills/{skill_name}/SKILL.md`
 
 ## 我们們的家
 

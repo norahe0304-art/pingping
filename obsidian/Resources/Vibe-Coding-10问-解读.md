@@ -1,5 +1,5 @@
 ---
-title: "Vibe Coding安全必问的10个问题"
+title: "Vibe Coding安全实战：必问的10个问题"
 type: Resource
 original_url: https://www.theneuron.ai/explainer-articles/10-vibe-coding-questions-beginners-dont-know-to-ask-but-should/
 source_title: "10 Vibe Coding Questions Beginners Don't Know to Ask"

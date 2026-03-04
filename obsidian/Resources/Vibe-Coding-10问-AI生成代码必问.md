@@ -1,5 +1,5 @@
 ---
-title: "AI生成代码后必问的10个安全问题"
+title: "AI生成代码必须问的10个安全问题"
 type: Resource
 original_url: https://www.theneuron.ai/explainer-articles/10-vibe-coding-questions-beginners-dont-know-to-ask-but-should/
 source_title: "10 Vital Questions Vibe Coders Must Ask Before Shipping"
@@ -12,7 +12,7 @@ message_id: ""
 tags: [vibe-coding, AI编程, 安全, 代码审查, 质量保证]
 ---
 
-# AI生成代码后必问的10个安全问题
+# AI生成代码必须问的10个安全问题
 
 ## 内容摘要
 

@@ -1,5 +1,5 @@
 ---
-title: "一个API Key调用400+模型的统一方案"
+title: "OpenRouter统一API：一张Key调用400+模型"
 type: Resource
 original_url: https://www.theneuron.ai/explainer-articles/one-api-key-to-rule-them-all-how-openrouter-lets-you-use-every-ai-model-without-the-headache/
 source_title: "One API Key to Rule Them All"

@@ -1,2 +1,0 @@
-[console_scripts]
-deepreader-skill = deepreader_skill:run

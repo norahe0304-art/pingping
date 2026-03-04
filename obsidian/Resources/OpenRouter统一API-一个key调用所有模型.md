@@ -16,7 +16,7 @@ tags: [OpenRouter, API, AI模型, 统一API, 多模型]
 
 ## 内容摘要
 
-1. **痛点解决**：不用再分别注册OpenAI、Anthropic、Google的API，OpenRouter一个Key调用400+模型
+1. **统一入口**：不用再分别注册OpenAI、Anthropic、Google的API，OpenRouter一个Key调用400+模型
 2. **一键切换**：换模型只需改一行代码参数，无需重构代码
 3. **自动降级**：当某提供商故障时，自动切换到其他可用模型，应用保持在线
 4. **成本优化**：:nitro用最快模型，:floor用最便宜模型，:free用免费版

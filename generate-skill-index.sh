@@ -11,14 +11,13 @@
 
 set -euo pipefail
 
-INDEX_FILE="${1:-$HOME/.openclaw/workspace/skills/index.json}"
+INDEX_FILE="${1:-$HOME/.openclaw/skills/index.json}"
+GLOBAL_INDEX_FILE="$HOME/.openclaw/skills/index.json"
 LEGACY_INDEX_FILE="$HOME/.agents/skills/index.json"
+WORKSPACE_INDEX_FILE="$HOME/.openclaw/workspace/skills/index.json"
 
 SKILL_ROOTS=(
   "$HOME/.openclaw/skills"
-  "$HOME/.openclaw/workspace/skills"
-  "$HOME/.codex/skills"
-  "$HOME/.agents/skills"
 )
 
 extract_description() {
@@ -134,10 +133,24 @@ mkdir -p "$(dirname "$INDEX_FILE")"
   printf '}\n'
 } > "$INDEX_FILE"
 
-# Keep legacy location available for old prompts.
+# Keep compatibility copies for old prompts.
+mkdir -p "$(dirname "$GLOBAL_INDEX_FILE")"
+if [[ "$INDEX_FILE" != "$GLOBAL_INDEX_FILE" ]]; then
+  cp "$INDEX_FILE" "$GLOBAL_INDEX_FILE"
+fi
+
 mkdir -p "$(dirname "$LEGACY_INDEX_FILE")"
-cp "$INDEX_FILE" "$LEGACY_INDEX_FILE"
+if [[ "$INDEX_FILE" != "$LEGACY_INDEX_FILE" ]]; then
+  cp "$INDEX_FILE" "$LEGACY_INDEX_FILE"
+fi
+
+mkdir -p "$(dirname "$WORKSPACE_INDEX_FILE")"
+if [[ "$INDEX_FILE" != "$WORKSPACE_INDEX_FILE" ]]; then
+  cp "$INDEX_FILE" "$WORKSPACE_INDEX_FILE"
+fi
 
 echo "Done: generated merged skills index at $INDEX_FILE"
+echo "Synced: copied index to $GLOBAL_INDEX_FILE"
+echo "Compat: copied index to $WORKSPACE_INDEX_FILE"
 echo "Compat: copied index to $LEGACY_INDEX_FILE"
 echo "Total skills: $ROWS_COUNT"
