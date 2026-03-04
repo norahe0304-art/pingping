@@ -1,43 +1,36 @@
 ---
-title: OpenRouter统一API - 一个API key调用所有AI模型
-source: The Neuron
+title: "一个API Key调用400+模型的统一方案"
+type: Resource
 original_url: https://www.theneuron.ai/explainer-articles/one-api-key-to-rule-them-all-how-openrouter-lets-you-use-every-ai-model-without-the-headache/
-date: 2026-02
-tags: [tutorial, OpenRouter, API, AI]
+source_title: "One API Key to Rule Them All"
+source_author: The Neuron
+published_at: "2026-02"
+captured_date: "2026-03-03"
+source_channel: "📦-资源"
+source_sender: ""
+message_id: ""
+tags: [OpenRouter, API, AI模型, 统一API, 多模型]
 ---
 
-# OpenRouter统一API
+# 一个API Key调用400+模型的统一方案
 
-## 是什么
-一个统一API，连接400+AI模型（GPT、Claude、Gemini、Llama、Qwen等），换模型只需改一行代码。
+## 内容摘要
 
-## 核心优势
-- **一个API key**：不用每个模型单独申请
-- **自动降级**：某提供商挂了自动切换别的
-- **成本优化**：用:nitro最快，:floor最便宜
-- **零风险**：只有成功响应才收费
+1. **痛点解决**：不用再分别注册OpenAI、Anthropic、Google的API，OpenRouter一个Key调用400+模型
+2. **一键切换**：换模型只需改一行代码参数，无需重构代码
+3. **自动降级**：当某提供商故障时，自动切换到其他可用模型，应用保持在线
+4. **成本优化**：:nitro用最快模型，:floor用最便宜模型，:free用免费版
+5. **零配置体验**：注册、充值、获取Key、改2行代码即可使用
+6. **手续费结构**：收取5.5%手续费，推理价格与官方一致
+7. **按量付费**：只有成功响应才收费（Zero Completion Insurance）
+8. **自带Key（BYOK）**：可插入已有Provider Key，第一百万次免费，之后收5%
+9. **隐私保护**：默认不记录Prompt和Completion，可选开启
+10. **5分钟上手**：注册→充值→生成Key→改base_url和api_key
 
-## 5分钟上手
-1. 注册 openrouter.ai
-2. 充值（预付）
-3. 生成API key
-4. 改2行代码：
-```python
-from openai import OpenAI
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key="你的key"
-)
-# 换模型就改这一行
-model="anthropic/claude-sonnet-4.5"
-```
+## 我们可以做什么
 
-## 模型后缀
-- :free — 免费版
-- :nitro — 最快
-- :floor — 最便宜
-- :thinking — 推理模式
-- :online — 自动联网搜索
-
-## 费用
-5.5%手续费，推理价格和官方一致。
+1. **注册OpenRouter账号**：申请API Key，统一管理多模型访问入口
+2. **改造现有代码**：将项目中的模型调用改为OpenRouter接口，只需改2行
+3. **配置自动降级**：利用内置机制提高应用稳定性，某Provider挂掉不影响服务
+4. **建立评测流程**：利用统一接口快速测试不同模型在同一任务上的效果
+5. **成本精细控制**：根据任务类型选择:nitro/:floor/:free后缀控制成本和速度
