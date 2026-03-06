@@ -5,6 +5,10 @@ original_url: https://www.theneuron.ai/explainer-articles/10-vibe-coding-questio
 source_title: "10 Vibe Coding Questions Beginners Don't Know to Ask"
 source_author: "The Neuron"
 published_at: "2026-02"
+captured_date: "2026-03-04"
+source_channel: "📦-资源"
+source_sender: ""
+message_id: ""
 tags: [vibe-coding, AI编程, 安全, code-review]
 ---
 

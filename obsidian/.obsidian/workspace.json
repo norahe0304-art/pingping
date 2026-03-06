@@ -203,6 +203,8 @@
   },
   "active": "944d051a68026c71",
   "lastOpenFiles": [
+    "Projects/Obsidian-可读性系统规范.md",
+    "Projects",
     "Resources/AI生成代码上线前必须问的10个问题.md",
     "Resources/Vibe Coding新手也要先过的10个安全问题.md",
     "Resources/OpenRouter统一API一张Key调用400模型.md",
@@ -228,7 +230,6 @@
     "Social/LinkedIn/Anthropic-Skills-官方技能构建指南.md",
     "Social/小红书/Vibe-Coding-10问-小红书帖子.md",
     "Social/小红书/OpenRouter统一API-小红书帖子.md",
-    "Social/小红书/Anthropic-Skills-小红书帖子.md",
     "Resources/claude-skill-building-guide.pdf",
     "Social/openclaw-multi-agent-video-architecture.excalidraw",
     "Resources/af64e513-bdd3-4c4f-a076-171c83d40d56.pdf",
@@ -237,7 +238,6 @@
     "Inbox",
     "Areas/AI-Marketing",
     "Social/小红书",
-    "Social/X",
-    "Social/LinkedIn"
+    "Social/X"
   ]
 }

@@ -5,7 +5,11 @@ original_url: https://www.theneuron.ai/explainer-articles/one-api-key-to-rule-th
 source_title: "One API Key to Rule Them All"
 source_author: "The Neuron"
 published_at: "2026-02"
-tags: [OpenRouter, API, AI模型, 成本优化]
+captured_date: "2026-03-04"
+source_channel: "📦-资源"
+source_sender: ""
+message_id: ""
+tags: [OpenRouter, API, AI模型, 成本优化, 多模型]
 ---
 
 # OpenRouter统一API一张Key调用400模型
