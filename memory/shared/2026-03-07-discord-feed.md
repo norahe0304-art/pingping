@@ -270,3 +270,33 @@ error: Error: Unknown Channel
 
 error: Error: Unknown Channel
 
+## 📦-资源
+
+- message_id: 1479888302495502541
+  timestamp: 2026-03-07T17:07:46.310Z
+  channel_id: 1474465453442338988
+  sender: yixiaohe
+  text: pingping 把 remotion-dev的skill发过来
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📦-资源
+
+- message_id: 1479888427058200678
+  timestamp: 2026-03-07T17:08:16.008Z
+  channel_id: 1474465453442338988
+  sender: pingping
+  text: `remotion-video-generator`： 路径：`~/.openclaw/skills/remotion-video-generator/` 要我发具体内容吗？
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📚-学习
+
+error: Error: Unknown Channel
+
+## 📚-学习
+
+error: Error: Unknown Channel
+
