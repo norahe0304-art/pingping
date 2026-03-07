@@ -1,6 +1,11 @@
 ---
-type: area
-status: active
+title: PARA 知识管理
+date: 2026-02-26
+type: project
+status: in_progress
+owner: Nora
+next_action: 完成三分区知识流落地
+due: 2026-03-15
 ---
 
 # Obsidian 三分区知识流
